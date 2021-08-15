@@ -8,11 +8,11 @@
     <ul class="nav navbar-nav">
       <!-- Messages -->
       <li class="dropdown messages-menu">
-          <a href="#" class="dropdown-toggle toggle-message" data-toggle="dropdown">
-              <i class="fa fa-envelope-o"></i>
-              <span class="label label-warning count-notif"></span>
-          </a>
-          <ul class="dropdown-menu menu-notif animated-dropdown-menu"></ul>
+        <a href="#" class="dropdown-toggle toggle-message" data-toggle="dropdown">
+          <i class="fa fa-envelope-o"></i>
+          <span class="label label-warning count-notif"></span>
+        </a>
+        <ul class="dropdown-menu menu-notif animated-dropdown-menu"></ul>
       </li>
       <!-- User Account Menu -->
       <li class="dropdown user user-menu">
@@ -48,29 +48,29 @@
     </ul>
   </div>
 </nav>
-<?php if($page == 'home'){ ?>
-<nav class="navbar navbar-static-top marquee">
-  <div class="text-marquee">Selamat datang <b><?php echo $userdata->nama; ?></b> di portal <b>Sistem Informasi Pembayaran BiogasKu</b>. 
-  Bekerja sama dengan Pemerintahan Desa Claket, sistem ini dikembangkan untuk memudahkan pengguna biogas dalam melakukan proses pembayaran. 
-  Diharapkan dengan sistem ini, akan meningkatkan minat dan partisipasi masyarakat Desa Claket dalam menggunakan biogas.&nbsp;&nbsp;&nbsp;&nbsp;Bersama BiogasKu bersama membangun negeri. BiogasKu, Biogas kita semua!</div>
-</nav>
+<?php if ($page == 'home') { ?>
+  <nav class="navbar navbar-static-top marquee">
+    <div class="text-marquee">Selamat datang <b><?php echo $userdata->nama; ?></b> di portal <b>Sistem Informasi Pembayaran BiogasKu</b>.
+      Bekerja sama dengan Pemerintahan Desa Claket, sistem ini dikembangkan untuk memudahkan pengguna biogas dalam melakukan proses pembayaran.
+      Diharapkan dengan sistem ini, akan meningkatkan minat dan partisipasi masyarakat Desa Claket dalam menggunakan biogas.&nbsp;&nbsp;&nbsp;&nbsp;Bersama BiogasKu bersama membangun negeri. BiogasKu, Biogas kita semua!</div>
+  </nav>
 <?php
 }
 ?>
 
 <script type="text/javascript">
-$(function () {
-  $('.text-marquee').marquee({
+  $(function() {
+    $('.text-marquee').marquee({
       //speed in milliseconds of the marquee
-      duration: 15000,
+      duration: 45000,
       //gap in pixels between the tickers
-      gap: 50,
+      gap: 0,
       //time in milliseconds before the marquee will start animating
       delayBeforeStart: 1000,
       //'left' or 'right'
       direction: 'left',
       //true or false - should the marquee be duplicated to show an effect of continues flow
       duplicated: false
+    });
   });
-});
 </script>

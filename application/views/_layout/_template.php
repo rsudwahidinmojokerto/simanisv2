@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>BiogasKu</title>
-    <link rel="icon" href="<?php base_url(); ?>assets/icons/favicon.png">
-    <!-- favicon -->
-    <?php echo @$_favicon; ?>
 
-    <!-- meta -->
-    <?php echo @$_meta; ?>
+<head>
+  <title>BiogasKu</title>
+  <link rel="icon" href="<?php base_url(); ?>assets/icons/favicon.png">
+  <!-- favicon -->
+  <?php echo @$_favicon; ?>
 
-    <!-- css --> 
-    <?php echo @$_css; ?>
+  <!-- meta -->
+  <?php echo @$_meta; ?>
 
-    <!-- jQuery 2.2.3 -->
-    <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
-  </head>
+  <!-- css -->
+  <?php echo @$_css; ?>
 
-  <body class="hold-transition skin-green sidebar-mini fixed">
-    <div class="wrapper">
-      <!-- header -->
-      <?php echo @$_header; ?> <!-- nav -->
-      
-      <!-- sidebar -->
-      <?php echo @$_sidebar; ?>
-      
-      <!-- content -->
-      <?php echo @$_content; ?> <!-- headerContent --><!-- mainContent -->
-    
-      <!-- footer -->
-      <?php echo @$_footer; ?>
-    
-      <div class="control-sidebar-bg"></div>
-    </div>
+  <!-- jQuery 2.2.3 -->
+  <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
+</head>
 
-    <!-- js -->
-    <?php echo @$_js; ?>
-  </body>
+<body class="hold-transition skin-green sidebar-mini sidebar-collapse fixed">
+  <div class="wrapper">
+    <!-- header -->
+    <?php echo @$_header; ?>
+    <!-- nav -->
+
+    <!-- sidebar -->
+    <?php echo @$_sidebar; ?>
+
+    <!-- content -->
+    <?php echo @$_content; ?>
+    <!-- headerContent -->
+    <!-- mainContent -->
+
+    <!-- footer -->
+    <?php echo @$_footer; ?>
+
+    <div class="control-sidebar-bg"></div>
+  </div>
+
+  <!-- js -->
+  <?php echo @$_js; ?>
+</body>
+
 </html>
