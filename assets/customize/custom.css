@@ -1,0 +1,205 @@
+/* Addon sizing */
+.input-group-addon {
+    min-width: 40px;
+    text-align: center;
+}
+
+/* addon transfer sizing */
+.input-group-addon.trf {
+    min-width: 125px;
+}
+
+.box.trf {
+    background: #fffebe;
+    /* background: #0f92a3; */
+}
+
+/* form inline */
+.form-inline {
+    margin: 0 0 15px 0;
+}
+
+/* text marquee */
+.text-marquee {
+    width: auto;
+    height: 30px;
+    overflow: hidden;
+    background: #000000;
+    text-align: center;
+    color: #fff;
+    padding-top: 5px;
+}
+
+.marquee {
+    min-height: 30px !important;
+    /* position: absolute !important; */
+}
+
+@media (max-width: 768px) {
+    .marquee {
+        min-height: 30px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .content-header {
+        padding: 37px 15px 0 15px !important;
+    }
+
+    h1 {
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .user-panel {
+        padding: 33px 15px 0 15px !important;
+    }
+}
+
+.dropdown-menu {
+    z-index: 2 !important;
+}
+
+.img-alur {
+    padding: 10px 0 20px 10px;
+    z-index: 1;
+    position: relative;
+}
+
+.img-alur-media {
+    visibility: visible;
+    z-index: 0;
+    position: absolute;
+}
+
+@media (max-width: 768px) {
+    .img-alur {
+        visibility: hidden;
+        position: absolute !important;
+    }
+
+    .img-alur-media {
+        visibility: visible !important;
+        position: relative !important;
+        padding: 0 10px 10px 10px;
+    }
+}
+
+@media (max-width: 990px) {
+    .breadcrumb {
+        padding-top: 7px !important;
+    }
+}
+
+.slimScrollBar {
+    background: none repeat scroll 0 0 #b6b6b6 !important;
+    border-radius: 0;
+    display: none;
+    height: 500px;
+    position: absolute;
+    right: 1px;
+    top: 145px;
+    width: 6px !important;
+    z-index: 99;
+    opacity: 0.4 !important;
+}
+
+/* custom403 */
+.errorbody {
+    width: 100%;
+    height: 520px;
+    background-color: #e9e9e9;
+    color: #494949;
+    font-family: sans-serif;
+}
+
+.errordiv {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    z-index: 15;
+    top: 35%;
+    left: 50%;
+    margin: -100px 0 0 -200px;
+    text-align: center;
+}
+
+.errorh1,
+.errorh2 {
+    text-align: center;
+}
+
+.errorh1 {
+    font-size: 120px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid white;
+    padding-bottom: 10px;
+}
+
+@media (max-width: 500px) {
+    .errorh1 {
+        border-bottom: 0px;
+    }
+}
+
+.errorh2 {
+    margin-bottom: 40px;
+}
+
+.errorbtn {
+    margin-top: 10px;
+    text-decoration: none;
+    padding: 10px 25px;
+    background-color: ghostwhite;
+    color: #313131;
+    margin-top: 20px;
+}
+
+/* end custom403 */
+
+/* begin @media of dashboard */
+@media (max-width: 700px) {
+    .inner h3 {
+        font-size: 16pt !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .box-body #data-statistik {
+        width: auto !important;
+    }
+}
+
+/* end @media of dashboard */
+
+/* begin overflow content modal */
+
+.modal-dialog {
+    overflow-x: initial !important;
+}
+
+.modal-body {
+    overflow-x: auto;
+}
+
+/* end overflow content modal */
+
+/* begin chart  */
+.chartWrapper {
+    position: relative;
+}
+
+.chartWrapper>canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+}
+
+.chartAreaWrapper {
+    /* width: 15000px; */
+    overflow-x: scroll;
+}
+
+/* end chart */
