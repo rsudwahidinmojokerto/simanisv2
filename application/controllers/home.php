@@ -15,7 +15,8 @@ class home extends AUTH_Controller
 
 	public function index()
 	{
-		$jumlahKamar = $this->tm_kamar->getJumlahKamar();
+		$data['kamar']		 = $this->tm_kamar->getKamar('KERTAWIJAYA');
+		$data['jumlahKamar'] = $this->tm_kamar->getJumlahKamar('KERTAWIJAYA');
 		$cekVolume 	 = $this->m_bayar->cekVolume($this->userdata->idUser);
 		$harga		 = $this->m_harga->lastPrice();
 		$idUser		 = $this->userdata->idUser;

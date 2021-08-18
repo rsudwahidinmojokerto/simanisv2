@@ -4,9 +4,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class tm_kamar extends CI_Model
 {
 
+	public function getKamar($unit)
+	{
+		$sql = "SELECT * FROM tm_kamar WHERE Unit = '$unit'";
+		$data = $this->db->query($sql);
+		return $data->result_array();
+	}
+
 	public function getJumlahKamar($unit)
 	{
-		$sql = "SELECT SUM(Unit) AS jumlahUnit FROM tm_kamar WHERE Unit = '$unit'";
+		$sql = "SELECT COUNT(Unit) AS jumlahUnit FROM tm_kamar WHERE Unit = '$unit'";
 		$data = $this->db->query($sql);
 		return $data->row()->jumlahUnit;
 	}

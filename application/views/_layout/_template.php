@@ -2,8 +2,8 @@
 <html>
 
 <head>
-  <title>BiogasKu</title>
-  <link rel="icon" href="<?php base_url(); ?>assets/icons/favicon.png">
+  <title>SIMANIS V2</title>
+  <link rel="icon" href="<?php base_url(); ?>assets/icons/lg_btn.png">
   <!-- favicon -->
   <?php echo @$_favicon; ?>
 

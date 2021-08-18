@@ -2,7 +2,7 @@
 
 <div class="row">
     <h1>
-        <center>RUANG RADEN WIJAYA</center>
+        <center>RUANG KERTAWIJAYA</center>
     </h1>
     <br>
 </div>
@@ -36,31 +36,41 @@
         </div> -->
             <?php
             $k = 1;
-            $warna = array('green', 'red');
-            for ($j = 0; $j < 2; $j++) {
-                for ($i = 0; $i < 12; $i++) { ?>
-                    <div class="col-lg-1 col-xs-1">
-                        <div class="small-box bg-<?= $warna[array_rand($warna)]; ?>">
-                            <div class="inner">
-                                <h2>
-                                    <center>RWJ-<?= $k; ?></center>
-                                </h2>
-                                <!-- <h3 id="realtimeCountDaya"></h3> -->
-                                <!-- <p>Biogas terpakai</p> -->
-                            </div>
-                            <!-- <div class="icon">
+            foreach ($kamar as $km) { ?>
+                <div class="col-lg-1 col-xs-1">
+                    <div class="small-box bg-<?php echo ($km['Terpakai'] == 'Y') ? 'red' : 'green'; ?>">
+                        <div class="inner">
+                            <h2>
+                                <center><?= $km['KodeUnit']; ?>-<?= $k; ?></center>
+                            </h2>
+                            <!-- <h3 id="realtimeCountDaya"></h3> -->
+                            <!-- <p>Biogas terpakai</p> -->
+                        </div>
+                        <!-- <div class="icon">
                         <i class="ion ion-flame"></i>
                     </div> -->
-                            <!-- <a href="<?php echo base_url('Trxkeluar') ?>" class="small-box-footer-green"><i class="fa fa-arrow-circle-right"></i></a> -->
-                            <!-- <a href="<?php echo base_url('Trxkeluar') ?>" class="small-box-footer-green">Terpakai</a>
+                        <!-- <a href="<?php echo base_url('Trxkeluar') ?>" class="small-box-footer-green"><i class="fa fa-arrow-circle-right"></i></a> -->
+                        <!-- <a href="<?php echo base_url('Trxkeluar') ?>" class="small-box-footer-green">Terpakai</a>
                             <a href="<?php echo base_url('Trxkeluar') ?>" class="small-box-footer-red">Kosong</i></a>
                             <a href="<?php echo base_url('Trxkeluar') ?>" class="small-box-footer-yellow">Perbaikan</i></a> -->
-                        </div>
                     </div>
+                </div>
             <?php $k++;
-                }
             } ?>
-        <?php } ?>
+            <div class="col-lg-5 col-xs-5"></div>
+            <div class="col-lg-1 col-xs-1">
+                <div style="width:20px; height:20px; background-color: #DD4B39;">
+                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Terisi</h4>
+                </div>
+            </div>
+            <div class="col-lg-1 col-xs-1">
+                <div style="width:20px; height:20px; background-color: #00A65A;">
+                    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kosong</h4>
+                </div>
+            </div>
+            <div class="col-lg-5 col-xs-5"></div>
+        <?php
+        } ?>
     <?php
     } else if ($userdata->idGrup == 'JBT01' || $userdata->idGrup == 'JBT02') {
     ?>
