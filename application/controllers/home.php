@@ -10,13 +10,24 @@ class home extends AUTH_Controller
 		$this->load->model('m_bayar');
 		$this->load->model('m_harga');
 		$this->load->model('m_user');
-		$this->load->model('tm_kamar');
+		$this->load->model('m_kamar');
 	}
 
 	public function index()
 	{
-		$data['kamar']		 = $this->tm_kamar->getKamar('KERTAWIJAYA');
-		$data['jumlahKamar'] = $this->tm_kamar->getJumlahKamar('KERTAWIJAYA');
+		$i = 0;
+		$getUnit = $this->m_kamar->getAllUnit();
+		foreach ($getUnit as $data) {
+			// var_dump($unit['Unit']);
+			$data['unit' . $i] = $this->m_kamar->getKamar($data['Unit']);
+			// var_dump('unit' . $i);
+			// echo $i;
+			$i++;
+		}
+		$data['kamar']		 = $this->m_kamar->getKamar('KERTAWIJAYA');
+		$data['jumlahKamar'] = $this->m_kamar->getJumlahKamar('KERTAWIJAYA');
+		$data['kelas']		 = $this->m_kamar->getKelas('KERTAWIJAYA');
+		$data['jumlahKelas'] = $this->m_kamar->getJumlahKelas('KERTAWIJAYA');
 		$cekVolume 	 = $this->m_bayar->cekVolume($this->userdata->idUser);
 		$harga		 = $this->m_harga->lastPrice();
 		$idUser		 = $this->userdata->idUser;

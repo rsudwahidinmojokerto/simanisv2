@@ -24,5 +24,7 @@
 <script src="<?php echo base_url(); ?>assets/plugins/countUp.js/countUp.js"></script>
 <!-- Date picker -->
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- Splide -->
+<script src="<?php echo base_url(); ?>assets/plugins/splide/dist/js/splide.min.js"></script>
 <!-- My Ajax -->
 <?php include './assets/js/ajax.php'; ?>

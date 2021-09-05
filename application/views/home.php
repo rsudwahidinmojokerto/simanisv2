@@ -1,11 +1,11 @@
 <div id="tempat-modal"></div>
 
-<div class="row">
+<!-- <div class="row">
     <h1>
         <center>RUANG KERTAWIJAYA</center>
     </h1>
     <br>
-</div>
+</div> -->
 
 <div class="row">
     <?php if ($userdata->idGrup == 'JBT04') { ?>
@@ -74,8 +74,14 @@
     <?php
     } else if ($userdata->idGrup == 'JBT01' || $userdata->idGrup == 'JBT02') {
     ?>
-        <div class="col-lg-6 col-xs-6">
-            <!-- small box -->
+        <!-- <div class="row">
+            <h1>
+                <center>RUANG KERTAWIJAYA</center>
+            </h1>
+            <br>
+        </div> -->
+
+        <!-- <div class="col-lg-6 col-xs-6">
             <div class="small-box bg-aqua">
                 <div class="inner">
                     <h3 class="tagihan" data-a-sign="Rp. " data-a-dec="," data-a-sep="."><?php $decodeBulan = json_decode($bulan);
@@ -86,9 +92,8 @@
                     <i class="ion ion-cash"></i>
                 </div>
             </div>
-        </div><!-- ./col -->
+        </div>
         <div class="col-lg-6 col-xs-6">
-            <!-- small box -->
             <div class="small-box bg-red">
                 <div class="inner">
                     <h3><?php echo $pelanggan; ?> Pelanggan</h3>
@@ -98,7 +103,67 @@
                     <i class="ion ion-ios-people"></i>
                 </div>
             </div>
-        </div><!-- ./col -->
+        </div> -->
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="splide" class="splide">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <li class="splide__slide">
+                                <div class="row">
+                                    <h1>
+                                        <center>RUANG KERTAWIJAYA</center>
+                                    </h1>
+                                    <br>
+                                </div>
+                                <?php
+                                $k = 1;
+                                foreach ($kamar as $km) { ?>
+                                    <div class="col-lg-1 col-xs-1">
+                                        <div class="small-box bg-<?php echo ($km['Terpakai'] == 'Y') ? 'red' : 'green'; ?>">
+                                            <div class="inner">
+                                                <h2>
+                                                    <center><?= $km['KodeUnit']; ?>-<?= $km['Bed']; ?></center>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php $k++;
+                                } ?>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="row">
+                                    <h1>
+                                        <center>RUANG JAYANEGARA</center>
+                                    </h1>
+                                    <br>
+                                </div>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="row">
+                                    <h1>
+                                        <center>RUANG HAYAM WURUK</center>
+                                    </h1>
+                                    <br>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-xs-5"></div>
+                <div class="col-lg-1 col-xs-1">
+                    <div style="width:20px; height:20px; background-color: #DD4B39;">
+                        <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Terisi</h4>
+                    </div>
+                </div>
+                <div class="col-lg-1 col-xs-1">
+                    <div style="width:20px; height:20px; background-color: #00A65A;">
+                        <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kosong</h4>
+                    </div>
+                </div>
+                <div class="col-lg-5 col-xs-5"></div>
+            </div>
+        </div>
     <?php
     } else {
     ?>
@@ -322,5 +387,9 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('.tagihan').autoNumeric('init');
+        new Splide('#splide', {
+            type: 'loop',
+            autoplay: true,
+        }).mount();
     });
 </script>

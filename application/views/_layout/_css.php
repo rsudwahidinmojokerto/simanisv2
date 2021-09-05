@@ -9,3 +9,4 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/maxlength/jquery.maxlength.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.css">
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/splide/dist/css/splide.min.css">
