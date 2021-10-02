@@ -131,6 +131,48 @@
           <span>Perpesanan</span>
         </a>
       </li>
+
+      <!-- SIMANIS -->
+      <?php if ($userdata->idGrup == "JBT01"){ ?>
+      <!-- Data Pengguna -->
+      <li <?php if ($page == 'data_kelas' || $page == 'data_ruangan' || $page == 'data_bed' || $page == 'data_user') { echo 'class="treeview active"';} ?>>
+          <a href="#">
+              <i class="fa fa-archive"></i> <span>Master Data</span><i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+              <li <?php if ($page == 'data_kelas') {echo 'class="active"';} ?>><a href="<?php echo base_url('masterKelas') ?>"><i class="fa fa-angle-double-right"></i> Master Kelas</a></li>
+              <li <?php if ($page == 'data_ruangan') {echo 'class="active"';} ?>><a href="<?php echo base_url('masterRuangan') ?>"><i class="fa fa-angle-double-right"></i> Master Ruangan</a></li>
+              <li <?php if ($page == 'data_bed') {echo 'class="active"';} ?>><a href="<?php echo base_url('masterBed') ?>"><i class="fa fa-angle-double-right"></i> Master Tempat Tidur</a></li>
+              <li <?php if ($page == 'data_user') {echo 'class="active"';} ?>><a href="<?php echo base_url('masterUser') ?>"><i class="fa fa-angle-double-right"></i> Master User</a></li>
+          </ul>
+      </li>
+      <?php 
+      }
+      ?>
+
+      <?php if ($userdata->idGrup == "JBT01"){ ?>
+      <!-- Verifikasi Pembayaran -->
+      <li <?php if ($page == 'verifikasi') {echo 'class="active"';} ?>>
+        <a href="<?php echo base_url('c_verifikasi'); ?>">
+          <i class="fa fa-bed"></i>
+          <span>Data Tempat Tidur</span>
+        </a>
+      </li>
+      <?php
+      }
+      ?>
+
+      <?php if ($userdata->idGrup == "JBT01"){ ?>
+      <!-- Verifikasi Pembayaran -->
+      <li <?php if ($page == 'verifikasi') {echo 'class="active"';} ?>>
+        <a href="<?php echo base_url('c_verifikasi'); ?>">
+          <i class="fa fa-check-square-o"></i>
+          <span>Laporan</span>
+        </a>
+      </li>
+      <?php
+      }
+      ?>
     </ul>
     <!-- /.sidebar-menu -->
   </section>

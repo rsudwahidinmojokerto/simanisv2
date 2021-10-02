@@ -50,9 +50,7 @@
 </nav>
 <?php if ($page == 'home') { ?>
   <nav class="navbar navbar-static-top marquee">
-    <div class="text-marquee">Selamat datang <b><?php echo $userdata->nama; ?></b> di portal <b>Sistem Informasi Pembayaran BiogasKu</b>.
-      Bekerja sama dengan Pemerintahan Desa Claket, sistem ini dikembangkan untuk memudahkan pengguna biogas dalam melakukan proses pembayaran.
-      Diharapkan dengan sistem ini, akan meningkatkan minat dan partisipasi masyarakat Desa Claket dalam menggunakan biogas.&nbsp;&nbsp;&nbsp;&nbsp;Bersama BiogasKu bersama membangun negeri. BiogasKu, Biogas kita semua!</div>
+    <div class="text-marquee" style="font-size: 14pt;">Selamat datang di portal <b>Sistem Informasi Managemen Tempat Tidur Pasien (SIMANIS) RSUD dr. Wahidin Sudiro Husodo Kota Mojokerto</b>. Berikut merupakan informasi mengenai ketersediaan tempat tidur yang berada di rumah sakit kami. <b>DISCLAIMER: INFORMASI INI TIDAK MENJAMIN KETERSEDIAAN SECARA AKURAT, DIKARENAKAN LAMA PROSES PENANGANAN MASUK RUMAH SAKIT (MRS) DAN KELUAR RUMAH SAKIT (KRS).&nbsp;&nbsp;&nbsp;&nbsp;<b>TETAP PATUHI PROTOKOL KESEHATAN DIMANAPUN ANDA BERADA. KEPUASAN PASIEN TUJUAN KAMI</b>.</div>
   </nav>
 <?php
 }
@@ -62,7 +60,7 @@
   $(function() {
     $('.text-marquee').marquee({
       //speed in milliseconds of the marquee
-      duration: 45000,
+      duration: 35000,
       //gap in pixels between the tickers
       gap: 0,
       //time in milliseconds before the marquee will start animating

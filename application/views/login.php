@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>BiogasKu | Log in</title>
+    <title>SIMANIS v2 | Log in</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="icon" href="<?php base_url(); ?>assets/icons/favicon.png">
+    <link rel="icon" href="<?php base_url(); ?>assets/icons/lg_btn.png">
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="<?php echo base_url(); ?>assets/bootstrap/css/bootstrap.min.css">
     <!-- Font Awesome -->
@@ -28,7 +28,7 @@
   <body class="hold-transition login-page">
     <div class="login-box">
       <div class="login-logo">
-        <img src="<?php echo base_url(); ?>assets/icons/lg_clr.png" class="logo-default" width="220px" height="80px" alt="Logo">
+        <img src="<?php echo base_url(); ?>assets/icons/lg_clr.png" class="logo-default" width="260px" height="120px" alt="Logo">
       </div>
 
       <!-- /.login-logo -->
@@ -39,7 +39,7 @@
 
         <form action="<?php echo base_url('Auth/login'); ?>" method="post">
           <div class="form-group has-feedback">
-            <input type="text" class="form-control" placeholder="Masukkan ID" name="idUser">
+            <input type="text" class="form-control" placeholder="Masukkan username" name="idUser">
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
           </div>
           <div class="form-group has-feedback">
@@ -98,4 +98,16 @@
       });
     </script> -->
   </body>
+
+  <footer style="margin-top: -80px;">
+    <div class="row">
+      <div class="col-sm-12">
+        <p class="login-box-msg">
+          Copyright © <b>RSUD dr. Wahidin Sudiro Husodo Kota Mojokerto</b>.<br>
+          Created by <b>Ksatria Wahidin</b>.
+        </p>
+      </div>
+    </div>
+  </footer>
+
 </html>
