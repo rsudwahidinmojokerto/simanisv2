@@ -11,11 +11,13 @@ class home extends AUTH_Controller
 		$this->load->model('m_harga');
 		$this->load->model('m_user');
 		$this->load->model('m_kamar');
+		$this->load->model('m_bed');
 	}
 
 	public function index()
 	{
 		$i = 0;
+		$idBed = '0';
 		$getUnit = $this->m_kamar->getAllUnit();
 		foreach ($getUnit as $data) {
 			// var_dump($unit['Unit']);
@@ -28,6 +30,22 @@ class home extends AUTH_Controller
 		$data['jumlahKamar'] = $this->m_kamar->getJumlahKamar('KERTAWIJAYA');
 		$data['kelas']		 = $this->m_kamar->getKelas('KERTAWIJAYA');
 		$data['jumlahKelas'] = $this->m_kamar->getJumlahKelas('KERTAWIJAYA');
+
+		$getBed		 = $this->m_bed->getAllDataBed();
+		foreach ($getBed as $bed) {
+			$data['bed' . $bed['id_bed']] = $this->m_bed->getAllDataBedById($bed['id_bed']);
+			// var_dump($data['bed' . $bed['id_bed']]);
+		}
+		// var_dump($data['bed' . $bed['id_bed']]);
+		// $data['bedById']	 = $this->m_bed->getAllDataBedById($idBed);
+
+
+
+
+
+
+
+
 		$cekVolume 	 = $this->m_bayar->cekVolume($this->userdata->idUser);
 		$harga		 = $this->m_harga->lastPrice();
 		$idUser		 = $this->userdata->idUser;
@@ -106,5 +124,12 @@ class home extends AUTH_Controller
 		);
 
 		echo json_encode($data);
+	}
+
+	public function updateBed()
+	{
+		$id = trim($_POST['id_bed']);
+		$data['dataBed'] = $this->m_bed->getAllDataBedById($id);
+		echo show_my_modal('modals/modal_update_bed', 'update-bed', $data, 'sm');
 	}
 }

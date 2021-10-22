@@ -144,7 +144,7 @@
                                                                 </h4>
                                                             </div>
                                                             <div class="box-body">
-                                                                <button class="small-box bg-red btn-block" style="height: 50px;">Terisi</button>
+                                                                <button class="small-box bg-<?php echo ($bedBD001001001[0]['status'] == 'kosong') ? 'aqua' : 'red'; ?> btn-block gantiStatusBed" style="height: 50px;" data-id="BD001001001"><?php echo ($bedBD001001001[0]['status'] == 'kosong') ? 'Kosong' : 'Terisi'; ?></button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -156,7 +156,7 @@
                                                                 </h4>
                                                             </div>
                                                             <div class="box-body">
-                                                                <button class="small-box bg-aqua btn-block" style="height: 50px;">Kosong</button>
+                                                                <button class="small-box bg-<?php echo ($bedBD001001002[0]['status'] == 'kosong') ? 'aqua' : 'red'; ?> btn-block gantiStatusBed" style="height: 50px;" data-id="BD001001002"><?php echo ($bedBD001001002[0]['status'] == 'kosong') ? 'Kosong' : 'Terisi'; ?></button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -168,7 +168,7 @@
                                                                 </h4>
                                                             </div>
                                                             <div class="box-body">
-                                                                <button class="small-box bg-aqua btn-block" style="height: 50px;">Kosong</button>
+                                                                <button class="small-box bg-<?php echo ($bedBD001001003[0]['status'] == 'kosong') ? 'aqua' : 'red'; ?> btn-block gantiStatusBed" style="height: 50px;" data-id="BD001001003"><?php echo ($bedBD001001003[0]['status'] == 'kosong') ? 'Kosong' : 'Terisi'; ?></button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -180,7 +180,7 @@
                                                                 </h4>
                                                             </div>
                                                             <div class="box-body">
-                                                                <button class="small-box bg-aqua btn-block" style="height: 50px;">Kosong</button>
+                                                                <button class="small-box bg-<?php echo ($bedBD001001004[0]['status'] == 'kosong') ? 'aqua' : 'red'; ?> btn-block gantiStatusBed" style="height: 50px;" data-id="BD001001004"><?php echo ($bedBD001001004[0]['status'] == 'kosong') ? 'Kosong' : 'Terisi'; ?></button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1362,46 +1362,1105 @@
                                 <!-- RUANG KERTAWIJAYA -->
                                 <li class="splide__slide">
                                     <div class="row">
-                                        <h1>
-                                            <center>RUANG KERTAWIJAYA</center>
-                                        </h1>
-                                        <br>
+                                        <div class="col-sm-12">
+                                            <h1>
+                                                <center>RUANG KERTAWIJAYA</center>
+                                            </h1>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h4>
+                                                <center><b>TERISI: 3, KOSONG: 11</b></center>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-2">
+                                            <div class="box box-danger">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>ISOLASI (DEWASA)</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>KWJ-06</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-3"></div>
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-3"></div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-3"></div>
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-3"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="box">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>KELAS 3 (DEWASA)</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>KWJ-02</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-1"></div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-1"></div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-1"></div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-1"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="box box-primary">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>KELAS 2 (DEWASA)</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>KWJ-03</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-2"></div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-2"></div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-2"></div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-2"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-2">
+                                            <div class="box box-danger">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>ISOLASI (ANAK)</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>KWJ-06</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-3"></div>
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-3"></div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-3"></div>
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-3"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="box">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>KELAS 3 (ANAK)</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>KWJ-02</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-1"></div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-1"></div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-1"></div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-1"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="box box-primary">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>KELAS 2 (ANAK)</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>KWJ-03</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-2"></div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-2"></div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-2"></div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-2"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </li>
                                 <!-- RUANG KERTABHUMI -->
                                 <li class="splide__slide">
                                     <div class="row">
-                                        <h1>
-                                            <center>RUANG KERTABHUMI</center>
-                                        </h1>
-                                        <br>
+                                        <div class="col-sm-12">
+                                            <h1>
+                                                <center>RUANG KERTABHUMI</center>
+                                            </h1>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h4>
+                                                <center><b>TERISI: 14, KOSONG: 15</b></center>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <div class="box box-primary">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>KELAS 2 (L)</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>KTBM-01</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="box box-danger">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>ISOLASI</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>KTBM-02</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="box box-danger">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>ISOLASI</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>KTBM-03</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="box">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>KELAS 3</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>KTBM-04</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-4"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="box">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>KELAS 3</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>KTBM-05</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-4"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <div class="box box-primary">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>KELAS 2 (P)</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>KTBM-09</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2"></div>
+                                        <div class="col-sm-2">
+                                            <div class="box box-danger">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>ISOLASI</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>KTBM-08</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="box">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>KELAS 3</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>KTBM-07</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-4"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </li>
                                 <!-- RUANG GAYATRI -->
                                 <li class="splide__slide">
                                     <div class="row">
-                                        <h1>
-                                            <center>RUANG GAYATRI</center>
-                                        </h1>
-                                        <br>
+                                        <div class="col-sm-12">
+                                            <h1>
+                                                <center>RUANG GAYATRI</center>
+                                            </h1>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h4>
+                                                <center><b>TERISI: 5, KOSONG: 14</b></center>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <div class="box box-primary">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>KELAS 2</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>GYTR-04</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-4">
+                                            <div class="box" style="height: 220px;">
+                                                <div class="box-body">
+                                                    <div style="margin-top: 75px; margin-bottom: auto;">
+                                                        <center>
+                                                            <h3>
+                                                                RUANG PERINATAL
+                                                            </h3>
+                                                            <h4>
+                                                                PRNT-01
+                                                            </h4>
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="box">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>KELAS 3</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>GYTR-02</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-4"></div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="box box-success">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>KELAS 1</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>GYTR-01</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-3"></div>
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-3"></div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-3"></div>
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-3"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3"></div>
+                                        <div class="col-sm-3">
+                                            <div class="box box-danger" style="height: 220px;">
+                                                <div class="box-body">
+                                                    <div style="margin-top: 60px; margin-bottom: auto;">
+                                                        <center>
+                                                            <h3>
+                                                                RUANG PERINATAL (ISOLASI COVID)
+                                                            </h3>
+                                                            <h4>
+                                                                PRNT-02
+                                                            </h4>
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="box">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>KELAS 3</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>GYTR-03</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-2"></div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-2"></div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </li>
                                 <!-- RUANG PERINATAL -->
                                 <li class="splide__slide">
                                     <div class="row">
-                                        <h1>
-                                            <center>RUANG PERINATAL</center>
-                                        </h1>
-                                        <br>
+                                        <div class="col-sm-12">
+                                            <h1>
+                                                <center>RUANG PERINATAL</center>
+                                            </h1>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h4>
+                                                <center><b>TERISI: 3, KOSONG: 11</b></center>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-2">
+                                            <div class="box box-primary" style="height: 170px;">
+                                                <div class="box-body">
+                                                    <div style="margin-top: 33px; margin-bottom: auto;">
+                                                        <center>
+                                                            <h3>
+                                                                RUANG GAYATRI
+                                                            </h3>
+                                                            <h4>
+                                                                GYTR-04
+                                                            </h4>
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-4">
+                                            <div class="box">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>KELAS 3</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>PRNT-01</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="box" style="height: 220px;">
+                                                <div class="box-body">
+                                                    <div style="margin-top: 75px; margin-bottom: auto;">
+                                                        <center>
+                                                            <h3>
+                                                                RUANG GAYATRI
+                                                            </h3>
+                                                            <h4>
+                                                                GYTR-02
+                                                            </h4>
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="box box-success" style="height: 220px;">
+                                                <div class="box-body">
+                                                    <div style="margin-top: 60px; margin-bottom: auto;">
+                                                        <center>
+                                                            <h3>
+                                                                RUANG GAYATRI
+                                                            </h3>
+                                                            <h4>
+                                                                GYTR-01
+                                                            </h4>
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3"></div>
+                                        <div class="col-sm-3">
+                                            <div class="box box-danger">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>ISOLASI COVID PERINATAL</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>PRNT-02</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                            </div>
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="box" style="height: 220px;">
+                                                <div class="box-body">
+                                                    <div style="margin-top: 70px; margin-bottom: auto;">
+                                                        <center>
+                                                            <h3>
+                                                                RUANG GAYATRI
+                                                            </h3>
+                                                            <h4>
+                                                                GYTR-03
+                                                            </h4>
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </li>
                                 <!-- RUANG ICU, ICCU, HCU, PICU -->
                                 <li class="splide__slide">
                                     <div class="row">
-                                        <h1>
-                                            <center>RUANG ICU, ICCU, HCU, PICU</center>
-                                        </h1>
-                                        <br>
+                                        <div class="col-sm-12">
+                                            <h1>
+                                                <center>RUANG HCU, ICU, ICCU, PICU</center>
+                                            </h1>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h4>
+                                                <center><b>TERISI: 6, KOSONG: 6</b></center>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="box box-danger">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h3>HCU</h3>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="box box-danger">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h3>ICU</h3>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="box box-danger">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h3>ICCU</h3>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-3">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 30px;">Kosong</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <div class="box box-danger">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h3>PICU</h3>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-6">
+                                                                    <button class="small-box bg-red btn-block" style="height: 30px;">Terisi</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </li>
                                 <!-- RUANG ISOLASI COVID ICU -->
@@ -1522,10 +2581,144 @@
                                 <!-- RUANG NICU -->
                                 <li class="splide__slide">
                                     <div class="row">
-                                        <h1>
-                                            <center>RUANG NICU</center>
-                                        </h1>
-                                        <br>
+                                        <div class="col-sm-12">
+                                            <h1>
+                                                <center>RUANG NICU</center>
+                                            </h1>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <h4>
+                                                <center><b>TERISI: 2, KOSONG: 6</b></center>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-sm-1"></div>
+                                        <div class="col-sm-4">
+                                            <div class="box box-danger">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>NICU NON INFEKSI</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>NICU-01</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 50px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-red btn-block" style="height: 50px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 50px;">Kosong</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2"></div>
+                                        <div class="col-sm-4">
+                                            <div class="box box-danger">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>NICU INTERMEDIATE</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>NICU-02</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-red btn-block" style="height: 50px;">Terisi</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 50px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-4">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 50px;">Kosong</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-3"></div>
+                                        <div class="col-sm-2">
+                                            <div class="box box-danger">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>NICU INFEKSI</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>NICU-03</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-1"></div>
+                                                                <div class="col-sm-8">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 50px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-1"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-2"></div>
+                                        <div class="col-sm-2">
+                                            <div class="box box-danger">
+                                                <div class="box-header">
+                                                    <center>
+                                                        <h4>NICU INFEKSI</h4>
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <h5>NICU-04</h5>
+                                                            </div>
+                                                        </div>
+                                                    </center>
+                                                </div>
+                                                <div class="box-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="row">
+                                                                <div class="col-sm-1"></div>
+                                                                <div class="col-sm-8">
+                                                                    <button class="small-box bg-aqua btn-block" style="height: 50px;">Kosong</button>
+                                                                </div>
+                                                                <div class="col-sm-1"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3"></div>
                                     </div>
                                 </li>
                             </ul>
