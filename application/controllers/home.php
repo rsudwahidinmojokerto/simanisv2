@@ -132,4 +132,31 @@ class home extends AUTH_Controller
 		$data['dataBed'] = $this->m_bed->getAllDataBedById($id);
 		echo show_my_modal('modals/modal_update_bed', 'update-bed', $data, 'sm');
 	}
+
+	public function prosesUbahBed()
+	{
+		$this->form_validation->set_rules('idBed', 'id', 'trim|required');
+		$this->form_validation->set_rules('statusBed', 'status', 'trim|required');
+
+		$data = $this->input->post();
+		if ($this->form_validation->run() == TRUE) {
+			$result = $this->m_bed->updateStatusBed($data);
+			$bed = $this->m_bed->getAllDataBedById($data['idBed']);
+			if ($result > 0) {
+				$out['status'] = '';
+				$out['idBed'] = $bed->id_bed;
+				$out['statusBed'] = $bed->status;
+				$out['countTerisi'] = $this->m_bed->countBed($bed, 'terisi');
+				$out['countKosong'] = $this->m_bed->countBed($bed, 'kosong');
+				$out['msg'] = show_succ_msg('Bed berhasil di update', '20px');
+			} else {
+				$out['status'] = '';
+				$out['msg'] = show_err_msg('Bed gagal di update', '20px');
+			}
+		} else {
+			$out['status'] = 'form';
+			$out['msg'] = show_err_msg(validation_errors());
+		}
+		echo json_encode($out);
+	}
 }

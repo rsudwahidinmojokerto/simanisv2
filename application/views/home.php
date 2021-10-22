@@ -122,7 +122,7 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <h4>
-                                                <center><b>TERISI: 5, KOSONG: 9</b></center>
+                                                <center><b class="jumlahBedRU001">TERISI: 5, KOSONG: 9</b></center>
                                             </h4>
                                         </div>
                                     </div>
@@ -144,7 +144,7 @@
                                                                 </h4>
                                                             </div>
                                                             <div class="box-body">
-                                                                <button class="small-box bg-<?php echo ($bedBD001001001[0]['status'] == 'kosong') ? 'aqua' : 'red'; ?> btn-block gantiStatusBed" style="height: 50px;" data-id="BD001001001"><?php echo ($bedBD001001001[0]['status'] == 'kosong') ? 'Kosong' : 'Terisi'; ?></button>
+                                                                <button class="small-box btn-block gantiStatusBed bg-<?php echo ($bedBD001001001->status == 'kosong') ? 'green' : (($bedBD001001001->status == 'terisi') ? 'purple' : (($bedBD001001001->status == 'perbaikan') ? 'yellow' : (($bedBD001001001->status == 'siapkrs') ? 'aqua' : 'red'))); ?>" style="height: 50px;" data-id="BD001001001" id="BD001001001"><?php echo ($bedBD001001001->status == 'kosong') ? 'Kosong' : (($bedBD001001001->status == 'terisi') ? 'Terisi' : (($bedBD001001001->status == 'perbaikan') ? 'Perbaikan' : (($bedBD001001001->status == 'siapkrs') ? 'Siap KRS' : "Dipesan"))); ?></button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -156,7 +156,7 @@
                                                                 </h4>
                                                             </div>
                                                             <div class="box-body">
-                                                                <button class="small-box bg-<?php echo ($bedBD001001002[0]['status'] == 'kosong') ? 'aqua' : 'red'; ?> btn-block gantiStatusBed" style="height: 50px;" data-id="BD001001002"><?php echo ($bedBD001001002[0]['status'] == 'kosong') ? 'Kosong' : 'Terisi'; ?></button>
+                                                                <button class="small-box btn-block gantiStatusBed bg-<?php echo ($bedBD001001002->status == 'kosong') ? 'green' : (($bedBD001001002->status == 'terisi') ? 'purple' : (($bedBD001001002->status == 'perbaikan') ? 'yellow' : (($bedBD001001002->status == 'siapkrs') ? 'aqua' : 'red'))); ?>" style="height: 50px;" data-id="BD001001002" id="BD001001002"><?php echo ($bedBD001001002->status == 'kosong') ? 'Kosong' : (($bedBD001001002->status == 'terisi') ? 'Terisi' : (($bedBD001001002->status == 'perbaikan') ? 'Perbaikan' : (($bedBD001001002->status == 'siapkrs') ? 'Siap KRS' : "Dipesan"))); ?></button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -168,7 +168,7 @@
                                                                 </h4>
                                                             </div>
                                                             <div class="box-body">
-                                                                <button class="small-box bg-<?php echo ($bedBD001001003[0]['status'] == 'kosong') ? 'aqua' : 'red'; ?> btn-block gantiStatusBed" style="height: 50px;" data-id="BD001001003"><?php echo ($bedBD001001003[0]['status'] == 'kosong') ? 'Kosong' : 'Terisi'; ?></button>
+                                                                <button class="small-box btn-block gantiStatusBed bg-<?php echo ($bedBD001001003->status == 'kosong') ? 'green' : (($bedBD001001003->status == 'terisi') ? 'purple' : (($bedBD001001003->status == 'perbaikan') ? 'yellow' : (($bedBD001001003->status == 'siapkrs') ? 'aqua' : 'red'))); ?>" style="height: 50px;" data-id="BD001001003" id="BD001001003"><?php echo ($bedBD001001003->status == 'kosong') ? 'Kosong' : (($bedBD001001003->status == 'terisi') ? 'Terisi' : (($bedBD001001003->status == 'perbaikan') ? 'Perbaikan' : (($bedBD001001003->status == 'siapkrs') ? 'Siap KRS' : "Dipesan"))); ?></button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -180,7 +180,7 @@
                                                                 </h4>
                                                             </div>
                                                             <div class="box-body">
-                                                                <button class="small-box bg-<?php echo ($bedBD001001004[0]['status'] == 'kosong') ? 'aqua' : 'red'; ?> btn-block gantiStatusBed" style="height: 50px;" data-id="BD001001004"><?php echo ($bedBD001001004[0]['status'] == 'kosong') ? 'Kosong' : 'Terisi'; ?></button>
+                                                                <button class="small-box btn-block gantiStatusBed bg-<?php echo ($bedBD001001004->status == 'kosong') ? 'green' : (($bedBD001001004->status == 'terisi') ? 'purple' : (($bedBD001001004->status == 'perbaikan') ? 'yellow' : (($bedBD001001004->status == 'siapkrs') ? 'aqua' : 'red'))); ?>" style="height: 50px;" data-id="BD001001004" id="BD001001004"><?php echo ($bedBD001001004->status == 'kosong') ? 'Kosong' : (($bedBD001001004->status == 'terisi') ? 'Terisi' : (($bedBD001001004->status == 'perbaikan') ? 'Perbaikan' : (($bedBD001001004->status == 'siapkrs') ? 'Siap KRS' : "Dipesan"))); ?></button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -205,7 +205,7 @@
                                                                     </h4>
                                                                 </div>
                                                                 <div class="box-body">
-                                                                    <button class="small-box bg-red btn-block" style="height: 50px;">Terisi</button>
+                                                                    <button class="small-box btn-block gantiStatusBed bg-<?php echo ($bedBD001002001->status == 'kosong') ? 'green' : (($bedBD001002001->status == 'terisi') ? 'purple' : (($bedBD001002001->status == 'perbaikan') ? 'yellow' : (($bedBD001002001->status == 'siapkrs') ? 'aqua' : 'red'))); ?>" style="height: 50px;" data-id="BD001002001" id="BD001002001"><?php echo ($bedBD001002001->status == 'kosong') ? 'Kosong' : (($bedBD001002001->status == 'terisi') ? 'Terisi' : (($bedBD001002001->status == 'perbaikan') ? 'Perbaikan' : (($bedBD001002001->status == 'siapkrs') ? 'Siap KRS' : "Dipesan"))); ?></button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -217,7 +217,7 @@
                                                                     </h4>
                                                                 </div>
                                                                 <div class="box-body">
-                                                                    <button class="small-box bg-aqua btn-block" style="height: 50px;">Kosong</button>
+                                                                    <button class="small-box btn-block gantiStatusBed bg-<?php echo ($bedBD001002002->status == 'kosong') ? 'green' : (($bedBD001002002->status == 'terisi') ? 'purple' : (($bedBD001002002->status == 'perbaikan') ? 'yellow' : (($bedBD001002002->status == 'siapkrs') ? 'aqua' : 'red'))); ?>" style="height: 50px;" data-id="BD001002002" id="BD001002002"><?php echo ($bedBD001002002->status == 'kosong') ? 'Kosong' : (($bedBD001002002->status == 'terisi') ? 'Terisi' : (($bedBD001002002->status == 'perbaikan') ? 'Perbaikan' : (($bedBD001002002->status == 'siapkrs') ? 'Siap KRS' : "Dipesan"))); ?></button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -229,7 +229,7 @@
                                                                     </h4>
                                                                 </div>
                                                                 <div class="box-body">
-                                                                    <button class="small-box bg-aqua btn-block" style="height: 50px;">Kosong</button>
+                                                                    <button class="small-box btn-block gantiStatusBed bg-<?php echo ($bedBD001002003->status == 'kosong') ? 'green' : (($bedBD001002003->status == 'terisi') ? 'purple' : (($bedBD001002003->status == 'perbaikan') ? 'yellow' : (($bedBD001002003->status == 'siapkrs') ? 'aqua' : 'red'))); ?>" style="height: 50px;" data-id="BD001002003" id="BD001002003"><?php echo ($bedBD001002003->status == 'kosong') ? 'Kosong' : (($bedBD001002003->status == 'terisi') ? 'Terisi' : (($bedBD001002003->status == 'perbaikan') ? 'Perbaikan' : (($bedBD001002003->status == 'siapkrs') ? 'Siap KRS' : "Dipesan"))); ?></button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -241,7 +241,7 @@
                                                                     </h4>
                                                                 </div>
                                                                 <div class="box-body">
-                                                                    <button class="small-box bg-red btn-block" style="height: 50px;">Terisi</button>
+                                                                    <button class="small-box btn-block gantiStatusBed bg-<?php echo ($bedBD001002004->status == 'kosong') ? 'green' : (($bedBD001002004->status == 'terisi') ? 'purple' : (($bedBD001002004->status == 'perbaikan') ? 'yellow' : (($bedBD001002004->status == 'siapkrs') ? 'aqua' : 'red'))); ?>" style="height: 50px;" data-id="BD001002004" id="BD001002004"><?php echo ($bedBD001002004->status == 'kosong') ? 'Kosong' : (($bedBD001002004->status == 'terisi') ? 'Terisi' : (($bedBD001002004->status == 'perbaikan') ? 'Perbaikan' : (($bedBD001002004->status == 'siapkrs') ? 'Siap KRS' : "Dipesan"))); ?></button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -253,7 +253,7 @@
                                                                     </h4>
                                                                 </div>
                                                                 <div class="box-body">
-                                                                    <button class="small-box bg-aqua btn-block" style="height: 50px;">Kosong</button>
+                                                                    <button class="small-box btn-block gantiStatusBed bg-<?php echo ($bedBD001002005->status == 'kosong') ? 'green' : (($bedBD001002005->status == 'terisi') ? 'purple' : (($bedBD001002005->status == 'perbaikan') ? 'yellow' : (($bedBD001002005->status == 'siapkrs') ? 'aqua' : 'red'))); ?>" style="height: 50px;" data-id="BD001002005" id="BD001002005"><?php echo ($bedBD001002005->status == 'kosong') ? 'Kosong' : (($bedBD001002005->status == 'terisi') ? 'Terisi' : (($bedBD001002005->status == 'perbaikan') ? 'Perbaikan' : (($bedBD001002005->status == 'siapkrs') ? 'Siap KRS' : "Dipesan"))); ?></button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -268,7 +268,7 @@
                                                                     </h4>
                                                                 </div>
                                                                 <div class="box-body">
-                                                                    <button class="small-box bg-red btn-block" style="height: 50px;">Terisi</button>
+                                                                    <button class="small-box btn-block gantiStatusBed bg-<?php echo ($bedBD001002006->status == 'kosong') ? 'green' : (($bedBD001002006->status == 'terisi') ? 'purple' : (($bedBD001002006->status == 'perbaikan') ? 'yellow' : (($bedBD001002006->status == 'siapkrs') ? 'aqua' : 'red'))); ?>" style="height: 50px;" data-id="BD001002006" id="BD001002006"><?php echo ($bedBD001002006->status == 'kosong') ? 'Kosong' : (($bedBD001002006->status == 'terisi') ? 'Terisi' : (($bedBD001002006->status == 'perbaikan') ? 'Perbaikan' : (($bedBD001002006->status == 'siapkrs') ? 'Siap KRS' : "Dipesan"))); ?></button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -280,7 +280,7 @@
                                                                     </h4>
                                                                 </div>
                                                                 <div class="box-body">
-                                                                    <button class="small-box bg-aqua btn-block" style="height: 50px;">Kosong</button>
+                                                                    <button class="small-box btn-block gantiStatusBed bg-<?php echo ($bedBD001002007->status == 'kosong') ? 'green' : (($bedBD001002007->status == 'terisi') ? 'purple' : (($bedBD001002007->status == 'perbaikan') ? 'yellow' : (($bedBD001002007->status == 'siapkrs') ? 'aqua' : 'red'))); ?>" style="height: 50px;" data-id="BD001002007" id="BD001002007"><?php echo ($bedBD001002007->status == 'kosong') ? 'Kosong' : (($bedBD001002007->status == 'terisi') ? 'Terisi' : (($bedBD001002007->status == 'perbaikan') ? 'Perbaikan' : (($bedBD001002007->status == 'siapkrs') ? 'Siap KRS' : "Dipesan"))); ?></button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -292,7 +292,7 @@
                                                                     </h4>
                                                                 </div>
                                                                 <div class="box-body">
-                                                                    <button class="small-box bg-aqua btn-block" style="height: 50px;">Kosong</button>
+                                                                    <button class="small-box btn-block gantiStatusBed bg-<?php echo ($bedBD001002008->status == 'kosong') ? 'green' : (($bedBD001002008->status == 'terisi') ? 'purple' : (($bedBD001002008->status == 'perbaikan') ? 'yellow' : (($bedBD001002008->status == 'siapkrs') ? 'aqua' : 'red'))); ?>" style="height: 50px;" data-id="BD001002008" id="BD001002008"><?php echo ($bedBD001002008->status == 'kosong') ? 'Kosong' : (($bedBD001002008->status == 'terisi') ? 'Terisi' : (($bedBD001002008->status == 'perbaikan') ? 'Perbaikan' : (($bedBD001002008->status == 'siapkrs') ? 'Siap KRS' : "Dipesan"))); ?></button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -304,7 +304,7 @@
                                                                     </h4>
                                                                 </div>
                                                                 <div class="box-body">
-                                                                    <button class="small-box bg-aqua btn-block" style="height: 50px;">Kosong</button>
+                                                                    <button class="small-box btn-block gantiStatusBed bg-<?php echo ($bedBD001002009->status == 'kosong') ? 'green' : (($bedBD001002009->status == 'terisi') ? 'purple' : (($bedBD001002009->status == 'perbaikan') ? 'yellow' : (($bedBD001002009->status == 'siapkrs') ? 'aqua' : 'red'))); ?>" style="height: 50px;" data-id="BD001002009" id="BD001002009"><?php echo ($bedBD001002009->status == 'kosong') ? 'Kosong' : (($bedBD001002009->status == 'terisi') ? 'Terisi' : (($bedBD001002009->status == 'perbaikan') ? 'Perbaikan' : (($bedBD001002009->status == 'siapkrs') ? 'Siap KRS' : "Dipesan"))); ?></button>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -316,7 +316,7 @@
                                                                     </h4>
                                                                 </div>
                                                                 <div class="box-body">
-                                                                    <button class="small-box bg-red btn-block" style="height: 50px;">Terisi</button>
+                                                                    <button class="small-box btn-block gantiStatusBed bg-<?php echo ($bedBD001002010->status == 'kosong') ? 'green' : (($bedBD001002010->status == 'terisi') ? 'purple' : (($bedBD001002010->status == 'perbaikan') ? 'yellow' : (($bedBD001002010->status == 'siapkrs') ? 'aqua' : 'red'))); ?>" style="height: 50px;" data-id="BD001002010" id="BD001002010"><?php echo ($bedBD001002010->status == 'kosong') ? 'Kosong' : (($bedBD001002010->status == 'terisi') ? 'Terisi' : (($bedBD001002010->status == 'perbaikan') ? 'Perbaikan' : (($bedBD001002010->status == 'siapkrs') ? 'Siap KRS' : "Dipesan"))); ?></button>
                                                                 </div>
                                                             </div>
                                                         </div>

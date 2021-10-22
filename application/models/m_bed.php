@@ -14,7 +14,21 @@ class m_bed extends CI_Model
 	{
 		$sql = "SELECT * FROM m_bed WHERE id_bed = '$idBed'";
 		$data = $this->db->query($sql);
-		return $data->result_array();
+		return $data->row();
+	}
+
+	public function updateStatusBed($data)
+	{
+		$sql = "UPDATE m_bed SET status='" . $data['statusBed'] . "' WHERE id_bed='" . $data['idBed'] . "'";
+		$this->db->query($sql);
+		return $this->db->affected_rows();
+	}
+
+	public function countBed($bed, $status)
+	{
+		$sql = "SELECT COUNT(*) FROM m_bed WHERE id_ruang = '" . $bed['id_ruang'] . "' AND status = '$status'";
+		$data = $this->db->query($sql);
+		return $data->row();
 	}
 
 	// public function getAllUnit()

@@ -78,6 +78,7 @@
 
 	$(document).on("click", ".gantiStatusBed", function() {
 		var id = $(this).attr("data-id");
+		// alert(id);
 
 		$.ajax({
 				method: "POST",
@@ -100,14 +101,49 @@
 			})
 			.done(function(data) {
 				var out = jQuery.parseJSON(data);
-
-				tampilPelanggan();
 				if (out.status == 'form') {
 					$('.form-msg').html(out.msg);
 					effect_msg_form();
 				} else {
-					document.getElementById("form-update-pelanggan").reset();
-					$('#update-pelanggan').modal('hide');
+					if (out.statusBed == 'kosong') {
+						// $('#' + out.idBed).removeClass('bg-yellow');
+						$('#' + out.idBed).removeClass(function(index, css) {
+							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
+						});
+
+						$('#' + out.idBed).addClass('bg-green');
+						$('#' + out.idBed).text('Kosong');
+					} else if (out.statusBed == 'terisi') {
+						$('#' + out.idBed).removeClass(function(index, css) {
+							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
+						});
+
+						$('#' + out.idBed).addClass('bg-purple');
+						$('#' + out.idBed).text('Terisi');
+					} else if (out.statusBed == 'perbaikan') {
+						$('#' + out.idBed).removeClass(function(index, css) {
+							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
+						});
+
+						$('#' + out.idBed).addClass('bg-yellow');
+						$('#' + out.idBed).text('Perbaikan');
+					} else if (out.statusBed == 'siapkrs') {
+						$('#' + out.idBed).removeClass(function(index, css) {
+							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
+						});
+
+						$('#' + out.idBed).addClass('bg-aqua');
+						$('#' + out.idBed).text('Siap KRS');
+					} else if (out.statusBed == 'dipesan') {
+						$('#' + out.idBed).removeClass(function(index, css) {
+							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
+						});
+
+						$('#' + out.idBed).addClass('bg-red');
+						$('#' + out.idBed).text('Dipesan');
+					}
+					document.getElementById("form-status-bed").reset();
+					$('#update-bed').modal('hide');
 					$('.msg').html(out.msg);
 					effect_msg();
 				}

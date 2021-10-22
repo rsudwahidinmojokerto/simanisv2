@@ -14,77 +14,36 @@
   </div> -->
   <form id="form-status-bed" method="POST">
     <div class="row">
-      <div class="col-md-3"></div>
-      <div class="col-md-6" style="display: block; text-align: centerl">
-        <input type="hidden" class="form-control" name="id_bed" id="id_bed" aria-describedby="sizing-addon2">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-6" style="display: block; text-align: centerl">
+        <input type="hidden" class="form-control" name="idBed" id="idBed" aria-describedby="sizing-addon2" value="<?php echo $dataBed->id_bed; ?>">
         <div class="form-group">
           <div class="form-check">
-            <input type="radio" class="form-check-input" id="pilihKosong" name="pilihStatusBed" checked>
+            <input type="radio" class="form-check-input" id="pilihKosong" name="statusBed" value="kosong" <?php if ($dataBed->status == 'kosong') { ?> checked <?php } ?>>
             <label class="form-check-label" for="pilihKosong">Kosong</label>
           </div>
           <div class="form-check">
-            <input type="radio" class="form-check-input" id="pilihTerisi" name="pilihStatusBed">
+            <input type="radio" class="form-check-input" id="pilihTerisi" name="statusBed" value="terisi" <?php if ($dataBed->status == 'terisi') { ?> checked <?php } ?>>
             <label class="form-check-label" for="pilihTerisi">Terisi</label>
           </div>
           <div class="form-check">
-            <input type="radio" class="form-check-input" id="pilihPerbaikan" name="pilihStatusBed">
+            <input type="radio" class="form-check-input" id="pilihPerbaikan" name="statusBed" value="perbaikan" <?php if ($dataBed->status == 'perbaikan') { ?> checked <?php } ?>>
             <label class="form-check-label" for="pilihPerbaikan">Perbaikan</label>
           </div>
           <div class="form-check">
-            <input type="radio" class="form-check-input" id="pilihSiapKrs" name="pilihStatusBed">
+            <input type="radio" class="form-check-input" id="pilihSiapKrs" name="statusBed" value="siapkrs" <?php if ($dataBed->status == 'siapkrs') { ?> checked <?php } ?>>
             <label class="form-check-label" for="pilihSiapKrs">Siap KRS</label>
           </div>
           <div class="form-check">
-            <input type="radio" class="form-check-input" id="pilihPesan" name="pilihStatusBed">
+            <input type="radio" class="form-check-input" id="pilihPesan" name="statusBed" value="dipesan" <?php if ($dataBed->status == 'dipesan') { ?> checked <?php } ?>>
             <label class="form-check-label" for="pilihPesan">Dipesan</label>
           </div>
         </div>
       </div>
-      <div class="col-md-3"></div>
-      <div class="col-md-12">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-12">
         <button type="submit" class="form-control btn btn-primary submitTransfer">Submit</button>
       </div>
     </div>
   </form>
-
-  <!-- <form id="form-bayar-transfer" method="POST" enctype="multipart/form-data">
-    <input type="hidden" class="form-control" name="idUser" id="idUser" aria-describedby="sizing-addon2">
-    <input type="hidden" class="form-control" name="tagihan" id="tagihan" aria-describedby="sizing-addon2">
-    <input type="hidden" class="form-control" name="daya" id="daya" aria-describedby="sizing-addon2">
-    <div class="input-group form-group">
-      <span class="input-group-addon trf">
-        No. Rekening
-      </span>
-      <input type="text" class="form-control" placeholder="Nomor rekening anda" name="norek" aria-describedby="sizing-addon2">
-    </div>
-    <div class="input-group form-group">
-      <span class="input-group-addon trf">
-        Pemilik Rekening
-      </span>
-      <input type="text" class="form-control" placeholder="Nama pada rekening" name="namarek" aria-describedby="sizing-addon2">
-    </div>
-    <div class="input-group form-group">
-      <span class="input-group-addon trf">
-        Jumlah transfer
-      </span>
-      <input type="text" class="form-control jumlahTransferBukti" placeholder="Jumlah yang di transfer" name="jmltrf" data-a-sign="Rp. " data-a-dec="," data-a-sep="." aria-describedby="sizing-addon2">
-    </div>
-    <div class="input-group form-group">
-      <span class="input-group-addon trf">
-        Bukti transfer
-      </span>
-      <input type="file" class="form-control" name="buktitrf" aria-describedby="sizing-addon2">
-    </div>
-    <div class="form-group">
-      <div class="col-md-12">
-        <button type="submit" class="form-control btn btn-primary submitTransfer">Kirim</button>
-      </div>
-    </div>
-  </form> -->
 </div>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('.jumlahTransferBukti').autoNumeric('init');
-  });
-</script>
