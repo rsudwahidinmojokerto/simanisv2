@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 date_default_timezone_set('Asia/Jakarta');
+// set_error_handler('exceptions_error_handler');
 
 class home extends AUTH_Controller
 {
@@ -12,33 +13,33 @@ class home extends AUTH_Controller
 		$this->load->model('m_user');
 		$this->load->model('m_kamar');
 		$this->load->model('m_bed');
+		$this->load->model('m_ruang');
 	}
 
 	public function index()
 	{
 		$i = 0;
-		$idBed = '0';
-		$getUnit = $this->m_kamar->getAllUnit();
-		foreach ($getUnit as $data) {
-			// var_dump($unit['Unit']);
-			$data['unit' . $i] = $this->m_kamar->getKamar($data['Unit']);
-			// var_dump('unit' . $i);
-			// echo $i;
-			$i++;
-		}
-		$data['kamar']		 = $this->m_kamar->getKamar('KERTAWIJAYA');
-		$data['jumlahKamar'] = $this->m_kamar->getJumlahKamar('KERTAWIJAYA');
-		$data['kelas']		 = $this->m_kamar->getKelas('KERTAWIJAYA');
-		$data['jumlahKelas'] = $this->m_kamar->getJumlahKelas('KERTAWIJAYA');
+		$iruang = 0;
+		// $getUnit = $this->m_kamar->getAllUnit();
+		// foreach ($getUnit as $data) {
+		// 	$data['unit' . $i] = $this->m_kamar->getKamar($data['Unit']);
+		// 	$i++;
+		// }
+		// $data['kamar']		 = $this->m_kamar->getKamar('KERTAWIJAYA');
+		// $data['jumlahKamar'] = $this->m_kamar->getJumlahKamar('KERTAWIJAYA');
+		// $data['kelas']		 = $this->m_kamar->getKelas('KERTAWIJAYA');
+		// $data['jumlahKelas'] = $this->m_kamar->getJumlahKelas('KERTAWIJAYA');
 
 		$getBed		 = $this->m_bed->getAllDataBed();
 		foreach ($getBed as $bed) {
 			$data['bed' . $bed['id_bed']] = $this->m_bed->getAllDataBedById($bed['id_bed']);
-			// var_dump($data['bed' . $bed['id_bed']]);
+			if ($getBed[$iruang]['id_ruang'] != !empty($getBed[$iruang - 1]['id_ruang'])) {
+				$data['ruang' . $bed['id_ruang']] = $this->m_ruang->getAllDataRuangById($bed['id_ruang']);
+				$data['ruang' . $bed['id_ruang'] . 'terisi'] = $this->m_bed->countBed($bed['id_ruang'], 'terisi');
+				$data['ruang' . $bed['id_ruang'] . 'kosong'] = $this->m_bed->countBed($bed['id_ruang'], 'kosong');
+			}
+			$iruang++;
 		}
-		// var_dump($data['bed' . $bed['id_bed']]);
-		// $data['bedById']	 = $this->m_bed->getAllDataBedById($idBed);
-
 
 
 
@@ -145,9 +146,10 @@ class home extends AUTH_Controller
 			if ($result > 0) {
 				$out['status'] = '';
 				$out['idBed'] = $bed->id_bed;
+				$out['ruangBed'] = $bed->id_ruang;
 				$out['statusBed'] = $bed->status;
-				$out['countTerisi'] = $this->m_bed->countBed($bed, 'terisi');
-				$out['countKosong'] = $this->m_bed->countBed($bed, 'kosong');
+				$out['countTerisi'] = $this->m_bed->countBed($bed->id_ruang, 'terisi');
+				$out['countKosong'] = $this->m_bed->countBed($bed->id_ruang, 'kosong');
 				$out['msg'] = show_succ_msg('Bed berhasil di update', '20px');
 			} else {
 				$out['status'] = '';

@@ -35,8 +35,8 @@
             <label class="form-check-label" for="pilihSiapKrs">Siap KRS</label>
           </div>
           <div class="form-check">
-            <input type="radio" class="form-check-input" id="pilihPesan" name="statusBed" value="dipesan" <?php if ($dataBed->status == 'dipesan') { ?> checked <?php } ?>>
-            <label class="form-check-label" for="pilihPesan">Dipesan</label>
+            <input type="radio" class="form-check-input" id="pilihPesan" name="statusBed" value="siapmrs" <?php if ($dataBed->status == 'siapmrs') { ?> checked <?php } ?>>
+            <label class="form-check-label" for="pilihPesan">Siap MRS</label>
           </div>
         </div>
       </div>

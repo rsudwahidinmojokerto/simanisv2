@@ -26,7 +26,7 @@ class m_bed extends CI_Model
 
 	public function countBed($bed, $status)
 	{
-		$sql = "SELECT COUNT(*) FROM m_bed WHERE id_ruang = '" . $bed['id_ruang'] . "' AND status = '$status'";
+		$sql = "SELECT COUNT(*) as jumlah FROM m_bed WHERE id_ruang = '" . $bed . "' AND status = '$status'";
 		$data = $this->db->query($sql);
 		return $data->row();
 	}

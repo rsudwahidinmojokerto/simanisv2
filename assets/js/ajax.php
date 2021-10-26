@@ -55,30 +55,9 @@
 	}
 
 	//////////////////////// GANTI STATUS BED /////////////////////////
-	// var id_bed;
-	// $(document).on("click", ".statusBed", function() {
-	// 	id_bed = $(this).attr("data-id");
-	// })
-
-	// $(document).on("click", ".gantiStatusBed", function() {
-	// 	var id = id_bed;
-
-	// 	$.ajax({
-	// 			method: "POST",
-	// 			url: "<?php echo base_url('c_dtpelanggan/delete'); ?>",
-	// 			data: "idUser=" + id
-	// 		})
-	// 		.done(function(data) {
-	// 			$('#konfirmasiHapus').modal('hide');
-	// 			tampilPelanggan();
-	// 			$('.msg').html(data);
-	// 			effect_msg();
-	// 		})
-	// })
 
 	$(document).on("click", ".gantiStatusBed", function() {
 		var id = $(this).attr("data-id");
-		// alert(id);
 
 		$.ajax({
 				method: "POST",
@@ -106,13 +85,13 @@
 					effect_msg_form();
 				} else {
 					if (out.statusBed == 'kosong') {
-						// $('#' + out.idBed).removeClass('bg-yellow');
 						$('#' + out.idBed).removeClass(function(index, css) {
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
 						});
 
 						$('#' + out.idBed).addClass('bg-green');
 						$('#' + out.idBed).text('Kosong');
+						$('#jumlahBed' + out.ruangBed).text('TERISI: ' + out.countTerisi['jumlah'] + ', KOSONG: ' + out.countKosong['jumlah']);
 					} else if (out.statusBed == 'terisi') {
 						$('#' + out.idBed).removeClass(function(index, css) {
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
@@ -120,6 +99,7 @@
 
 						$('#' + out.idBed).addClass('bg-purple');
 						$('#' + out.idBed).text('Terisi');
+						$('#jumlahBed' + out.ruangBed).text('TERISI: ' + out.countTerisi['jumlah'] + ', KOSONG: ' + out.countKosong['jumlah']);
 					} else if (out.statusBed == 'perbaikan') {
 						$('#' + out.idBed).removeClass(function(index, css) {
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
@@ -127,6 +107,7 @@
 
 						$('#' + out.idBed).addClass('bg-yellow');
 						$('#' + out.idBed).text('Perbaikan');
+						$('#jumlahBed' + out.ruangBed).text('TERISI: ' + out.countTerisi['jumlah'] + ', KOSONG: ' + out.countKosong['jumlah']);
 					} else if (out.statusBed == 'siapkrs') {
 						$('#' + out.idBed).removeClass(function(index, css) {
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
@@ -134,13 +115,15 @@
 
 						$('#' + out.idBed).addClass('bg-aqua');
 						$('#' + out.idBed).text('Siap KRS');
-					} else if (out.statusBed == 'dipesan') {
+						$('#jumlahBed' + out.ruangBed).text('TERISI: ' + out.countTerisi['jumlah'] + ', KOSONG: ' + out.countKosong['jumlah']);
+					} else if (out.statusBed == 'siapmrs') {
 						$('#' + out.idBed).removeClass(function(index, css) {
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
 						});
 
 						$('#' + out.idBed).addClass('bg-red');
-						$('#' + out.idBed).text('Dipesan');
+						$('#' + out.idBed).text('Siap MRS');
+						$('#jumlahBed' + out.ruangBed).text('TERISI: ' + out.countTerisi['jumlah'] + ', KOSONG: ' + out.countKosong['jumlah']);
 					}
 					document.getElementById("form-status-bed").reset();
 					$('#update-bed').modal('hide');
