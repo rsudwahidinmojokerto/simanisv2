@@ -2726,13 +2726,13 @@
                     </div>
                     <div class="col-lg-5 col-xs-5"></div>
                     <div class="col-lg-1 col-xs-1">
-                        <div style="width:20px; height:20px; background-color: #03B0D8;">
-                            <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kosong</h4>
+                        <div style="width:20px; height:20px; background-color: #605CA8;">
+                            <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Terisi</h4>
                         </div>
                     </div>
                     <div class="col-lg-1 col-xs-1">
-                        <div style="width:20px; height:20px; background-color: #DD4B39;">
-                            <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Terisi</h4>
+                        <div style="width:20px; height:20px; background-color: #00A65A;">
+                            <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kosong</h4>
                         </div>
                     </div>
                     <div class="col-lg-5 col-xs-5"></div>

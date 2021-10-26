@@ -134,7 +134,9 @@
 		e.preventDefault();
 	});
 
-
+	setInterval(function() {
+		location.reload();
+	}, 5000);
 
 
 

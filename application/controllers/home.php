@@ -1,7 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 date_default_timezone_set('Asia/Jakarta');
-// set_error_handler('exceptions_error_handler');
 
 class home extends AUTH_Controller
 {
