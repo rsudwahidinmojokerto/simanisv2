@@ -4,6 +4,7 @@ date_default_timezone_set('Asia/Jakarta');
 
 class home extends AUTH_Controller
 {
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -13,26 +14,21 @@ class home extends AUTH_Controller
 		$this->load->model('m_kamar');
 		$this->load->model('m_bed');
 		$this->load->model('m_ruang');
+		$this->load->model('m_aplicare');
 	}
 
 	public function index()
 	{
+		//Load userdata
+		$data['userdata'] = $this->userdata;
+
 		$i = 0;
 		$iruang = 0;
-		// $getUnit = $this->m_kamar->getAllUnit();
-		// foreach ($getUnit as $data) {
-		// 	$data['unit' . $i] = $this->m_kamar->getKamar($data['Unit']);
-		// 	$i++;
-		// }
-		// $data['kamar']		 = $this->m_kamar->getKamar('KERTAWIJAYA');
-		// $data['jumlahKamar'] = $this->m_kamar->getJumlahKamar('KERTAWIJAYA');
-		// $data['kelas']		 = $this->m_kamar->getKelas('KERTAWIJAYA');
-		// $data['jumlahKelas'] = $this->m_kamar->getJumlahKelas('KERTAWIJAYA');
 
 		$getBed		 = $this->m_bed->getAllDataBed();
 		foreach ($getBed as $bed) {
 			$data['bed' . $bed['id_bed']] = $this->m_bed->getAllDataBedById($bed['id_bed']);
-			if ($getBed[$iruang]['id_ruang'] != !empty($getBed[$iruang - 1]['id_ruang'])) {
+			if ($getBed[$iruang]['id_ruang'] == !empty($getBed[$iruang - 1]['id_ruang'])) {
 				$data['ruang' . $bed['id_ruang']] = $this->m_ruang->getAllDataRuangById($bed['id_ruang']);
 				$data['ruang' . $bed['id_ruang'] . 'terisi'] = $this->m_bed->countBed($bed['id_ruang'], 'terisi');
 				$data['ruang' . $bed['id_ruang'] . 'kosong'] = $this->m_bed->countBed($bed['id_ruang'], 'kosong');
@@ -46,61 +42,59 @@ class home extends AUTH_Controller
 
 
 
-		$cekVolume 	 = $this->m_bayar->cekVolume($this->userdata->idUser);
-		$harga		 = $this->m_harga->lastPrice();
-		$idUser		 = $this->userdata->idUser;
 
-		//rumus tagihan
-		$data['tagihan']  = ($cekVolume / (1000 * 1000)) * $harga; // waterflow hanya dapat mengakurasi aliran air, maka dari itu massa jenis gas akan diganti dengan massa jenis air yaitu 1m3 = 1000L
-		// rumus daya pakai
-		$data['daya']     = $cekVolume / (1000 * 1000);
+		// $cekVolume 	 = $this->m_bayar->cekVolume($this->userdata->idUser);
+		// $harga		 = $this->m_harga->lastPrice();
+		// $idUser		 = $this->userdata->idUser;
 
-		$data['pelanggan'] = $this->m_user->countPelanggan();
-		$data['pelangganPenyuplai'] = $this->m_user->countPelangganById($idUser);
-		$data['bayar'] = $this->m_bayar->selectTagihanById($idUser);
+		// //rumus tagihan
+		// $data['tagihan']  = ($cekVolume / (1000 * 1000)) * $harga; // waterflow hanya dapat mengakurasi aliran air, maka dari itu massa jenis gas akan diganti dengan massa jenis air yaitu 1m3 = 1000L
+		// // rumus daya pakai
+		// $data['daya']     = $cekVolume / (1000 * 1000);
 
-		$data['userdata'] 		= $this->userdata;
+		// $data['pelanggan'] = $this->m_user->countPelanggan();
+		// $data['pelangganPenyuplai'] = $this->m_user->countPelangganById($idUser);
+		// $data['bayar'] = $this->m_bayar->selectTagihanById($idUser);
 
-		$rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
 
-		$color1 = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
-		$color2 = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
+		// $rand = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f');
 
-		$data['color'] = [$color1, $color2];
+		// $color1 = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
+		// $color2 = '#' . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)] . $rand[rand(0, 15)];
 
-		$bulan = [];
-		$thnmin = 2018;
-		$thnini = date('Y');
+		// $data['color'] = [$color1, $color2];
 
-		$data['idUser'] = $this->userdata->idUser;
-		$data['idPenyuplai'] = substr($this->userdata->idUser, -6);
-		$cekGrup = $this->userdata->idGrup;
+		// $bulan = [];
+		// $thnmin = 2018;
+		// $thnini = date('Y');
 
-		$urut = 0;
-		for ($j = $thnmin; $j <= $thnini; $j++) {
-			$data['tahun'] = $j;
-			for ($i = 0; $i < 12; $i++) {
-				if ($i < 9) {
-					$data['tanggal'] = '0' . ($i + 1);
-				} else {
-					$data['tanggal'] = $i + 1;
-				}
-				if ($cekGrup == 'JBT04') {
-					$bulan[$urut] = $this->m_bayar->selectBayarByDateAndId($data);
-				} else if ($cekGrup == 'JBT01' || $cekGrup == 'JBT02') {
-					$bulan[$urut] = $this->m_bayar->selectBayarByDate($data);
-				} else {
-					$bulan[$urut] = $this->m_bayar->selectDayaByDateAndId($data);
-				}
-				$urut++;
-			}
-		}
+		// $data['idUser'] = $this->userdata->idUser;
+		// $data['idPenyuplai'] = substr($this->userdata->idUser, -6);
+		// $cekGrup = $this->userdata->idGrup;
 
-		$data['minMonth'] = (int)date('m', strtotime('-1 month'));
-		// var_dump($data['minMonth']); // hasil = 12
+		// $urut = 0;
+		// for ($j = $thnmin; $j <= $thnini; $j++) {
+		// 	$data['tahun'] = $j;
+		// 	for ($i = 0; $i < 12; $i++) {
+		// 		if ($i < 9) {
+		// 			$data['tanggal'] = '0' . ($i + 1);
+		// 		} else {
+		// 			$data['tanggal'] = $i + 1;
+		// 		}
+		// 		if ($cekGrup == 'JBT04') {
+		// 			$bulan[$urut] = $this->m_bayar->selectBayarByDateAndId($data);
+		// 		} else if ($cekGrup == 'JBT01' || $cekGrup == 'JBT02') {
+		// 			$bulan[$urut] = $this->m_bayar->selectBayarByDate($data);
+		// 		} else {
+		// 			$bulan[$urut] = $this->m_bayar->selectDayaByDateAndId($data);
+		// 		}
+		// 		$urut++;
+		// 	}
+		// }
 
-		$data['bulan'] = json_encode($bulan);
-		// var_dump($data['bulan']);
+		// $data['minMonth'] = (int)date('m', strtotime('-1 month'));
+
+		// $data['bulan'] = json_encode($bulan);
 
 		$data['page'] 			= "home";
 		$data['judul'] 			= "Dashboard";
@@ -159,5 +153,74 @@ class home extends AUTH_Controller
 			$out['msg'] = show_err_msg(validation_errors());
 		}
 		echo json_encode($out);
+	}
+
+	public function updateAplicare($kodeRuang)
+	{
+		$consId = "21095";
+		$secretKey = "rsud6778ws122mjkrt";
+		$kodePpk = "1320R001";
+		// include "config.php";
+
+		// // Do query's
+		// mysqli_query($con, "SET CHARACTER SET utf8");
+
+		// mysqli_query($con, "SET NAMES 'utf8'");
+
+		// $query = mysqli_query($con, "SELECT
+		//                      kodekelas,
+		//                      koderuang,
+		//                      namaruang,
+		//                      kapasitas,
+		//                      tersedia
+		//                    FROM bed_available_bpjs");
+
+		$getKapasitas = $this->m_aplicare->getRuangAplicareByKodeKelas($kodeRuang);
+
+
+		// Start of loop process
+		// while ($row = mysqli_fetch_assoc($query)) {
+		foreach ($getKapasitas as $kapasitas) {
+			// create record to JSON
+			$dataKapasitas = json_encode($kapasitas);
+
+			// Computes the timestamp
+			date_default_timezone_set('UTC');
+			$tStamp = strval(time() - strtotime('1970-01-01 00:00:00'));
+			// Computes the signature by hashing the salt with the secret key as the key
+			$signature = hash_hmac('sha256', $consId . "&" . $tStamp, $secretKey, true);
+			// base64 encode…
+			$encodedSignature = base64_encode($signature);
+
+			$ch = curl_init();
+			$headers = array(
+				'X-cons-id: ' . $consId . '',
+				'X-timestamp: ' . $tStamp . '',
+				'X-signature: ' . $encodedSignature . '',
+				'Content-Type: Application/JSON',
+				'Accept: Application/JSON'
+			);
+
+
+			/*
+          	Sending record to API Aplicares (for UPDATE)
+			 */
+			curl_setopt($ch, CURLOPT_URL, "https://new-api.bpjs-kesehatan.go.id/aplicaresws/rest/bed/update/" . $kodePpk);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $dataKapasitas);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			$content = curl_exec($ch);
+			$err = curl_error($ch);
+
+			print_r($err);
+			print_r($content);
+
+			// close cURL resource, and free up system resources
+			curl_close($ch);
+		}
+		// End of loop process
 	}
 }

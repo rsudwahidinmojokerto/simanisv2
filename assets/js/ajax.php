@@ -84,48 +84,58 @@
 					$('.form-msg').html(out.msg);
 					effect_msg_form();
 				} else {
+					var bed = out.idBed;
 					if (out.statusBed == 'kosong') {
 						$('#' + out.idBed).removeClass(function(index, css) {
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
 						});
 
+						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015') {
+							$('#' + out.idBed).text('Kosong');
+						}
 						$('#' + out.idBed).addClass('bg-green');
-						$('#' + out.idBed).text('Kosong');
 						$('#jumlahBed' + out.ruangBed).text('TERISI: ' + out.countTerisi['jumlah'] + ', KOSONG: ' + out.countKosong['jumlah']);
 					} else if (out.statusBed == 'terisi') {
 						$('#' + out.idBed).removeClass(function(index, css) {
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
 						});
 
+						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015') {
+							$('#' + out.idBed).text('Terisi');
+						}
 						$('#' + out.idBed).addClass('bg-purple');
-						$('#' + out.idBed).text('Terisi');
 						$('#jumlahBed' + out.ruangBed).text('TERISI: ' + out.countTerisi['jumlah'] + ', KOSONG: ' + out.countKosong['jumlah']);
 					} else if (out.statusBed == 'perbaikan') {
 						$('#' + out.idBed).removeClass(function(index, css) {
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
 						});
 
+						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015') {
+							$('#' + out.idBed).text('Perbaikan');
+						}
 						$('#' + out.idBed).addClass('bg-yellow');
-						$('#' + out.idBed).text('Perbaikan');
 						$('#jumlahBed' + out.ruangBed).text('TERISI: ' + out.countTerisi['jumlah'] + ', KOSONG: ' + out.countKosong['jumlah']);
 					} else if (out.statusBed == 'siapkrs') {
 						$('#' + out.idBed).removeClass(function(index, css) {
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
 						});
 
+						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015') {
+							$('#' + out.idBed).text('Siap KRS');
+						}
 						$('#' + out.idBed).addClass('bg-aqua');
-						$('#' + out.idBed).text('Siap KRS');
 						$('#jumlahBed' + out.ruangBed).text('TERISI: ' + out.countTerisi['jumlah'] + ', KOSONG: ' + out.countKosong['jumlah']);
 					} else if (out.statusBed == 'siapmrs') {
 						$('#' + out.idBed).removeClass(function(index, css) {
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
 						});
 
+						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015') {
+							$('#' + out.idBed).text('Siap MRS');
+						}
 						$('#' + out.idBed).addClass('bg-red');
-						$('#' + out.idBed).text('Siap MRS');
 						$('#jumlahBed' + out.ruangBed).text('TERISI: ' + out.countTerisi['jumlah'] + ', KOSONG: ' + out.countKosong['jumlah']);
 					}
-					document.getElementById("form-status-bed").reset();
 					$('#update-bed').modal('hide');
 					$('.msg').html(out.msg);
 					effect_msg();
@@ -134,9 +144,9 @@
 		e.preventDefault();
 	});
 
-	setInterval(function() {
-		location.reload();
-	}, 5000);
+	// setInterval(function() {
+	// 	location.reload();
+	// }, 5000);
 
 
 
