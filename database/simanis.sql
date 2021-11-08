@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 18 Agu 2021 pada 16.56
--- Versi server: 10.1.36-MariaDB
--- Versi PHP: 5.6.38
+-- Generation Time: Nov 08, 2021 at 03:47 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 5.6.40
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bayar_transfer`
+-- Table structure for table `bayar_transfer`
 --
 
 CREATE TABLE `bayar_transfer` (
@@ -37,7 +37,7 @@ CREATE TABLE `bayar_transfer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `bayar_transfer`
+-- Dumping data for table `bayar_transfer`
 --
 
 INSERT INTO `bayar_transfer` (`idTagihan`, `norek`, `namarek`, `jumlah_transfer`, `bukti`) VALUES
@@ -60,7 +60,33 @@ INSERT INTO `bayar_transfer` (`idTagihan`, `norek`, `namarek`, `jumlah_transfer`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `flowtemp`
+-- Table structure for table `bed_available_bpjs`
+--
+
+CREATE TABLE `bed_available_bpjs` (
+  `koderuang` varchar(10) DEFAULT NULL,
+  `namaruang` varchar(150) DEFAULT NULL,
+  `kodekelas` varchar(5) DEFAULT NULL,
+  `namakelas` varchar(50) DEFAULT NULL,
+  `kapasitas` int(4) DEFAULT NULL,
+  `tersedia` int(4) DEFAULT NULL,
+  `tersediapria` int(4) DEFAULT NULL,
+  `tersediawanita` int(4) DEFAULT NULL,
+  `tersediapriawanita` int(4) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bed_available_bpjs`
+--
+
+INSERT INTO `bed_available_bpjs` (`koderuang`, `namaruang`, `kodekelas`, `namakelas`, `kapasitas`, `tersedia`, `tersediapria`, `tersediawanita`, `tersediapriawanita`) VALUES
+('RU001', 'TRIBHUWANA-VVIP', 'VVP', 'VVIP', 4, 4, 0, 0, 0),
+('RU001', 'TRIBHUWANA-VIP', 'VIP', 'VIP', 10, 10, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `flowtemp`
 --
 
 CREATE TABLE `flowtemp` (
@@ -70,7 +96,7 @@ CREATE TABLE `flowtemp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `flowtemp`
+-- Dumping data for table `flowtemp`
 --
 
 INSERT INTO `flowtemp` (`idUser`, `message`, `tanggal`) VALUES
@@ -81,7 +107,7 @@ INSERT INTO `flowtemp` (`idUser`, `message`, `tanggal`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `grup`
+-- Table structure for table `grup`
 --
 
 CREATE TABLE `grup` (
@@ -90,7 +116,7 @@ CREATE TABLE `grup` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `grup`
+-- Dumping data for table `grup`
 --
 
 INSERT INTO `grup` (`idGrup`, `jabatan`) VALUES
@@ -102,7 +128,7 @@ INSERT INTO `grup` (`idGrup`, `jabatan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `harga`
+-- Table structure for table `harga`
 --
 
 CREATE TABLE `harga` (
@@ -113,7 +139,7 @@ CREATE TABLE `harga` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `harga`
+-- Dumping data for table `harga`
 --
 
 INSERT INTO `harga` (`idHarga`, `idUser`, `harga`, `tanggal`) VALUES
@@ -130,7 +156,7 @@ INSERT INTO `harga` (`idHarga`, `idUser`, `harga`, `tanggal`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kotak_keluar`
+-- Table structure for table `kotak_keluar`
 --
 
 CREATE TABLE `kotak_keluar` (
@@ -143,7 +169,7 @@ CREATE TABLE `kotak_keluar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `kotak_keluar`
+-- Dumping data for table `kotak_keluar`
 --
 
 INSERT INTO `kotak_keluar` (`idPesan`, `idPengirim`, `idPenerima`, `subjek`, `isi`, `tanggal`) VALUES
@@ -171,7 +197,7 @@ INSERT INTO `kotak_keluar` (`idPesan`, `idPengirim`, `idPenerima`, `subjek`, `is
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `kotak_masuk`
+-- Table structure for table `kotak_masuk`
 --
 
 CREATE TABLE `kotak_masuk` (
@@ -185,7 +211,7 @@ CREATE TABLE `kotak_masuk` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `kotak_masuk`
+-- Dumping data for table `kotak_masuk`
 --
 
 INSERT INTO `kotak_masuk` (`idPesan`, `idPenerima`, `idPengirim`, `subjek`, `isi`, `tanggal`, `status`) VALUES
@@ -224,18 +250,170 @@ INSERT INTO `kotak_masuk` (`idPesan`, `idPenerima`, `idPengirim`, `subjek`, `isi
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `m_ruangan`
+-- Table structure for table `m_akses_user`
 --
 
-CREATE TABLE `m_ruangan` (
-  `kode_ruang` varchar(6) NOT NULL,
-  `nama_ruang` varchar(40) NOT NULL
+CREATE TABLE `m_akses_user` (
+  `id_akses` varchar(5) NOT NULL,
+  `nama_akses` varchar(10) NOT NULL,
+  `hak_akses` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `pembayaran`
+-- Table structure for table `m_bed`
+--
+
+CREATE TABLE `m_bed` (
+  `id_bed` varchar(15) NOT NULL,
+  `id_ruang` varchar(6) NOT NULL,
+  `id_kelas` varchar(6) NOT NULL,
+  `nama_bed` varchar(35) NOT NULL,
+  `status` enum('kosong','terisi','perbaikan','siapkrs','siapmrs') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `m_bed`
+--
+
+INSERT INTO `m_bed` (`id_bed`, `id_ruang`, `id_kelas`, `nama_bed`, `status`) VALUES
+('BD001001001', 'RU001', 'KL001', 'TRIBHUWANA-VVIP-01', 'kosong'),
+('BD001001002', 'RU001', 'KL001', 'TRIBHUWANA-VVIP-02', 'kosong'),
+('BD001001003', 'RU001', 'KL001', 'TRIBHUWANA-VVIP-03', 'kosong'),
+('BD001001004', 'RU001', 'KL001', 'TRIBHUWANA-VVIP-04', 'kosong'),
+('BD001002001', 'RU001', 'KL002', 'TRIBHUWANA-VIP-01', 'kosong'),
+('BD001002002', 'RU001', 'KL002', 'TRIBHUWANA-VIP-02', 'kosong'),
+('BD001002003', 'RU001', 'KL002', 'TRIBHUWANA-VIP-03', 'kosong'),
+('BD001002004', 'RU001', 'KL002', 'TRIBHUWANA-VIP-04', 'kosong'),
+('BD001002005', 'RU001', 'KL002', 'TRIBHUWANA-VIP-05', 'kosong'),
+('BD001002006', 'RU001', 'KL002', 'TRIBHUWANA-VIP-06', 'kosong'),
+('BD001002007', 'RU001', 'KL002', 'TRIBHUWANA-VIP-07', 'kosong'),
+('BD001002008', 'RU001', 'KL002', 'TRIBHUWANA-VIP-08', 'kosong'),
+('BD001002009', 'RU001', 'KL002', 'TRIBHUWANA-VIP-09', 'kosong'),
+('BD001002010', 'RU001', 'KL002', 'TRIBHUWANA-VIP-10', 'kosong'),
+('BD002002001', 'RU002', 'KL002', 'RADEN WIJAYA-VIP-01', 'kosong'),
+('BD002002002', 'RU002', 'KL002', 'RADEN WIJAYA-VIP-02', 'kosong'),
+('BD002002003', 'RU002', 'KL002', 'RADEN WIJAYA-VIP-03', 'kosong'),
+('BD002002004', 'RU002', 'KL002', 'RADEN WIJAYA-VIP-04', 'kosong'),
+('BD002002005', 'RU002', 'KL002', 'RADEN WIJAYA-VIP-05', 'kosong'),
+('BD002002006', 'RU002', 'KL002', 'RADEN WIJAYA-VIP-06', 'kosong'),
+('BD002002007', 'RU002', 'KL002', 'RADEN WIJAYA-VIP-07', 'kosong'),
+('BD002004001', 'RU002', 'KL004', 'RADEN WIJAYA-KL1-01', 'kosong'),
+('BD002004002', 'RU002', 'KL004', 'RADEN WIJAYA-KL1-02', 'kosong'),
+('BD002004003', 'RU002', 'KL004', 'RADEN WIJAYA-KL1-03', 'kosong'),
+('BD002004004', 'RU002', 'KL004', 'RADEN WIJAYA-KL1-04', 'kosong'),
+('BD002004005', 'RU002', 'KL004', 'RADEN WIJAYA-KL1-05', 'kosong'),
+('BD002004006', 'RU002', 'KL004', 'RADEN WIJAYA-KL1-06', 'kosong'),
+('BD002004007', 'RU002', 'KL004', 'RADEN WIJAYA-KL1-07', 'kosong'),
+('BD002004008', 'RU002', 'KL004', 'RADEN WIJAYA-KL1-08', 'kosong'),
+('BD002004009', 'RU002', 'KL004', 'RADEN WIJAYA-KL1-09', 'kosong'),
+('BD002004010', 'RU002', 'KL004', 'RADEN WIJAYA-KL1-10', 'kosong'),
+('BD002004011', 'RU002', 'KL004', 'RADEN WIJAYA-KL1-11', 'kosong'),
+('BD002004012', 'RU002', 'KL004', 'RADEN WIJAYA-KL1-12', 'kosong'),
+('BD002015001', 'RU002', 'KL015', 'RADEN WIJAYA-ISO-01', 'kosong'),
+('BD002015002', 'RU002', 'KL015', 'RADEN WIJAYA-ISO-02', 'kosong'),
+('BD002015003', 'RU002', 'KL015', 'RADEN WIJAYA-ISO-03', 'kosong'),
+('BD002015004', 'RU002', 'KL015', 'RADEN WIJAYA-ISO-04', 'kosong');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_kelas`
+--
+
+CREATE TABLE `m_kelas` (
+  `id_kelas` varchar(6) NOT NULL,
+  `id_kelas_aplicare` varchar(7) NOT NULL,
+  `nama_kelas` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `m_kelas`
+--
+
+INSERT INTO `m_kelas` (`id_kelas`, `id_kelas_aplicare`, `nama_kelas`) VALUES
+('KL001', 'VVP', 'VVIP'),
+('KL002', 'VIP', 'VIP'),
+('KL003', 'UTM', 'UTAMA'),
+('KL004', 'KL1', 'KELAS I'),
+('KL005', 'KL2', 'KELAS II'),
+('KL006', 'KL3', 'KELAS III'),
+('KL007', 'ICU', 'ICU'),
+('KL008', 'ICC', 'ICCU'),
+('KL009', 'NIC', 'NICU'),
+('KL010', 'PIC', 'PICU'),
+('KL011', 'IGD', 'IGD'),
+('KL012', 'UGD', 'UGD'),
+('KL013', 'SAL', 'RUANG BERSALIN'),
+('KL014', 'HCU', 'HCU'),
+('KL015', 'ISO', 'RUANG ISOLASI');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_ruang`
+--
+
+CREATE TABLE `m_ruang` (
+  `id_ruang` varchar(6) NOT NULL,
+  `kode_ruang` varchar(10) NOT NULL,
+  `nama_ruang` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `m_ruang`
+--
+
+INSERT INTO `m_ruang` (`id_ruang`, `kode_ruang`, `nama_ruang`) VALUES
+('RU001', 'TRBW', 'TRIBHUWANA'),
+('RU002', 'RWJ', 'RADEN WIJAYA'),
+('RU003', 'KWG', 'KENCONO WUNGU'),
+('RU004', 'HWK', 'HAYAM WURUK'),
+('RU005', 'JYN', 'JAYANEGARA'),
+('RU006', 'KWJ', 'KERTAWIJAYA'),
+('RU007', 'KTBM', 'KERTABHUMI'),
+('RU008', 'GYTR', 'GAYATRI'),
+('RU009', 'PRNT', 'PERINATAL'),
+('RU010', 'ICU', 'ICU'),
+('RU011', 'ICCU', 'ICCU'),
+('RU012', 'HCU', 'HCU'),
+('RU013', 'PICU', 'PICU'),
+('RU014', 'NICU', 'NICU'),
+('RU015', 'IGD', 'IGD'),
+('RU998', 'MR', 'MEDICAL RECORD'),
+('RU999', 'IT', 'IT');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_user`
+--
+
+CREATE TABLE `m_user` (
+  `id_user` varchar(7) NOT NULL,
+  `id_ruang` varchar(6) NOT NULL,
+  `id_akses` varchar(5) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL,
+  `foto` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `m_user`
+--
+
+INSERT INTO `m_user` (`id_user`, `id_ruang`, `id_akses`, `username`, `password`, `foto`) VALUES
+('US001', 'RU999', 'LV001', 'it', 'db6f6da1ce3437f3d38eb05a63402d41', 'jodipan_kotak.jpg'),
+('US002', 'RU998', 'LV002', 'rm', 'db6f6da1ce3437f3d38eb05a63402d41', 'profil2.png'),
+('US003', 'RU001', 'LV003', 'trbw', 'eb1839376a7ded7f79de0585688b4a4a', 'profil3.png'),
+('US004', 'RU002', 'LV003', 'rwj', '1ec51a530aedab1442b1f5ba8fd1597d', 'profil4.png'),
+('US005', 'RU003', 'LV003', 'kwg', '3eb7d13b9ef60cd41f6cb108927ec038', 'profil1.png');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pembayaran`
 --
 
 CREATE TABLE `pembayaran` (
@@ -247,7 +425,7 @@ CREATE TABLE `pembayaran` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `pembayaran`
+-- Dumping data for table `pembayaran`
 --
 
 INSERT INTO `pembayaran` (`idBayar`, `idUser`, `jumlah_bayar`, `daya`, `tanggal`) VALUES
@@ -285,7 +463,7 @@ INSERT INTO `pembayaran` (`idBayar`, `idUser`, `jumlah_bayar`, `daya`, `tanggal`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `status_bayar`
+-- Table structure for table `status_bayar`
 --
 
 CREATE TABLE `status_bayar` (
@@ -295,7 +473,7 @@ CREATE TABLE `status_bayar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `status_bayar`
+-- Dumping data for table `status_bayar`
 --
 
 INSERT INTO `status_bayar` (`idUser`, `status`, `metode`) VALUES
@@ -307,7 +485,7 @@ INSERT INTO `status_bayar` (`idUser`, `status`, `metode`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tagihan`
+-- Table structure for table `tagihan`
 --
 
 CREATE TABLE `tagihan` (
@@ -319,7 +497,7 @@ CREATE TABLE `tagihan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tagihan`
+-- Dumping data for table `tagihan`
 --
 
 INSERT INTO `tagihan` (`idTagihan`, `idUser`, `jumlah_tagihan`, `daya`, `status`) VALUES
@@ -352,7 +530,7 @@ INSERT INTO `tagihan` (`idTagihan`, `idUser`, `jumlah_tagihan`, `daya`, `status`
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tm_kamar`
+-- Table structure for table `tm_kamar`
 --
 
 CREATE TABLE `tm_kamar` (
@@ -369,7 +547,7 @@ CREATE TABLE `tm_kamar` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tm_kamar`
+-- Dumping data for table `tm_kamar`
 --
 
 INSERT INTO `tm_kamar` (`KodeKamar`, `Unit`, `NamaKamar`, `Harga`, `Kelas`, `Bed`, `Terpakai`, `Aktif`, `Kamar`, `KodeUnit`) VALUES
@@ -682,7 +860,20 @@ INSERT INTO `tm_kamar` (`KodeKamar`, `Unit`, `NamaKamar`, `Harga`, `Kelas`, `Bed
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `tracer`
+--
+
+CREATE TABLE `tracer` (
+  `id_temp` varchar(15) NOT NULL,
+  `id_user` varchar(7) NOT NULL,
+  `aksi` text NOT NULL,
+  `tanggal` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -699,7 +890,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`idUser`, `nik`, `nama`, `password`, `idGrup`, `alamat`, `jenis_kelamin`, `email`, `telepon`, `foto`) VALUES
@@ -715,139 +906,209 @@ INSERT INTO `users` (`idUser`, `nik`, `nama`, `password`, `idGrup`, `alamat`, `j
 --
 
 --
--- Indeks untuk tabel `bayar_transfer`
+-- Indexes for table `bayar_transfer`
 --
 ALTER TABLE `bayar_transfer`
   ADD PRIMARY KEY (`idTagihan`);
 
 --
--- Indeks untuk tabel `flowtemp`
+-- Indexes for table `flowtemp`
 --
 ALTER TABLE `flowtemp`
   ADD KEY `idUser` (`idUser`);
 
 --
--- Indeks untuk tabel `grup`
+-- Indexes for table `grup`
 --
 ALTER TABLE `grup`
   ADD PRIMARY KEY (`idGrup`);
 
 --
--- Indeks untuk tabel `harga`
+-- Indexes for table `harga`
 --
 ALTER TABLE `harga`
   ADD PRIMARY KEY (`idHarga`),
   ADD KEY `idUser` (`idUser`);
 
 --
--- Indeks untuk tabel `kotak_keluar`
+-- Indexes for table `kotak_keluar`
 --
 ALTER TABLE `kotak_keluar`
   ADD PRIMARY KEY (`idPesan`),
   ADD KEY `idPengirim` (`idPengirim`);
 
 --
--- Indeks untuk tabel `kotak_masuk`
+-- Indexes for table `kotak_masuk`
 --
 ALTER TABLE `kotak_masuk`
   ADD PRIMARY KEY (`idPesan`),
   ADD KEY `idPenerima` (`idPenerima`);
 
 --
--- Indeks untuk tabel `pembayaran`
+-- Indexes for table `m_bed`
+--
+ALTER TABLE `m_bed`
+  ADD PRIMARY KEY (`id_bed`);
+
+--
+-- Indexes for table `m_kelas`
+--
+ALTER TABLE `m_kelas`
+  ADD PRIMARY KEY (`id_kelas`);
+
+--
+-- Indexes for table `m_ruang`
+--
+ALTER TABLE `m_ruang`
+  ADD PRIMARY KEY (`id_ruang`);
+
+--
+-- Indexes for table `m_user`
+--
+ALTER TABLE `m_user`
+  ADD PRIMARY KEY (`id_user`);
+
+--
+-- Indexes for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
   ADD PRIMARY KEY (`idBayar`),
   ADD KEY `idUser` (`idUser`);
 
 --
--- Indeks untuk tabel `status_bayar`
+-- Indexes for table `status_bayar`
 --
 ALTER TABLE `status_bayar`
   ADD PRIMARY KEY (`idUser`),
   ADD KEY `idUser` (`idUser`);
 
 --
--- Indeks untuk tabel `tagihan`
+-- Indexes for table `tagihan`
 --
 ALTER TABLE `tagihan`
   ADD PRIMARY KEY (`idTagihan`),
   ADD KEY `idUser` (`idUser`);
 
 --
--- Indeks untuk tabel `tm_kamar`
+-- Indexes for table `tm_kamar`
 --
 ALTER TABLE `tm_kamar`
   ADD PRIMARY KEY (`KodeKamar`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`idUser`),
   ADD KEY `idGrup` (`idGrup`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `harga`
+-- AUTO_INCREMENT for table `harga`
 --
 ALTER TABLE `harga`
   MODIFY `idHarga` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `bayar_transfer`
+-- Constraints for table `bayar_transfer`
 --
 ALTER TABLE `bayar_transfer`
   ADD CONSTRAINT `bayar_transfer_ibfk_1` FOREIGN KEY (`idTagihan`) REFERENCES `tagihan` (`idTagihan`);
 
 --
--- Ketidakleluasaan untuk tabel `flowtemp`
+-- Constraints for table `flowtemp`
 --
 ALTER TABLE `flowtemp`
   ADD CONSTRAINT `flowtemp_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `users` (`idUser`);
 
 --
--- Ketidakleluasaan untuk tabel `harga`
+-- Constraints for table `harga`
 --
 ALTER TABLE `harga`
   ADD CONSTRAINT `harga_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `users` (`idUser`);
 
 --
--- Ketidakleluasaan untuk tabel `kotak_keluar`
+-- Constraints for table `kotak_keluar`
 --
 ALTER TABLE `kotak_keluar`
   ADD CONSTRAINT `kotak_keluar_ibfk_1` FOREIGN KEY (`idPengirim`) REFERENCES `users` (`idUser`);
 
 --
--- Ketidakleluasaan untuk tabel `kotak_masuk`
+-- Constraints for table `kotak_masuk`
 --
 ALTER TABLE `kotak_masuk`
   ADD CONSTRAINT `kotak_masuk_ibfk_1` FOREIGN KEY (`idPenerima`) REFERENCES `users` (`idUser`);
 
 --
--- Ketidakleluasaan untuk tabel `pembayaran`
+-- Constraints for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
   ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `users` (`idUser`);
 
 --
--- Ketidakleluasaan untuk tabel `tagihan`
+-- Constraints for table `tagihan`
 --
 ALTER TABLE `tagihan`
   ADD CONSTRAINT `tagihan_ibfk_1` FOREIGN KEY (`idUser`) REFERENCES `users` (`idUser`);
 
 --
--- Ketidakleluasaan untuk tabel `users`
+-- Constraints for table `users`
 --
 ALTER TABLE `users`
   ADD CONSTRAINT `users_ibfk_1` FOREIGN KEY (`idGrup`) REFERENCES `grup` (`idGrup`);
+
+DELIMITER $$
+--
+-- Events
+--
+CREATE DEFINER=`root`@`localhost` EVENT `bed_available` ON SCHEDULE EVERY 10 MINUTE STARTS '2018-04-23 16:40:00' ON COMPLETION PRESERVE DISABLE DO BEGIN
+DELETE FROM bed_available_bpjs;
+ 
+INSERT INTO bed_available_bpjs
+SELECT
+  CONVERT(unit_id, CHAR(10)) as koderuang,
+  REPLACE(location.location_name, 'BANGSAL ', '')as namaruang,
+  if(CONVERT(unit_id, CHAR(10))=1,'ICU',cos.cos_code_bpjs) as kodekelas,
+  if(CONVERT(unit_id, CHAR(10))=1,'ICU', cos_name) as namakelas,
+  COUNT(IF(status<>5,sub_unit_id, NULL)) as kapasitas,
+  COUNT(IF(status IN(1,2), sub_unit_id, NULL)) as tersedia,
+  0 as tersediapria,
+  0 as tersediawanita,
+  0 as tersediapriawanita
+FROM
+(SELECT
+  unit.unit_id,
+  unit.unit_name,
+  sub_unit.location_id,
+  sub_unit.sub_unit_id,
+  status,
+  sub_unit.disabled,
+  IFNULL(cos_sub_unit.cos_id, IFNULL(cos_unit.cos_id,cos_dept.cos_id)) as cos_id
+FROM
+  sub_unit
+LEFT JOIN unit ON (sub_unit.unit_id = unit.unit_id)
+LEFT JOIN cos_dept ON (unit.dept_id=cos_dept.dept_id)
+LEFT JOIN cos_dept cos_unit ON (unit.unit_id=cos_unit.unit_id)
+LEFT JOIN cos_dept cos_sub_unit ON (sub_unit.sub_unit_id=cos_sub_unit.sub_unit_id)
+WHERE (unit.sub_unit_availability = 1) AND (cos_unit.cos_id not in (34,35,36,37,38,39))
+GROUP BY
+  sub_unit_id) as tmp
+LEFT JOIN cos ON (tmp.cos_id=cos.cos_id)
+LEFT JOIN location ON (tmp.location_id=location.location_id)
+WHERE ((disabled=0) OR (disabled is null)) AND (location.location_id in (36,37,38,39,40,41,48))
+GROUP BY kodekelas, namaruang, namakelas
+ORDER BY namaruang, kodekelas;
+ 
+END$$
+
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

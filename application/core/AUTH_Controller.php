@@ -26,13 +26,15 @@ class AUTH_Controller extends CI_Controller
 		$this->load->model('m_user');
 		$this->load->model('m_ruang');
 
+		// if ($this->userdata != '' || $this->userdata != null) {
 		$this->userdata = $this->session->userdata('userdata');
 
 		$this->session->set_flashdata('segment', explode('/', $this->uri->uri_string()));
 
-		if ($this->session->userdata('status') == '') {
-			redirect('auth');
-		}
+		// if ($this->session->userdata('status') == '') {
+		// 	redirect('auth');
+		// }
+		// }
 	}
 
 	public function updateSession()

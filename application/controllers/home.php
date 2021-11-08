@@ -20,7 +20,11 @@ class home extends AUTH_Controller
 	public function index()
 	{
 		//Load userdata
-		$data['userdata'] = $this->userdata;
+		if ($this->userdata != null || $this->userdata != '') {
+			$data['userdata'] = $this->userdata;
+		} else {
+			$data['userdata'] = '';
+		}
 
 		$i = 0;
 		$iruang = 0;
@@ -28,11 +32,11 @@ class home extends AUTH_Controller
 		$getBed		 = $this->m_bed->getAllDataBed();
 		foreach ($getBed as $bed) {
 			$data['bed' . $bed['id_bed']] = $this->m_bed->getAllDataBedById($bed['id_bed']);
-			if ($getBed[$iruang]['id_ruang'] == !empty($getBed[$iruang - 1]['id_ruang'])) {
-				$data['ruang' . $bed['id_ruang']] = $this->m_ruang->getAllDataRuangById($bed['id_ruang']);
-				$data['ruang' . $bed['id_ruang'] . 'terisi'] = $this->m_bed->countBed($bed['id_ruang'], 'terisi');
-				$data['ruang' . $bed['id_ruang'] . 'kosong'] = $this->m_bed->countBed($bed['id_ruang'], 'kosong');
-			}
+			// if ($getBed[$iruang]['id_ruang'] == !empty($getBed[$iruang - 1]['id_ruang'])) {
+			$data['ruang' . $bed['id_ruang']] = $this->m_ruang->getAllDataRuangById($bed['id_ruang']);
+			$data['ruang' . $bed['id_ruang'] . 'terisi'] = $this->m_bed->countBed($bed['id_ruang'], 'terisi');
+			$data['ruang' . $bed['id_ruang'] . 'kosong'] = $this->m_bed->countBed($bed['id_ruang'], 'kosong');
+			// }
 			$iruang++;
 		}
 

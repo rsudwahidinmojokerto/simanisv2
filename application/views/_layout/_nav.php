@@ -7,26 +7,27 @@
   <div class="navbar-custom-menu">
     <ul class="nav navbar-nav">
       <!-- Messages -->
-      <li class="dropdown messages-menu">
+      <!-- <li class="dropdown messages-menu">
         <a href="#" class="dropdown-toggle toggle-message" data-toggle="dropdown">
           <i class="fa fa-envelope-o"></i>
           <span class="label label-warning count-notif"></span>
         </a>
         <ul class="dropdown-menu menu-notif animated-dropdown-menu"></ul>
-      </li>
+      </li> -->
       <!-- User Account Menu -->
-      <li class="dropdown user user-menu">
-        <!-- Menu Toggle Button -->
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          <!-- The user image in the navbar-->
-          <!-- <img src="<?php echo base_url(); ?>assets/img/<?php echo $userdata->foto; ?>" class="user-image" alt="User Image"> -->
-          <!-- hidden-xs hides the username on small devices so only the image appears. -->
-          <span>Menu Akun&nbsp;&nbsp;<i class="fa fa-sort-desc"></i></span>
-          <!-- <span class="hidden-xs"><?php echo $userdata->nama; ?></span> -->
-        </a>
-        <ul class="dropdown-menu animated-dropdown-menu">
-          <!-- The user image in the menu -->
-          <!-- <li class="user-header">
+      <?php if ($userdata != '' || $userdata != null) { ?>
+        <li class="dropdown user user-menu">
+          <!-- Menu Toggle Button -->
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <!-- The user image in the navbar-->
+            <!-- <img src="<?php echo base_url(); ?>assets/img/<?php echo $userdata->foto; ?>" class="user-image" alt="User Image"> -->
+            <!-- hidden-xs hides the username on small devices so only the image appears. -->
+            <span>Menu Akun&nbsp;&nbsp;<i class="fa fa-sort-desc"></i></span>
+            <!-- <span class="hidden-xs"><?php echo $userdata->nama; ?></span> -->
+          </a>
+          <ul class="dropdown-menu animated-dropdown-menu">
+            <!-- The user image in the menu -->
+            <!-- <li class="user-header">
             <img src="<?php echo base_url(); ?>assets/img/<?php echo $userdata->foto; ?>" class="img-circle" alt="User Image">
 
             <p>
@@ -34,17 +35,27 @@
               <small>FILKOM UB x BIOGASKU, <?php echo date("Y"); ?></small>
             </p>
           </li> -->
-          <!-- Menu Footer-->
-          <li class="user-footer">
-            <div class="pull-left">
-              <a href="<?php echo base_url('c_profil'); ?>" class="btn btn-default btn-flat"><i class="fa fa-gear"></i> Pengaturan</a>
-            </div>
-            <div class="pull-right">
-              <a href="<?php echo base_url('auth/logout'); ?>" class="btn btn-default btn-flat"><i class="fa fa-power-off"></i> Logout</a>
-            </div>
-          </li>
-        </ul>
-      </li>
+            <!-- Menu Footer-->
+            <li class="user-footer">
+              <div class="pull-left">
+                <a href="<?php echo base_url('c_profil'); ?>" class="btn btn-default btn-flat"><i class="fa fa-gear"></i> Pengaturan</a>
+              </div>
+              <div class="pull-right">
+                <a href="<?php echo base_url('auth/logout'); ?>" class="btn btn-default btn-flat"><i class="fa fa-power-off"></i> Logout</a>
+              </div>
+            </li>
+          </ul>
+        </li>
+      <?php } else { ?>
+        <li>
+          <!-- <a href="#" class="dropdown-toggle toggle-message" data-toggle="dropdown">
+            <i class="fa fa-envelope-o"></i>
+            <span class="label label-warning count-notif"></span>
+          </a>
+          <ul class="dropdown-menu menu-notif animated-dropdown-menu"></ul> -->
+          <a href="<?php echo base_url('auth/login'); ?>"><i class="fa fa-sign-in"></i> Login</a>
+        </li>
+      <?php } ?>
     </ul>
   </div>
 </nav>
