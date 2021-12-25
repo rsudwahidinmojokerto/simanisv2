@@ -31,6 +31,13 @@ class m_bed extends CI_Model
 		return $data->row();
 	}
 
+	public function countKelasBedTersedia($id_bed, $status = 'kosong')
+	{
+		$sql = "SELECT COUNT(*) as jumlah FROM m_bed WHERE id_bed LIKE '" . $id_bed . "%' AND status = '" . $status . "'";
+		$data = $this->db->query($sql);
+		return $data->row()->jumlah;
+	}
+
 	// public function getAllUnit()
 	// {
 	// 	$sql = "SELECT DISTINCT Unit FROM tm_kamar";

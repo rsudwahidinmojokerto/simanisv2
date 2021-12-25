@@ -22,8 +22,10 @@ class home extends AUTH_Controller
 		//Load userdata
 		if ($this->userdata != null || $this->userdata != '') {
 			$data['userdata'] = $this->userdata;
+			// var_dump($data['userdata']);
 		} else {
 			$data['userdata'] = '';
+			// var_dump($data['userdata']);
 		}
 
 		$i = 0;
@@ -38,6 +40,7 @@ class home extends AUTH_Controller
 			$data['ruang' . $bed['id_ruang'] . 'kosong'] = $this->m_bed->countBed($bed['id_ruang'], 'kosong');
 			// }
 			$iruang++;
+			// var_dump($data['ruang' . $bed['id_ruang']]);
 		}
 
 
@@ -148,6 +151,9 @@ class home extends AUTH_Controller
 				$out['countTerisi'] = $this->m_bed->countBed($bed->id_ruang, 'terisi');
 				$out['countKosong'] = $this->m_bed->countBed($bed->id_ruang, 'kosong');
 				$out['msg'] = show_succ_msg('Bed berhasil di update', '20px');
+				$jmlBedTersedia = $this->m_bed->countKelasBedTersedia(substr($bed->id_bed, 0, 8));
+				$this->m_aplicare->updateKapasitasBed($bed->id_ruang, $bed->id_kelas, $jmlBedTersedia);
+				$this->updateAplicare($bed->id_ruang, $bed->id_kelas);
 			} else {
 				$out['status'] = '';
 				$out['msg'] = show_err_msg('Bed gagal di update', '20px');
@@ -159,7 +165,7 @@ class home extends AUTH_Controller
 		echo json_encode($out);
 	}
 
-	public function updateAplicare($kodeRuang)
+	public function updateAplicare($id_ruang, $id_kelas)
 	{
 		$consId = "21095";
 		$secretKey = "rsud6778ws122mjkrt";
@@ -179,14 +185,16 @@ class home extends AUTH_Controller
 		//                      tersedia
 		//                    FROM bed_available_bpjs");
 
-		$getKapasitas = $this->m_aplicare->getRuangAplicareByKodeKelas($kodeRuang);
-
+		$getKapasitas = $this->m_aplicare->getRuangAplicareByKodeKelas($id_ruang, $id_kelas);
 
 		// Start of loop process
 		// while ($row = mysqli_fetch_assoc($query)) {
 		foreach ($getKapasitas as $kapasitas) {
 			// create record to JSON
+			// $dataKapasitas = json_encode($getKapasitas);
 			$dataKapasitas = json_encode($kapasitas);
+			// $dataKapasitas = $kapasitas;
+			// var_dump($dataKapasitas);
 
 			// Computes the timestamp
 			date_default_timezone_set('UTC');
@@ -205,10 +213,10 @@ class home extends AUTH_Controller
 				'Accept: Application/JSON'
 			);
 
-
 			/*
           	Sending record to API Aplicares (for UPDATE)
 			 */
+			// curl_setopt($ch, CURLOPT_URL, "https://dvlp.bpjs-kesehatan.go.id:8888/aplicaresws/rest/bed/update/" . $kodePpk);
 			curl_setopt($ch, CURLOPT_URL, "https://new-api.bpjs-kesehatan.go.id/aplicaresws/rest/bed/update/" . $kodePpk);
 			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 			curl_setopt($ch, CURLOPT_TIMEOUT, 60);

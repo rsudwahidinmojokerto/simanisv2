@@ -80,6 +80,10 @@
 			})
 			.done(function(data) {
 				var out = jQuery.parseJSON(data);
+				// var out = JSON.parse(data);
+				// var out = JSON.stringify(data);
+				// var out = data;
+				alert(out);
 				if (out.status == 'form') {
 					$('.form-msg').html(out.msg);
 					effect_msg_form();
@@ -90,7 +94,7 @@
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
 						});
 
-						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015') {
+						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015' && bed.substr(0, 8) != 'BD003004') {
 							$('#' + out.idBed).text('Kosong');
 						}
 						$('#' + out.idBed).addClass('bg-green');
@@ -100,7 +104,7 @@
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
 						});
 
-						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015') {
+						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015' && bed.substr(0, 8) != 'BD003004') {
 							$('#' + out.idBed).text('Terisi');
 						}
 						$('#' + out.idBed).addClass('bg-purple');
@@ -110,7 +114,7 @@
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
 						});
 
-						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015') {
+						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015' && bed.substr(0, 8) != 'BD003004') {
 							$('#' + out.idBed).text('Perbaikan');
 						}
 						$('#' + out.idBed).addClass('bg-yellow');
@@ -120,7 +124,7 @@
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
 						});
 
-						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015') {
+						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015' && bed.substr(0, 8) != 'BD003004') {
 							$('#' + out.idBed).text('Siap KRS');
 						}
 						$('#' + out.idBed).addClass('bg-aqua');
@@ -130,7 +134,7 @@
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
 						});
 
-						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015') {
+						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015' && bed.substr(0, 8) != 'BD003004') {
 							$('#' + out.idBed).text('Siap MRS');
 						}
 						$('#' + out.idBed).addClass('bg-red');
@@ -1193,6 +1197,7 @@
 	countTagih.start();
 	countDaya.start();
 
+	//notif cek tagihan daya
 	function realtimeTagihanDaya() {
 		$.ajax({
 			method: 'POST',
