@@ -80,10 +80,6 @@
 			})
 			.done(function(data) {
 				var out = jQuery.parseJSON(data);
-				// var out = JSON.parse(data);
-				// var out = JSON.stringify(data);
-				// var out = data;
-				alert(out);
 				if (out.status == 'form') {
 					$('.form-msg').html(out.msg);
 					effect_msg_form();

@@ -224,11 +224,12 @@ class home extends AUTH_Controller
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $dataKapasitas);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+			/* print output message */
 			$content = curl_exec($ch);
 			$err = curl_error($ch);
-
-			print_r($err);
-			print_r($content);
+			// print_r($err);
+			// print_r($content);
 
 			// close cURL resource, and free up system resources
 			curl_close($ch);
