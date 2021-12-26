@@ -3,7 +3,7 @@
   <section class="sidebar">
 
     <!-- Sidebar user panel (optional) -->
-    <?php if ($userdata != '' && $userdata != null) { ?>
+    <?php if ($userdata->id_ruang != '' && $userdata->id_ruang != null) { ?>
       <div class="user-panel">
         <div class="pull-left image">
           <img src="<?php echo base_url(); ?>assets/img/<?php echo $userdata->foto; ?>" class="img-circle" alt="User Image">
@@ -33,7 +33,7 @@
       </div>
     <?php } ?>
 
-    <?php if ($userdata != '' || $userdata != null) { ?>
+    <?php if ($userdata->id_ruang != '' && $userdata->id_ruang != null) { ?>
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <li class="header">DAFTAR MENU</li>

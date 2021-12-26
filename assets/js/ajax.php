@@ -86,54 +86,54 @@
 				} else {
 					var bed = out.idBed;
 					if (out.statusBed == 'kosong') {
-						$('#' + out.idBed).removeClass(function(index, css) {
+						$('#' + bed).removeClass(function(index, css) {
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
 						});
 
 						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015' && bed.substr(0, 8) != 'BD003004') {
-							$('#' + out.idBed).text('Kosong');
+							$('#' + bed).text('Kosong');
 						}
-						$('#' + out.idBed).addClass('bg-green');
+						$('#' + bed).addClass('bg-green');
 						$('#jumlahBed' + out.ruangBed).text('TERISI: ' + out.countTerisi['jumlah'] + ', KOSONG: ' + out.countKosong['jumlah']);
 					} else if (out.statusBed == 'terisi') {
-						$('#' + out.idBed).removeClass(function(index, css) {
+						$('#' + bed).removeClass(function(index, css) {
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
 						});
 
 						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015' && bed.substr(0, 8) != 'BD003004') {
-							$('#' + out.idBed).text('Terisi');
+							$('#' + bed).text('Terisi');
 						}
-						$('#' + out.idBed).addClass('bg-purple');
+						$('#' + bed).addClass('bg-purple');
 						$('#jumlahBed' + out.ruangBed).text('TERISI: ' + out.countTerisi['jumlah'] + ', KOSONG: ' + out.countKosong['jumlah']);
 					} else if (out.statusBed == 'perbaikan') {
-						$('#' + out.idBed).removeClass(function(index, css) {
+						$('#' + bed).removeClass(function(index, css) {
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
 						});
 
 						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015' && bed.substr(0, 8) != 'BD003004') {
-							$('#' + out.idBed).text('Perbaikan');
+							$('#' + bed).text('Perbaikan');
 						}
-						$('#' + out.idBed).addClass('bg-yellow');
+						$('#' + bed).addClass('bg-yellow');
 						$('#jumlahBed' + out.ruangBed).text('TERISI: ' + out.countTerisi['jumlah'] + ', KOSONG: ' + out.countKosong['jumlah']);
 					} else if (out.statusBed == 'siapkrs') {
-						$('#' + out.idBed).removeClass(function(index, css) {
+						$('#' + bed).removeClass(function(index, css) {
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
 						});
 
 						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015' && bed.substr(0, 8) != 'BD003004') {
-							$('#' + out.idBed).text('Siap KRS');
+							$('#' + bed).text('Siap KRS');
 						}
-						$('#' + out.idBed).addClass('bg-aqua');
+						$('#' + bed).addClass('bg-aqua');
 						$('#jumlahBed' + out.ruangBed).text('TERISI: ' + out.countTerisi['jumlah'] + ', KOSONG: ' + out.countKosong['jumlah']);
 					} else if (out.statusBed == 'siapmrs') {
-						$('#' + out.idBed).removeClass(function(index, css) {
+						$('#' + bed).removeClass(function(index, css) {
 							return (css.match(/(^|\s)bg-\S+/g) || []).join(' ');
 						});
 
 						if (bed.substr(0, 8) != 'BD002004' && bed.substr(0, 8) != 'BD002015' && bed.substr(0, 8) != 'BD003004') {
-							$('#' + out.idBed).text('Siap MRS');
+							$('#' + bed).text('Siap MRS');
 						}
-						$('#' + out.idBed).addClass('bg-red');
+						$('#' + bed).addClass('bg-red');
 						$('#jumlahBed' + out.ruangBed).text('TERISI: ' + out.countTerisi['jumlah'] + ', KOSONG: ' + out.countKosong['jumlah']);
 					}
 					$('#update-bed').modal('hide');
@@ -144,10 +144,86 @@
 		e.preventDefault();
 	});
 
+	function autoRefresh_div() {
+		$("#testtest").load("<?php echo base_url('home'); ?>");
+	}
+	setInterval(autoRefresh_div, 5000); // every 5 seconds
+	// autoRefresh_div(); // on load
+
+	// function autoRefresh_div() {
+	// 	$("#testtest").load("<?php echo base_url('home'); ?>", function() {
+	// 		setTimeout(autoRefresh_div, 25000);
+	// 	});
+	// }
+
+	// autoRefresh_div();
+
+	// $(function() {
+	// 	// don't cache ajax or content won't be fresh
+	// 	$.ajaxSetup({
+	// 		cache: false
+	// 	});
+	// 	var ajax_load = "<img src='http://i.imgur.com/pKopwXp.gif' alt='loading...' />";
+
+	// 	// load() functions
+	// 	var loadUrl = "http://fiddle.jshell.net/dvb0wpLs/show/";
+	// 	$("#loadbasic").click(function() {
+	// 		$("#result").html(ajax_load).load(loadUrl);
+	// 	});
+
+	// 	// end  
+	// });
+
+	// setInterval(function() {
+	// 	$.ajaxSetup({
+	// 		cache: false
+	// 	});
+	// 	var loadUrl = '<?php echo base_url('home'); ?>';
+	// 	$("#splide").load(loadUrl);
+	// 	// location.reload();
+	// }, 5000);
+
 	// setInterval(function() {
 	// 	location.reload();
 	// }, 5000);
 
+	// function autoLoadPage() {
+	// 	$.ajax({
+	// 		cache: false,
+	// 		// url: '<?php echo base_url('home'); ?>',
+	// 		url: '<?php echo base_url('home/prosesUbahBed'); ?>',
+	// 		type: 'post'
+	// 	});
+
+	// 	// 	// $.ajaxSetup({
+	// 	// 	// 	cache: false
+	// 	// 	// 	// url: '<?php echo base_url('home'); ?>',
+	// 	// 	// });
+	// 	// 	// var loadUrl = '<?php echo base_url('home'); ?>';
+	// 	// 	// $("#splide").load(loadUrl);
+	// 	// 	// // location.reload();
+	// }
+
+	// $(document).ready(function() {
+	// 	setInterval(autoLoadPage, 5000);
+	// });
+
+
+	// $.ajax({
+	// 	url: 'http://example.com/refresh.php',
+	// 	success: function(data) {
+	// 		$('#container').html(data).delay(2000);
+	// 	}
+	// });
+
+	// $.ajax({
+	// 	cache: false,
+	// 	// url: '<?php echo base_url('home'); ?>',
+	// 	url: '<?php echo base_url('home/prosesUbahBed'); ?>',
+	// 	success: function(data) {
+	// 		$('#container_splide').html(data).delay(5000);
+	// 	}
+	// });
 
 
 

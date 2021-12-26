@@ -15,7 +15,7 @@
         <ul class="dropdown-menu menu-notif animated-dropdown-menu"></ul>
       </li> -->
       <!-- User Account Menu -->
-      <?php if ($userdata != '' || $userdata != null) { ?>
+      <?php if ($userdata->id_ruang != '' && $userdata->id_ruang != null) { ?>
         <li class="dropdown user user-menu">
           <!-- Menu Toggle Button -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">

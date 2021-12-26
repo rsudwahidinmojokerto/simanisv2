@@ -22,10 +22,9 @@ class home extends AUTH_Controller
 		//Load userdata
 		if ($this->userdata != null || $this->userdata != '') {
 			$data['userdata'] = $this->userdata;
-			// var_dump($data['userdata']);
 		} else {
-			$data['userdata'] = '';
-			// var_dump($data['userdata']);
+			// $data['userdata'] = '';
+			$data['userdata'] = (object) array('id_ruang' => '');
 		}
 
 		$i = 0;

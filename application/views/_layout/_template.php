@@ -18,7 +18,7 @@
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse fixed">
-  <div class="wrapper">
+  <div class="wrapper" id="testtest">
     <!-- header -->
     <?php echo @$_header; ?>
     <!-- nav -->
