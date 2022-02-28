@@ -20,7 +20,7 @@ $dusun = array("Claket", "Mligi", "Sembung"); // daftar dusun
           <i class="fa fa-hospital-o"></i>
         </span>
         <select name="idRuang" class="form-control select2" aria-describedby="sizing-addon2" style="width: 100%" required>
-          <option>-- Pilih Ruang --</option>
+          <option selected disabled>-- Pilih Ruang --</option>
           <?php
           foreach ($dataRuang as $ruang) {
             if ($ruang->id_ruang != 'RU999' && $ruang->id_ruang != 'RU998') {
@@ -39,7 +39,7 @@ $dusun = array("Claket", "Mligi", "Sembung"); // daftar dusun
           <i class="fa fa-star"></i>
         </span>
         <select name="idKelas" class="form-control select2" aria-describedby="sizing-addon2" style="width: 100%" required>
-          <option>-- Pilih Kelas --</option>
+          <option selected disabled>-- Pilih Kelas --</option>
           <?php
           foreach ($dataKelas as $kelas) {
           ?>
@@ -55,13 +55,13 @@ $dusun = array("Claket", "Mligi", "Sembung"); // daftar dusun
         <span class="input-group-addon">
           <i class="fa fa-bed"></i>
         </span>
-        <input type="text" class="form-control" placeholder="Kapasitas bed" name="kapasitas" aria-describedby="sizing-addon2" required>
+        <input type="text" class="form-control" placeholder="Kapasitas bed" name="kapasitas" aria-describedby="sizing-addon2">
       </div>
       <div class="input-group form-group">
         <span class="input-group-addon">
           <i class="fa fa-check-square-o"></i>
         </span>
-        <input type="text" class="form-control" placeholder="Tersedia (Optional)" name="tersedia" aria-describedby="sizing-addon2">
+        <input type="text" class="form-control" placeholder="Tersedia" name="tersedia" aria-describedby="sizing-addon2">
       </div>
       <!-- <div class="form-inline">
         <div class="input-group form-group">

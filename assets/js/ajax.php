@@ -200,6 +200,60 @@
 
 	///////////////////////// END TAMBAH KELAS RUANG //////////////////////////////
 
+	///////////////////////// START UPDATE KAPASITAS //////////////////////////////
+
+	$(document).on("click", '.update-dataKetersediaanBed', function(e) {
+		var id = $(this).attr("data-id");
+		var table = $('.ketersediaanBed').DataTable();
+		var kapasitas = table.row($(this).closest("td")).nodes().to$().find('#kapasitas').val();
+		var tersedia = table.row($(this).closest("td")).nodes().to$().find('#tersedia').val();
+
+		$.ajax({
+				method: "POST",
+				url: "<?php echo base_url('ketersediaanBed/updateKetersediaanBed'); ?>",
+				data: {
+					idRuangKelas: id,
+					kapasitas: kapasitas,
+					tersedia: tersedia
+				}
+			})
+			.done(function(data) {
+				var out = jQuery.parseJSON(data);
+				tampilKetersediaanBed();
+				$('.msg').html(out.msg);
+				effect_msg();
+			})
+		e.preventDefault();
+	})
+
+	////////////////////////// END UPDATE KAPASITAS ///////////////////////////////
+
+	/////////////////////////// START HAPUS RUANG /////////////////////////////////
+
+	var idRuangKelasHapus;
+	$(document).on("click", ".konfirmasiHapus-ketersediaanBed", function() {
+		idRuangKelasHapus = $(this).attr("data-id");
+	})
+
+	$(document).on("click", ".hapus-dataKetersediaanBed", function() {
+		var id = idRuangKelasHapus;
+
+		$.ajax({
+				method: "POST",
+				url: "<?php echo base_url('ketersediaanBed/delete'); ?>",
+				data: "idRuangKelas=" + id
+			})
+			.done(function(data) {
+				$('#konfirmasiHapus').modal('hide');
+				// $('.header-kaurkeuangan').show(1000);
+				tampilKetersediaanBed();
+				$('.msg').html(data);
+				effect_msg();
+			})
+	})
+
+	//////////////////////////// END HAPUS RUANG //////////////////////////////////
+
 	// window.setInterval(function() {
 	// 	var elem = document.getElementById('scroll-container');
 	// 	elem.scrollTop = elem.scrollHeight;

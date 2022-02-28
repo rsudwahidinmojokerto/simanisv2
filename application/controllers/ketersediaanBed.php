@@ -69,28 +69,19 @@ class ketersediaanBed extends AUTH_Controller
 		$this->form_validation->set_rules('tersedia', 'Jumlah Tersedia', 'trim|required');
 
 		$data = $this->input->post();
-		// $jbt = "04";
-		// $dsn = $this->userDusun($data['dusun']);
-		// $rt = $this->userRT($data['rt']);
-		// $rw = $this->userRW($data['rw']);
-		// $urutan = $this->userOrder();
-		// $data['idUser'] = $jbt . $dsn . $rt . $rw . $urutan;
-		// $password = $this->randomChar(10);
-		// $data['password'] = md5($password);
-		// $data['alamat'] = "Jalan " . $data['jalan'] . " RT " . $data['rt'] . " RW " . $data['rw'] . ", Dusun " . $data['dusun'];
-		// $data['idGrup'] = "JBT04";
-		// $data['foto'] = $this->pickPhoto($data['jk']);
-
 		if ($this->form_validation->run() == TRUE) {
-			$result = $this->m_aplicare->insertRuang($data);
-			if ($result > 0) {
-				// $this->m_bayar->insertStatus($data['idUser']);
-				$out['status'] = '';
-				$out['msg'] = show_succ_msg('Data Ruang Berhasil ditambahkan', '20px');
-				// $out['msg'] = show_succ_msg_custom('Data Pelanggan berhasil ditambahkan', '20px', $data['idUser'], $password);
+			if ($this->input->post('kapasitas') >= $this->input->post('tersedia')) {
+				$result = $this->m_aplicare->insertRuang($data);
+				if ($result > 0) {
+					$out['status'] = '';
+					$out['msg'] = show_succ_msg('Data Ruang Berhasil ditambahkan', '20px');
+				} else {
+					$out['status'] = '';
+					$out['msg'] = show_err_msg('Data Ruang gagal ditambahkan', '20px');
+				}
 			} else {
 				$out['status'] = '';
-				$out['msg'] = show_err_msg('Data Pelanggan gagal ditambahkan', '20px');
+				$out['msg'] = show_err_msg('Kapasitas bed <= jumlah tersedia!', '20px');
 			}
 		} else {
 			$out['status'] = 'form';
@@ -99,64 +90,84 @@ class ketersediaanBed extends AUTH_Controller
 		echo json_encode($out);
 	}
 
-	public function update()
+	public function updateKetersediaanBed()
 	{
-		$id = trim($_POST['idUser']);
-		$data['dataPelanggan'] = $this->m_user->select_by_id($id);
-		$alamat = $this->m_user->select_alamat($id);
-		$data['dataAlamat'] = explode(' ', $alamat);
-		echo show_my_modal('modals/modal_update_pelanggan', 'update-pelanggan', $data);
-	}
+		$id = explode("_", $_POST['idRuangKelas']);
+		$kapasitas = $_POST['kapasitas'];
+		$tersedia = $_POST['tersedia'];
 
-	public function prosesUpdate()
-	{
-		$this->form_validation->set_rules('id', 'ID', 'trim|required');
-		$this->form_validation->set_rules('nik', 'NIK', 'trim|required');
-		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'trim|required');
-		$this->form_validation->set_rules('jalan', 'Alamat', 'trim|required');
-		$this->form_validation->set_rules('rt', 'Alamat', 'trim|required');
-		$this->form_validation->set_rules('rw', 'Alamat', 'trim|required');
-		$this->form_validation->set_rules('dusun', 'Alamat', 'trim|required');
-		$this->form_validation->set_rules('jk', 'Jenis Kelamin', 'trim|required');
-		$this->form_validation->set_rules('email', 'E-mail', 'trim|required');
-		$this->form_validation->set_rules('telepon', 'Telepon', 'trim|required');
-
-		$data = $this->input->post();
-		$jbt = "04";
-		$dsn = $this->userDusun($data['dusun']);
-		$rt = $this->userRT($data['rt']);
-		$rw = $this->userRW($data['rw']);
-		$urutan = substr($data['id'], -4);
-		$data['idUser'] = $jbt . $dsn . $rt . $rw . $urutan;
-		$data['alamat'] = "Jalan " . $data['jalan'] . " RT " . $data['rt'] . " RW " . $data['rw'] . ", Dusun " . $data['dusun'];
-		if ($this->form_validation->run() == TRUE) {
-			$result = $this->m_user->update($data);
-
+		if ($kapasitas >= $tersedia) {
+			$result = $this->m_aplicare->updateKetersediaanBed($id, $kapasitas, $tersedia);
 			if ($result > 0) {
 				$out['status'] = '';
-				$out['msg'] = show_succ_msg('Data Pelanggan Berhasil diubah', '20px');
+				$out['msg'] = show_succ_msg('Data Ketersediaan Berhasil diupdate', '20px');
 			} else {
 				$out['status'] = '';
-				$out['msg'] = show_err_msg('Data Pelanggan Gagal diubah', '20px');
+				$out['msg'] = show_err_msg('Data Ketersediaan gagal diupdate', '20px');
 			}
 		} else {
-			$out['status'] = 'form';
-			$out['msg'] = show_err_msg(validation_errors());
+			$out['status'] = '';
+			$out['msg'] = show_err_msg('Kapasitas bed <= jumlah tersedia!', '20px');
 		}
 		echo json_encode($out);
 	}
+
+	// public function update()
+	// {
+	// 	$id = trim($_POST['idUser']);
+	// 	$data['dataPelanggan'] = $this->m_user->select_by_id($id);
+	// 	$alamat = $this->m_user->select_alamat($id);
+	// 	$data['dataAlamat'] = explode(' ', $alamat);
+	// 	echo show_my_modal('modals/modal_update_pelanggan', 'update-pelanggan', $data);
+	// }
+
+	// public function prosesUpdate()
+	// {
+	// 	$this->form_validation->set_rules('id', 'ID', 'trim|required');
+	// 	$this->form_validation->set_rules('nik', 'NIK', 'trim|required');
+	// 	$this->form_validation->set_rules('nama', 'Nama Lengkap', 'trim|required');
+	// 	$this->form_validation->set_rules('jalan', 'Alamat', 'trim|required');
+	// 	$this->form_validation->set_rules('rt', 'Alamat', 'trim|required');
+	// 	$this->form_validation->set_rules('rw', 'Alamat', 'trim|required');
+	// 	$this->form_validation->set_rules('dusun', 'Alamat', 'trim|required');
+	// 	$this->form_validation->set_rules('jk', 'Jenis Kelamin', 'trim|required');
+	// 	$this->form_validation->set_rules('email', 'E-mail', 'trim|required');
+	// 	$this->form_validation->set_rules('telepon', 'Telepon', 'trim|required');
+
+	// 	$data = $this->input->post();
+	// 	$jbt = "04";
+	// 	$dsn = $this->userDusun($data['dusun']);
+	// 	$rt = $this->userRT($data['rt']);
+	// 	$rw = $this->userRW($data['rw']);
+	// 	$urutan = substr($data['id'], -4);
+	// 	$data['idUser'] = $jbt . $dsn . $rt . $rw . $urutan;
+	// 	$data['alamat'] = "Jalan " . $data['jalan'] . " RT " . $data['rt'] . " RW " . $data['rw'] . ", Dusun " . $data['dusun'];
+	// 	if ($this->form_validation->run() == TRUE) {
+	// 		$result = $this->m_user->update($data);
+
+	// 		if ($result > 0) {
+	// 			$out['status'] = '';
+	// 			$out['msg'] = show_succ_msg('Data Pelanggan Berhasil diubah', '20px');
+	// 		} else {
+	// 			$out['status'] = '';
+	// 			$out['msg'] = show_err_msg('Data Pelanggan Gagal diubah', '20px');
+	// 		}
+	// 	} else {
+	// 		$out['status'] = 'form';
+	// 		$out['msg'] = show_err_msg(validation_errors());
+	// 	}
+	// 	echo json_encode($out);
+	// }
 
 	//menghapus data pelanggan
 	public function delete()
 	{
-		$id = $_POST['idUser'];
-		$result = $this->m_user->delete($id);
-
+		$id = explode("_", $_POST['idRuangKelas']);
+		$result = $this->m_aplicare->deleteRuang($id);
 		if ($result > 0) {
-			$this->m_bayar->deleteStatus($id);
-			echo show_succ_msg('Data Pelanggan berhasil dihapus', '20px');
+			echo show_succ_msg('Data Ruang berhasil dihapus', '20px');
 		} else {
-			echo show_err_msg('Data Pelanggan gagal dihapus', '20px');
+			echo show_err_msg('Data Ruang gagal dihapus', '20px');
 		}
 	}
 

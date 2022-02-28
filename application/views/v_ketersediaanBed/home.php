@@ -39,4 +39,4 @@
 
 <div id="tempat-modal"></div>
 
-<?php show_my_confirm('konfirmasiHapus', 'hapus-dataPelanggan', 'Hapus Data Ini?', 'Ya, Hapus Data Ini'); ?>
+<?php show_my_confirm('konfirmasiHapus', 'hapus-dataKetersediaanBed', 'Hapus Data Ini?', 'Ya, Hapus Data Ini'); ?>
