@@ -70,18 +70,23 @@ class ketersediaanBed extends AUTH_Controller
 
 		$data = $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
-			if ($this->input->post('kapasitas') >= $this->input->post('tersedia')) {
-				$result = $this->m_aplicare->insertRuang($data);
-				if ($result > 0) {
-					$out['status'] = '';
-					$out['msg'] = show_succ_msg('Data Ruang Berhasil ditambahkan', '20px');
+			if ($this->input->post('kapasitas') > 0 && $this->input->post('tersedia') > 0) {
+				if ($this->input->post('kapasitas') >= $this->input->post('tersedia')) {
+					$result = $this->m_aplicare->insertRuang($data);
+					if ($result > 0) {
+						$out['status'] = '';
+						$out['msg'] = show_succ_msg('Data Ruang Berhasil ditambahkan', '20px');
+					} else {
+						$out['status'] = '';
+						$out['msg'] = show_err_msg('Data Ruang gagal ditambahkan', '20px');
+					}
 				} else {
 					$out['status'] = '';
-					$out['msg'] = show_err_msg('Data Ruang gagal ditambahkan', '20px');
+					$out['msg'] = show_err_msg('Jumlah bed tersedia melebihi kapasitas!', '20px');
 				}
 			} else {
 				$out['status'] = '';
-				$out['msg'] = show_err_msg('Kapasitas bed <= jumlah tersedia!', '20px');
+				$out['msg'] = show_err_msg('Jumlah tidak valid!', '20px');
 			}
 		} else {
 			$out['status'] = 'form';
@@ -96,20 +101,97 @@ class ketersediaanBed extends AUTH_Controller
 		$kapasitas = $_POST['kapasitas'];
 		$tersedia = $_POST['tersedia'];
 
-		if ($kapasitas >= $tersedia) {
-			$result = $this->m_aplicare->updateKetersediaanBed($id, $kapasitas, $tersedia);
-			if ($result > 0) {
-				$out['status'] = '';
-				$out['msg'] = show_succ_msg('Data Ketersediaan Berhasil diupdate', '20px');
+		if ($kapasitas > 0 && $tersedia > 0) {
+			if ($kapasitas >= $tersedia) {
+				$result = $this->m_aplicare->updateKetersediaanBed($id, $kapasitas, $tersedia);
+				if ($result > 0) {
+					$out['status'] = '';
+					$out['msg'] = show_succ_msg('Data Ketersediaan Berhasil diupdate', '20px');
+				} else {
+					$out['status'] = '';
+					$out['msg'] = show_err_msg('Data Ketersediaan gagal diupdate', '20px');
+				}
 			} else {
 				$out['status'] = '';
-				$out['msg'] = show_err_msg('Data Ketersediaan gagal diupdate', '20px');
+				$out['msg'] = show_err_msg('Jumlah bed tersedia melebihi kapasitas!', '20px');
 			}
 		} else {
 			$out['status'] = '';
-			$out['msg'] = show_err_msg('Kapasitas bed <= jumlah tersedia!', '20px');
+			$out['msg'] = show_err_msg('Jumlah tidak valid!', '20px');
 		}
 		echo json_encode($out);
+	}
+
+	public function updateAplicare($id_ruang, $id_kelas)
+	{
+		$consId = "21095";
+		$secretKey = "rsud6778ws122mjkrt";
+		$kodePpk = "1320R001";
+		// include "config.php";
+
+		// // Do query's
+		// mysqli_query($con, "SET CHARACTER SET utf8");
+
+		// mysqli_query($con, "SET NAMES 'utf8'");
+
+		// $query = mysqli_query($con, "SELECT
+		//                      kodekelas,
+		//                      koderuang,
+		//                      namaruang,
+		//                      kapasitas,
+		//                      tersedia
+		//                    FROM bed_available_bpjs");
+
+		$getKapasitas = $this->m_aplicare->getRuangAplicareByKodeKelas($id_ruang, $id_kelas);
+
+		// Start of loop process
+		// while ($row = mysqli_fetch_assoc($query)) {
+		foreach ($getKapasitas as $kapasitas) {
+			// create record to JSON
+			// $dataKapasitas = json_encode($getKapasitas);
+			$dataKapasitas = json_encode($kapasitas);
+			// $dataKapasitas = $kapasitas;
+			// var_dump($dataKapasitas);
+
+			// Computes the timestamp
+			date_default_timezone_set('UTC');
+			$tStamp = strval(time() - strtotime('1970-01-01 00:00:00'));
+			// Computes the signature by hashing the salt with the secret key as the key
+			$signature = hash_hmac('sha256', $consId . "&" . $tStamp, $secretKey, true);
+			// base64 encode…
+			$encodedSignature = base64_encode($signature);
+
+			$ch = curl_init();
+			$headers = array(
+				'X-cons-id: ' . $consId . '',
+				'X-timestamp: ' . $tStamp . '',
+				'X-signature: ' . $encodedSignature . '',
+				'Content-Type: Application/JSON',
+				'Accept: Application/JSON'
+			);
+
+			/*
+          	Sending record to API Aplicares (for UPDATE)
+			 */
+			// curl_setopt($ch, CURLOPT_URL, "https://dvlp.bpjs-kesehatan.go.id:8888/aplicaresws/rest/bed/update/" . $kodePpk);
+			curl_setopt($ch, CURLOPT_URL, "https://new-api.bpjs-kesehatan.go.id/aplicaresws/rest/bed/update/" . $kodePpk);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $dataKapasitas);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+			/* print output message */
+			$content = curl_exec($ch);
+			$err = curl_error($ch);
+			// print_r($err);
+			// print_r($content);
+
+			// close cURL resource, and free up system resources
+			curl_close($ch);
+		}
+		// End of loop process
 	}
 
 	// public function update()

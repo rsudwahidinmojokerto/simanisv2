@@ -94,7 +94,7 @@ function show_my_confirm($id = '', $class = '', $title = 'Konfirmasi', $yes = 'Y
 	$_ci = &get_instance();
 
 	if ($id != '') {
-		echo   '<div class="modal fade" id="' . $id . '" role="dialog">
+		echo '<div class="modal fade" id="' . $id . '" role="dialog">
 					  <div class="modal-dialog modal-md" role="document">
 					    <div class="modal-content">
 							<div class="col-md-offset-1 col-md-10 col-md-offset-1 well">

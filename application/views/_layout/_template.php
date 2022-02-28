@@ -19,24 +19,22 @@
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse fixed">
-  <div class="wrapper" id="testtest">
-    <!-- header -->
-    <?php echo @$_header; ?>
-    <!-- nav -->
+  <!-- header -->
+  <?php echo @$_header; ?>
+  <!-- nav -->
 
-    <!-- sidebar -->
-    <?php echo @$_sidebar; ?>
+  <!-- sidebar -->
+  <?php echo @$_sidebar; ?>
 
-    <!-- content -->
-    <?php echo @$_content; ?>
-    <!-- headerContent -->
-    <!-- mainContent -->
+  <!-- content -->
+  <?php echo @$_content; ?>
+  <!-- headerContent -->
+  <!-- mainContent -->
 
-    <!-- footer -->
-    <?php echo @$_footer; ?>
+  <!-- footer -->
+  <?php echo @$_footer; ?>
 
-    <div class="control-sidebar-bg"></div>
-  </div>
+  <div class="control-sidebar-bg"></div>
 
   <!-- js -->
   <?php echo @$_js; ?>
