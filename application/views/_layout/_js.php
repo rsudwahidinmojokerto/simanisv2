@@ -10,8 +10,10 @@
 <script src="<?php echo base_url(); ?>assets/plugins/maxlength/jquery.plugin.js"></script>
 <script src="<?php echo base_url(); ?>assets/plugins/maxlength/jquery.maxlength.min.js"></script>
 <!-- Datatables -->
-<script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<!-- <script src="<?php echo base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables/dataTables.bootstrap.min.js"></script> -->
+<script src="<?php echo base_url(); ?>assets/plugins/datatables/DataTables-1.11.4/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/datatables/DataTables-1.11.4/js/dataTables.bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url(); ?>assets/dist/js/app.min.js"></script>
 <!-- Marquee js -->
@@ -24,7 +26,9 @@
 <script src="<?php echo base_url(); ?>assets/plugins/countUp.js/countUp.js"></script>
 <!-- Date picker -->
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-<!-- Splide -->
-<script src="<?php echo base_url(); ?>assets/plugins/splide/dist/js/splide.min.js"></script>
+<!-- Auto scroll -->
+<script src="<?php echo base_url(); ?>assets/plugins/autoScroll/autoscroll.js"></script>
+<!-- Auto scroll Data -->
+<script src="<?php echo base_url(); ?>assets/plugins/autoScrollData/js/jquery.autoscroll.js"></script>
 <!-- My Ajax -->
 <?php include './assets/js/ajax.php'; ?>

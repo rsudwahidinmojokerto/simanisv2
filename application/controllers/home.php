@@ -27,19 +27,48 @@ class home extends AUTH_Controller
 			$data['userdata'] = (object) array('id_ruang' => '');
 		}
 
-		$i = 0;
-		$iruang = 0;
+		// $i = 0;
+		// $iruang = 0;
 
-		$getBed		 = $this->m_bed->getAllDataBed();
-		foreach ($getBed as $bed) {
-			$data['bed' . $bed['id_bed']] = $this->m_bed->getAllDataBedById($bed['id_bed']);
-			// if ($getBed[$iruang]['id_ruang'] == !empty($getBed[$iruang - 1]['id_ruang'])) {
-			$data['ruang' . $bed['id_ruang']] = $this->m_ruang->getAllDataRuangById($bed['id_ruang']);
-			$data['ruang' . $bed['id_ruang'] . 'terisi'] = $this->m_bed->countBed($bed['id_ruang'], 'terisi');
-			$data['ruang' . $bed['id_ruang'] . 'kosong'] = $this->m_bed->countBed($bed['id_ruang'], 'kosong');
-			// }
-			$iruang++;
-			// var_dump($data['ruang' . $bed['id_ruang']]);
+		// $getBed		 = $this->m_bed->getAllDataBed();
+		// foreach ($getBed as $bed) {
+		// 	$data['bed' . $bed['id_bed']] = $this->m_bed->getAllDataBedById($bed['id_bed']);
+		// 	// if ($getBed[$iruang]['id_ruang'] == !empty($getBed[$iruang - 1]['id_ruang'])) {
+		// 	$data['ruang' . $bed['id_ruang']] = $this->m_ruang->getAllDataRuangById($bed['id_ruang']);
+		// 	$data['ruang' . $bed['id_ruang'] . 'terisi'] = $this->m_bed->countBed($bed['id_ruang'], 'terisi');
+		// 	$data['ruang' . $bed['id_ruang'] . 'kosong'] = $this->m_bed->countBed($bed['id_ruang'], 'kosong');
+		// 	// }
+		// 	$iruang++;
+		// 	// var_dump($data['ruang' . $bed['id_ruang']]);
+		// }
+
+		$i = 0; // inisialisasi variabel untuk increment array ruang
+		if (!isset($this->userdata->id_ruang)) {
+			$data['ketersediaanBed'] = $this->m_aplicare->getBedBpjsAll();
+			$data['jumlahRuang'] = $this->m_aplicare->getCountRuangAll();
+			$ruang = $this->m_aplicare->getCountRuangAll();
+			foreach ($ruang as $r) {
+				$data['jumlahKelasRuang'][$i] = $this->m_aplicare->getRuangBpjsByRuang($r->koderuang);
+				$i++;
+			}
+		} else {
+			if ($this->userdata->id_ruang == 'RU999' || $this->userdata->id_ruang == 'RU998') {
+				$data['ketersediaanBed'] = $this->m_aplicare->getBedBpjsAll();
+				$data['jumlahRuang'] = $this->m_aplicare->getCountRuangAll();
+				$ruang = $this->m_aplicare->getCountRuangAll();
+				foreach ($ruang as $r) {
+					$data['jumlahKelasRuang'][$i] = $this->m_aplicare->getRuangBpjsByRuang($r->koderuang);
+					$i++;
+				}
+			} else {
+				$data['ketersediaanBed'] = $this->m_aplicare->getBedBpjsByRuang($this->userdata->id_ruang);
+				$data['jumlahRuang'] = $this->m_aplicare->getCountRuangByRuang($this->userdata->id_ruang);
+				$ruang = $this->m_aplicare->getCountRuangByRuang($this->userdata->id_ruang);
+				foreach ($ruang as $r) {
+					$data['jumlahKelasRuang'][$i] = $this->m_aplicare->getRuangBpjsByRuang($r->koderuang);
+					$i++;
+				}
+			}
 		}
 
 

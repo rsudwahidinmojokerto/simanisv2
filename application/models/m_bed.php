@@ -38,6 +38,18 @@ class m_bed extends CI_Model
 		return $data->row()->jumlah;
 	}
 
+	public function getAllBedBpjs(){
+		$sql = "SELECT * FROM bed_available_bpjs";
+		$data = $this->db->query($sql);
+		return $dataa->return_array();
+	}
+
+	public function getAllBedBpjsIdRuang($id_ruang){
+		$sql = "SELECT * FROM bed_available_bpjs WHERE koderuang = '$id_ruang'";
+		$data = $this->db->query($sql);
+		return $dataa->return_array();
+	}
+
 	// public function getAllUnit()
 	// {
 	// 	$sql = "SELECT DISTINCT Unit FROM tm_kamar";

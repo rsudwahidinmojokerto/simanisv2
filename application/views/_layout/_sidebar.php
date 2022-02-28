@@ -47,6 +47,15 @@
             <span>Dashboard</span>
           </a>
         </li>
+        
+        <li <?php if ($page == 'ketersediaan_bed') {
+              echo 'class="active"';
+            } ?>>
+          <a href="<?php echo base_url('ketersediaanBed'); ?>">
+            <i class="fa fa-bed"></i>
+            <span>Master Bed</span>
+          </a>
+        </li>
 
         <?php if ($userdata->id_ruang == "RU999") { ?>
           <!-- Data Pengguna -->
@@ -170,14 +179,14 @@
         ?>
 
         <!-- Perpesanan -->
-        <li <?php if ($page == 'perpesanan') {
-              echo 'class="active"';
-            } ?>>
+        <!-- <li <?php if ($page == 'perpesanan') {
+                    echo 'class="active"';
+                  } ?>>
           <a href="<?php echo base_url('c_perpesanan'); ?>">
             <i class="fa fa-envelope"></i>
             <span>Perpesanan</span>
           </a>
-        </li>
+        </li> -->
 
         <!-- SIMANIS -->
         <?php if ($userdata->id_ruang == "RU999") { ?>

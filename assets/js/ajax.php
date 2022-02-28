@@ -2,6 +2,8 @@
 	var MyTable = $('#list-data').dataTable();
 
 	window.onload = function() {
+		tampilKetersediaanBed();
+
 		tampilPelanggan();
 		tampilPenyuplai();
 		tampilKaurKeuangan();
@@ -28,8 +30,19 @@
 			"ordering": true,
 			"info": true,
 			"autoWidth": true,
-			"scrollX": true
+			"scrollX": true,
+			"columnDefs": [{
+				"orderable": false,
+				"targets": [5, 6]
+			}]
 		});
+
+		// var MyTable2 = $('.ketersediaanBed').dataTable({
+		// 	"columnDefs": [{
+		// 		"orderable": false,
+		// 		"targets": [5, 6]
+		// 	}]
+		// })
 	}
 
 	function effect_msg_form() {
@@ -144,10 +157,113 @@
 		e.preventDefault();
 	});
 
-	function autoRefresh_div() {
-		$("#testtest").load("<?php echo base_url('home'); ?>");
+	////////////////////////// END STATUS BED /////////////////////////////
+
+	//////////////////////// START STATUS BED 2 ///////////////////////////
+
+	function tampilKetersediaanBed() {
+		$.get('<?php echo base_url('ketersediaanBed/tampil'); ?>', function(data) {
+			MyTable.fnDestroy();
+			$('#data-ketersediaanBed').html(data);
+			refresh();
+		});
 	}
-	setInterval(autoRefresh_div, 5000); // every 5 seconds
+
+	///////////////////////// END STATUS BED 2 ////////////////////////////
+
+	//////////////////////// START TAMBAH KELAS RUANG /////////////////////////////
+
+	$('#form-tambah-kelasRuang').submit(function(e) {
+		var data = $(this).serialize();
+
+		$.ajax({
+				method: 'POST',
+				url: '<?php echo base_url('ketersediaanBed/prosesTambah'); ?>',
+				data: data
+			})
+			.done(function(data) {
+				var out = jQuery.parseJSON(data);
+
+				tampilKetersediaanBed();
+				if (out.status == 'form') {
+					$('.form-msg').html(out.msg);
+					effect_msg_form();
+				} else {
+					document.getElementById("form-tambah-kelasRuang").reset();
+					$('#tambah-ketersediaanBed').modal('hide');
+					$('.msg').html(out.msg);
+					effect_msg();
+				}
+			})
+		e.preventDefault();
+	});
+
+	///////////////////////// END TAMBAH KELAS RUANG //////////////////////////////
+
+	// window.setInterval(function() {
+	// 	var elem = document.getElementById('scroll-container');
+	// 	elem.scrollTop = elem.scrollHeight;
+	// }, 5000);
+
+	// window.scrollTo(0, document.body.scrollHeight);
+
+	// $("html, body").animate({
+	// 	scrollTop: $(document).height()
+	// }, 15000);
+	// setTimeout(function() {
+	// 	$('html, body').animate({
+	// 		scrollTop: 0
+	// 	}, 15000);
+	// }, 15000);
+
+	// var scrolltopbottom = setInterval(function() {
+	// 	// 4000 - it will take 4 secound in total from the top of the page to the bottom
+	// 	$("html, body").animate({
+	// 		scrollTop: $(document).height()
+	// 	}, 50000);
+	// 	// setTimeout(function() {
+	// 	$('html, body').animate({
+	// 		scrollTop: 0
+	// 	}, 0);
+	// 	// }, 5000);
+
+	// }, 0);
+
+	// var demo = new Scroller('#scroll-container');
+
+	// $(".scroller").scroller({
+	// 	// target container
+	// 	"element": "#scroll-container",
+	// 	// 3000ms
+	// 	"delay": 3000,
+	// 	// 100px
+	// 	"amount": "100"
+	// });
+
+	// $(".scroller").scroller();
+
+	// $("[data-autoscroll]").autoscroll({
+	// 	interval: 100,
+	// 	hideScrollbar: false,
+	// 	handlerIn: null,
+	// 	handlerOut: null
+	// });
+
+	//scroll dipake
+	// $('html, body').animate({
+	// 	scrollTop: $(document).height() - $(window).height()
+	// }, 100000, function() {
+	// 	$(this).animate({
+	// 		scrollTop: 0
+	// 	}, 1000);
+	// });
+
+
+
+	// function autoRefresh_div() {
+	// 	$("#testtest").load("<?php echo base_url('home'); ?>");
+	// }
+	// setInterval(autoRefresh_div, 5000); // every 5 seconds
 	// autoRefresh_div(); // on load
 
 	// function autoRefresh_div() {

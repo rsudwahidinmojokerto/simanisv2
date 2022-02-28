@@ -15,6 +15,7 @@
 
   <!-- jQuery 2.2.3 -->
   <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-2.2.3.min.js"></script>
+  <!-- <script src="<?php echo base_url(); ?>assets/plugins/jQuery/jquery-3.5.1.min.js"></script> -->
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini sidebar-collapse fixed">

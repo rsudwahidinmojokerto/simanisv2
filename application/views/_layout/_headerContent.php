@@ -1,12 +1,12 @@
 <?php if ($userdata != '' || $userdata != null) { ?>
-	<section class="content-header" <?php if ($judul == "Dashboard") {
+	<section class="content-header" <?php if ($judul == "Dashboard" && $userdata->id_ruang == "") {
 										echo "style='padding-top: 40px'";
 									} ?>>
 		<h1>
 			Halaman <?php echo @$judul; ?>
 			<small><?php echo @$deskripsi; ?></small>
 		</h1>
-		<ol class="breadcrumb" <?php if ($judul == "Dashboard") {
+		<ol class="breadcrumb" <?php if ($judul == "Dashboard" && $userdata->id_ruang == "") {
 									echo "style='padding-top: 32px'";
 								} ?>>
 			<?php

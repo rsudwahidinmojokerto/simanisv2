@@ -59,11 +59,13 @@
     </ul>
   </div>
 </nav>
-<?php if ($page == 'home') { ?>
-  <nav class="navbar navbar-static-top marquee">
-    <div class="text-marquee" style="font-size: 14pt;">Selamat datang di portal <b>Sistem Informasi Managemen Tempat Tidur Pasien (SIMANIS) RSUD dr. Wahidin Sudiro Husodo Kota Mojokerto</b>. Berikut merupakan informasi mengenai ketersediaan tempat tidur yang berada di rumah sakit kami. <b>DISCLAIMER: INFORMASI INI TIDAK MENJAMIN KETERSEDIAAN SECARA AKURAT, DIKARENAKAN LAMA PROSES PENANGANAN MASUK RUMAH SAKIT (MRS) DAN KELUAR RUMAH SAKIT (KRS).&nbsp;&nbsp;&nbsp;&nbsp;<b>TETAP PATUHI PROTOKOL KESEHATAN DIMANAPUN ANDA BERADA. KEPUASAN PASIEN TUJUAN KAMI</b>.</div>
-  </nav>
+<?php if ($page == 'home' || $page == 'home2') {
+  if ($userdata->id_ruang == "") { ?>
+    <nav class="navbar navbar-static-top marquee">
+      <div class="text-marquee" style="font-size: 14pt;">Selamat datang di portal <b>Sistem Informasi Managemen Akomodasi Pasien Versi 2 (SIMANIS V2) RSUD dr. Wahidin Sudiro Husodo Kota Mojokerto</b>. Berikut merupakan informasi mengenai ketersediaan tempat tidur yang berada di rumah sakit kami. <b>DISCLAIMER: INFORMASI INI TIDAK MENJAMIN KETERSEDIAAN SECARA AKURAT, DIKARENAKAN LAMA PROSES PENANGANAN MASUK RUMAH SAKIT (MRS) DAN KELUAR RUMAH SAKIT (KRS).&nbsp;&nbsp;&nbsp;&nbsp;<b>TETAP PATUHI PROTOKOL KESEHATAN DIMANAPUN ANDA BERADA. KEPUASAN PASIEN TUJUAN KAMI</b>.</div>
+    </nav>
 <?php
+  }
 }
 ?>
 
