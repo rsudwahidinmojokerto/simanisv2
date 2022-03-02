@@ -70,10 +70,11 @@ class ketersediaanBed extends AUTH_Controller
 
 		$data = $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
-			if ($this->input->post('kapasitas') > 0 && $this->input->post('tersedia') > 0) {
+			if ($this->input->post('kapasitas') > 0 && $this->input->post('tersedia') >= 0) {
 				if ($this->input->post('kapasitas') >= $this->input->post('tersedia')) {
 					$result = $this->m_aplicare->insertRuang($data);
 					if ($result > 0) {
+						$this->insertAplicare($this->input->post('idRuang'), $this->input->post('idKelas'));
 						$out['status'] = '';
 						$out['msg'] = show_succ_msg('Data Ruang Berhasil ditambahkan', '20px');
 					} else {
@@ -101,10 +102,11 @@ class ketersediaanBed extends AUTH_Controller
 		$kapasitas = $_POST['kapasitas'];
 		$tersedia = $_POST['tersedia'];
 
-		if ($kapasitas > 0 && $tersedia > 0) {
+		if ($kapasitas > 0 && $tersedia >= 0) {
 			if ($kapasitas >= $tersedia) {
 				$result = $this->m_aplicare->updateKetersediaanBed($id, $kapasitas, $tersedia);
 				if ($result > 0) {
+					$this->updateAplicare($id[0], $id[1]);
 					$out['status'] = '';
 					$out['msg'] = show_succ_msg('Data Ketersediaan Berhasil diupdate', '20px');
 				} else {
@@ -122,43 +124,82 @@ class ketersediaanBed extends AUTH_Controller
 		echo json_encode($out);
 	}
 
+	public function delete()
+	{
+		$id = explode("_", $_POST['idRuangKelas']);
+
+		$this->deleteAplicare($id[0], $id[1]);
+		$result = $this->m_aplicare->deleteRuang($id);
+		if ($result > 0) {
+			echo show_succ_msg('Data Ruang berhasil dihapus', '20px');
+		} else {
+			echo show_err_msg('Data Ruang gagal dihapus', '20px');
+		}
+	}
+
+	public function insertAplicare($id_ruang, $id_kelas)
+	{
+		$consId = "21095";
+		$secretKey = "rsud6778ws122mjkrt";
+		$kodePpk = "1320R001";
+
+		$getRuang = $this->m_aplicare->getRuangAplicareByKodeKelas($id_ruang, $id_kelas);
+
+		foreach ($getRuang as $ruang) {
+			$dataRuang = json_encode($ruang);
+
+			date_default_timezone_set('UTC');
+			$tStamp = strval(time() - strtotime('1970-01-01 00:00:00'));
+			$signature = hash_hmac('sha256', $consId . "&" . $tStamp, $secretKey, true);
+			$encodedSignature = base64_encode($signature);
+
+			$ch = curl_init();
+			$headers = array(
+				'X-cons-id: ' . $consId . '',
+				'X-timestamp: ' . $tStamp . '',
+				'X-signature: ' . $encodedSignature . '',
+				'Content-Type: Application/JSON',
+				'Accept: Application/JSON'
+			);
+
+
+			/*
+			  Sending record to API Aplicares (for INSERT)
+			 */
+			// curl_setopt($ch, CURLOPT_URL, "http://dvlp.bpjs-kesehatan.go.id:8888/aplicaresws/rest/bed/create/" . $kodePpk);
+			curl_setopt($ch, CURLOPT_URL, "https://new-api.bpjs-kesehatan.go.id/aplicaresws/rest/bed/create/" . $kodePpk);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $dataRuang);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			$content = curl_exec($ch);
+			$err     = curl_error($ch);
+
+			// print_r($err);
+			// print_r($content);
+
+			// close cURL resource, and free up system resources
+			curl_close($ch);
+		}
+		// End of loop process
+	}
+
 	public function updateAplicare($id_ruang, $id_kelas)
 	{
 		$consId = "21095";
 		$secretKey = "rsud6778ws122mjkrt";
 		$kodePpk = "1320R001";
-		// include "config.php";
 
-		// // Do query's
-		// mysqli_query($con, "SET CHARACTER SET utf8");
+		$getRuang = $this->m_aplicare->getRuangAplicareByKodeKelas($id_ruang, $id_kelas);
 
-		// mysqli_query($con, "SET NAMES 'utf8'");
+		foreach ($getRuang as $ruang) {
+			$dataRuang = json_encode($ruang);
 
-		// $query = mysqli_query($con, "SELECT
-		//                      kodekelas,
-		//                      koderuang,
-		//                      namaruang,
-		//                      kapasitas,
-		//                      tersedia
-		//                    FROM bed_available_bpjs");
-
-		$getKapasitas = $this->m_aplicare->getRuangAplicareByKodeKelas($id_ruang, $id_kelas);
-
-		// Start of loop process
-		// while ($row = mysqli_fetch_assoc($query)) {
-		foreach ($getKapasitas as $kapasitas) {
-			// create record to JSON
-			// $dataKapasitas = json_encode($getKapasitas);
-			$dataKapasitas = json_encode($kapasitas);
-			// $dataKapasitas = $kapasitas;
-			// var_dump($dataKapasitas);
-
-			// Computes the timestamp
 			date_default_timezone_set('UTC');
 			$tStamp = strval(time() - strtotime('1970-01-01 00:00:00'));
-			// Computes the signature by hashing the salt with the secret key as the key
 			$signature = hash_hmac('sha256', $consId . "&" . $tStamp, $secretKey, true);
-			// base64 encode…
 			$encodedSignature = base64_encode($signature);
 
 			$ch = curl_init();
@@ -179,12 +220,62 @@ class ketersediaanBed extends AUTH_Controller
 			curl_setopt($ch, CURLOPT_TIMEOUT, 60);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $dataKapasitas);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $dataRuang);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
 			/* print output message */
 			$content = curl_exec($ch);
 			$err = curl_error($ch);
+
+			// print_r($err);
+			// print_r($content);
+
+			// close cURL resource, and free up system resources
+			curl_close($ch);
+			// return $content;
+		}
+		// End of loop process
+	}
+
+	public function deleteAplicare($id_ruang, $id_kelas)
+	{
+		$consId = "21095";
+		$secretKey = "rsud6778ws122mjkrt";
+		$kodePpk = "1320R001";
+
+		$getRuang = $this->m_aplicare->getRuangAplicareToDeleteByKodeKelas($id_ruang, $id_kelas);
+
+		foreach ($getRuang as $ruang) {
+			$dataRuang = json_encode($ruang);
+
+			date_default_timezone_set('UTC');
+			$tStamp = strval(time() - strtotime('1970-01-01 00:00:00'));
+			$signature = hash_hmac('sha256', $consId . "&" . $tStamp, $secretKey, true);
+			$encodedSignature = base64_encode($signature);
+
+			$ch = curl_init();
+			$headers = array(
+				'X-cons-id: ' . $consId . '',
+				'X-timestamp: ' . $tStamp . '',
+				'X-signature: ' . $encodedSignature . '',
+				'Content-Type: Application/JSON',
+				'Accept: Application/JSON'
+			);
+
+			/*
+          	Sending record to API Aplicares (for DELETE)
+			 */
+			// curl_setopt($ch, CURLOPT_URL, "http://dvlp.bpjs-kesehatan.go.id:8888/aplicaresws/rest/bed/delete/" . $kodePpk);
+			curl_setopt($ch, CURLOPT_URL, "https://new-api.bpjs-kesehatan.go.id/aplicaresws/rest/bed/delete/" . $kodePpk);
+			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+			curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $dataRuang);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			$content = curl_exec($ch);
+			$err = curl_error($ch);
+
 			// print_r($err);
 			// print_r($content);
 
@@ -242,16 +333,6 @@ class ketersediaanBed extends AUTH_Controller
 	// }
 
 	//menghapus data pelanggan
-	public function delete()
-	{
-		$id = explode("_", $_POST['idRuangKelas']);
-		$result = $this->m_aplicare->deleteRuang($id);
-		if ($result > 0) {
-			echo show_succ_msg('Data Ruang berhasil dihapus', '20px');
-		} else {
-			echo show_err_msg('Data Ruang gagal dihapus', '20px');
-		}
-	}
 
 	public function userDusun($dusun)
 	{

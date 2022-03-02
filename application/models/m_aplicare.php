@@ -24,6 +24,20 @@ class m_aplicare extends CI_Model
 		return $data->row()->jumlah;
 	}
 
+	public function getRuangAplicareByKodeKelas($id_ruang, $id_kelas)
+	{
+		$sql = "SELECT kelas.id_kelas_aplicare AS kodekelas, bpjs.koderuang AS koderuang, bpjs.namaruang AS namaruang, bpjs.kapasitas AS kapasitas, bpjs.tersedia AS tersedia, bpjs.tersediapria AS tersediapria, bpjs.tersediawanita AS tersediawanita, bpjs.tersediapriawanita AS tersediapriawanita FROM m_aplicare AS bpjs LEFT JOIN m_ruang AS ruang ON bpjs.koderuang = ruang.id_ruang LEFT JOIN m_kelas AS kelas ON bpjs.id_kelas = kelas.id_kelas WHERE bpjs.koderuang = '" . $id_ruang . "' AND bpjs.id_kelas = '" . $id_kelas . "'";
+		$data = $this->db->query($sql);
+		return $data->result_array();
+	}
+
+	public function getRuangAplicareToDeleteByKodeKelas($id_ruang, $id_kelas)
+	{
+		$sql = "SELECT kelas.id_kelas_aplicare AS kodekelas, bpjs.koderuang AS koderuang FROM m_aplicare AS bpjs LEFT JOIN m_ruang AS ruang ON bpjs.koderuang = ruang.id_ruang LEFT JOIN m_kelas AS kelas ON bpjs.id_kelas = kelas.id_kelas WHERE bpjs.koderuang = '" . $id_ruang . "' AND bpjs.id_kelas = '" . $id_kelas . "'";
+		$data = $this->db->query($sql);
+		return $data->result_array();
+	}
+
 	// public function getCountRuangAll(){
 	// 	$sql = "SELECT COUNT(DISTINCT(koderuang)) FROM m_aplicare";
 	// 	$data = $this->db->query($sql);
@@ -51,12 +65,6 @@ class m_aplicare extends CI_Model
 	}
 
 
-	public function getRuangAplicareByKodeKelas($id_ruang, $id_kelas)
-	{
-		$sql = "SELECT kodekelas, koderuang, namaruang, kapasitas, tersedia FROM m_aplicare WHERE koderuang = '" . $id_ruang . "' AND id_kelas = '" . $id_kelas . "'";
-		$data = $this->db->query($sql);
-		return $data->result_array();
-	}
 
 	public function updateKapasitasBed($id_ruang, $id_kelas, $jmlBedTotal)
 	{
