@@ -285,6 +285,46 @@ class ketersediaanBed extends AUTH_Controller
 		// End of loop process
 	}
 
+	public function jumlahRuangKelas()
+	{
+		$data = $this->m_aplicare->getRuangBpjsAll();
+		echo json_encode($data);
+	}
+
+	public function cekJumlahBed()
+	{
+		$data['jumlahBed'] = $this->m_aplicare->getRuangBpjsAll();
+		for ($i = 1; $i <= $data['jumlahBed']; $i++) {
+			$data['jumlahRuangKelas' . $i] = $this->m_aplicare->getRuangKelasByRow($i - 1);
+		}
+		// var_dump($data);
+		echo json_encode($data);
+	}
+
+	// public function jumlahKelasRuang()
+	// {
+	// 	$jumlahRuangKelas = $this->m_aplicare->getCountRuangAll();
+
+	// 	for ($i = 1; $i <= $jumlahRuangKelas; $i++) {
+	// 		$data = array();
+	// 	}
+
+	// 	$cekVolume 	= $this->m_bayar->cekVolume($this->userdata->idUser);
+	// 	$harga		= $this->m_harga->lastPrice();
+
+	// 	//rumus tagihan
+	// 	$tagihan  = ($cekVolume / (1000 * 1000)) * $harga; // waterflow hanya dapat mengakurasi aliran air, maka dari itu massa jenis gas akan diganti dengan massa jenis air yaitu 1m3 = 1000L
+	// 	// rumus daya pakai
+	// 	$daya     = $cekVolume / (1000 * 1000);
+
+	// 	$data = array(
+	// 		'tagihan' => $tagihan,
+	// 		'daya'  => $daya
+	// 	);
+
+	// 	echo json_encode($data);
+	// }
+
 	// public function update()
 	// {
 	// 	$id = trim($_POST['idUser']);

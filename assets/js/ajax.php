@@ -3,6 +3,7 @@
 
 	window.onload = function() {
 		tampilKetersediaanBed();
+		getJumlahRuangKelas();
 
 		tampilPelanggan();
 		tampilPenyuplai();
@@ -253,6 +254,63 @@
 	})
 
 	//////////////////////////// END HAPUS RUANG //////////////////////////////////
+
+	/////////////////////// START REALTIME JUMLAH BED /////////////////////////////
+
+	// var countRuangKelas = [];
+	var map = {};
+
+	var options = {
+		useEasing: true,
+		useGrouping: true,
+		separator: '.',
+		decimal: ',',
+		prefix: '',
+		suffix: ''
+	};
+
+	function getJumlahRuangKelas() {
+		$.get('<?php echo base_url('ketersediaanBed/jumlahRuangKelas'); ?>', function(data) {
+			var countRuangKelas = [];
+			for (let i = 1; i <= data; i++) {
+				// countRuangKelas[i] = new CountUp('realtimeJumlahRuangKelas' + i, 0, 0, 2, 5, options);
+				// countRuangKelas[i].start();
+				map[i] = new CountUp('realtimeJumlahRuangKelas' + i, 0, 0, 2, 5, options);
+				map[i].start();
+			}
+			// console.log(map);
+			return countRuangKelas;
+		});
+	}
+
+	// console.log(countRuangKelas[1]);
+
+	//notif cek tagihan daya
+	function realtimeJumlahBed() {
+		$.ajax({
+			method: 'POST',
+			url: "<?php echo base_url('KetersediaanBed/cekJumlahBed'); ?>",
+			dataType: 'json',
+			cache: false,
+			success: function(data) {
+				for (let i = 1; i <= data.jumlahBed; i++) {
+					countRuangKelas[i].update(data.jumlahRuangKelas + 1);
+				}
+			}
+		})
+		// .done(function(data) {
+		// 	// console.log(data);
+		// 	for (let i = 1; i <= data.jumlahBed; i++) {
+		// 		countRuangKelas.update(data.jumlahRuangKelas + i);
+		// 	}
+		// })
+	}
+
+	setInterval(function() {
+		realtimeJumlahBed();
+	}, 5000);
+
+	//////////////////////// END REALTIME JUMLAH BED //////////////////////////////
 
 	// window.setInterval(function() {
 	// 	var elem = document.getElementById('scroll-container');
@@ -1237,9 +1295,9 @@
 		kirimNotifikasi('yes');
 	});
 
-	setInterval(function() {
-		kirimNotifikasi();
-	}, 5000);
+	// setInterval(function() {
+	// 	kirimNotifikasi();
+	// }, 5000);
 
 	//end notifikasi
 
@@ -1418,43 +1476,43 @@
 	////////////////////////////////// End Perpesanan /////////////////////////////////////
 
 	/////////////////////////////////// Begin Count up ////////////////////////////////////
-	var options1 = {
-		useEasing: true,
-		useGrouping: true,
-		separator: '.',
-		decimal: ',',
-		prefix: 'Rp. ',
-		suffix: ''
-	};
-	var options2 = {
-		useEasing: true,
-		useGrouping: true,
-		separator: '.',
-		decimal: ',',
-		prefix: '',
-		suffix: ' m³'
-	};
-	var countTagih = new CountUp('realtimeCountTagihan', 0, 0, 2, 5, options1);
-	var countDaya = new CountUp('realtimeCountDaya', 0, 0, 5, 5, options2);
-	countTagih.start();
-	countDaya.start();
+	// var options1 = {
+	// 	useEasing: true,
+	// 	useGrouping: true,
+	// 	separator: '.',
+	// 	decimal: ',',
+	// 	prefix: 'Rp. ',
+	// 	suffix: ''
+	// };
+	// var options2 = {
+	// 	useEasing: true,
+	// 	useGrouping: true,
+	// 	separator: '.',
+	// 	decimal: ',',
+	// 	prefix: '',
+	// 	suffix: ' m³'
+	// };
+	// var countTagih = new CountUp('realtimeCountTagihan', 0, 0, 2, 5, options1);
+	// var countDaya = new CountUp('realtimeCountDaya', 0, 0, 5, 5, options2);
+	// countTagih.start();
+	// countDaya.start();
 
-	//notif cek tagihan daya
-	function realtimeTagihanDaya() {
-		$.ajax({
-			method: 'POST',
-			url: "<?php echo base_url('home/cekTagihanDaya'); ?>",
-			dataType: 'json',
-			cache: false,
-			success: function(data) {
-				countTagih.update(data.tagihan);
-				countDaya.update(data.daya);
-			}
-		})
-	}
+	// //notif cek tagihan daya
+	// function realtimeTagihanDaya() {
+	// 	$.ajax({
+	// 		method: 'POST',
+	// 		url: "<?php echo base_url('home/cekTagihanDaya'); ?>",
+	// 		dataType: 'json',
+	// 		cache: false,
+	// 		success: function(data) {
+	// 			countTagih.update(data.tagihan);
+	// 			countDaya.update(data.daya);
+	// 		}
+	// 	})
+	// }
 
-	setInterval(function() {
-		realtimeTagihanDaya();
-	}, 5000);
+	// setInterval(function() {
+	// 	realtimeTagihanDaya();
+	// }, 5000);
 	//////////////////////////////////// End Count up /////////////////////////////////////
 </script>

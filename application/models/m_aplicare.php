@@ -17,6 +17,13 @@ class m_aplicare extends CI_Model
 		return $data->result();
 	}
 
+	public function getRuangBpjsAll()
+	{
+		$sql = "SELECT COUNT(koderuang) AS jumlah FROM m_aplicare";
+		$data = $this->db->query($sql);
+		return $data->row()->jumlah;
+	}
+
 	public function getRuangBpjsByRuang($id_ruang)
 	{
 		$sql = "SELECT COUNT(koderuang) AS jumlah FROM m_aplicare WHERE koderuang = '$id_ruang'";
@@ -36,6 +43,13 @@ class m_aplicare extends CI_Model
 		$sql = "SELECT kelas.id_kelas_aplicare AS kodekelas, bpjs.koderuang AS koderuang FROM m_aplicare AS bpjs LEFT JOIN m_ruang AS ruang ON bpjs.koderuang = ruang.id_ruang LEFT JOIN m_kelas AS kelas ON bpjs.id_kelas = kelas.id_kelas WHERE bpjs.koderuang = '" . $id_ruang . "' AND bpjs.id_kelas = '" . $id_kelas . "'";
 		$data = $this->db->query($sql);
 		return $data->result_array();
+	}
+
+	public function getRuangKelasByRow($urutan)
+	{
+		$sql = "SELECT tersedia FROM `m_aplicare` ORDER BY koderuang, id_kelas LIMIT $urutan, 1";
+		$data = $this->db->query($sql);
+		return $data->row()->tersedia;
 	}
 
 	// public function getCountRuangAll(){
@@ -63,8 +77,6 @@ class m_aplicare extends CI_Model
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
-
-
 
 	public function updateKapasitasBed($id_ruang, $id_kelas, $jmlBedTotal)
 	{

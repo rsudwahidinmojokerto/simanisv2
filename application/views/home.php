@@ -1,6 +1,8 @@
 <div id="tempat-modal"></div>
 <div class="AutoScroll scroller" id="scroll-container" name="scroll-container" data-autoscroll>
-    <?php for ($i = 0; $i < count($jumlahRuang); $i++) {
+    <?php
+    $j = 1;
+    for ($i = 0; $i < count($jumlahRuang); $i++) {
     ?>
         <div class="box">
             <div class="box-header">
@@ -12,7 +14,8 @@
             </div>
             <div class="box-body">
                 <div class="row">
-                    <?php foreach ($ketersediaanBed as $kb) {
+                    <?php
+                    foreach ($ketersediaanBed as $kb) {
                         if ($jumlahRuang[$i]->koderuang == $kb->koderuang) { ?>
                             <div class="col-sm-<?= 12 / $jumlahKelasRuang[$i]; ?>">
                                 <div class="col-lg-12 col-xs-12">
@@ -20,13 +23,15 @@
                                         <div class="inner">
                                             <center>
                                                 <h2><?= $kb->nama_kelas; ?></h2>
-                                                <h3>Tersedia <b><?= $kb->tersedia; ?></b></h3>
+                                                <!-- <h3>Tersedia <b><?= $kb->tersedia; ?></b></h3> -->
+                                                <h3>Tersedia <b id="realtimeJumlahRuangKelas<?= $j; ?>"></b></h3>
                                             </center>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                    <?php }
+                    <?php $j++;
+                        }
                     } ?>
                 </div>
             </div>
