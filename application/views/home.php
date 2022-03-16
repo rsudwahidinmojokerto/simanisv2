@@ -1,5 +1,5 @@
 <div id="tempat-modal"></div>
-<div class="AutoScroll scroller" id="scroll-container" name="scroll-container" data-autoscroll>
+<div class="AutoScroll scroller" id="dashboard1" name="scroll-container" style="height:600px; width:100%; overflow:hidden">
     <?php
     $j = 1;
     for ($i = 0; $i < count($jumlahRuang); $i++) {
@@ -23,8 +23,7 @@
                                         <div class="inner">
                                             <center>
                                                 <h2><?= $kb->nama_kelas; ?></h2>
-                                                <!-- <h3>Tersedia <b><?= $kb->tersedia; ?></b></h3> -->
-                                                <h3>Tersedia <b id="realtimeJumlahRuangKelas<?= $j; ?>"></b></h3>
+                                                <h3>Tersedia <b id="realtimeJumlahRuangKelas<?= $j; ?>">0</b></h3>
                                             </center>
                                         </div>
                                     </div>
@@ -38,6 +37,18 @@
         </div>
     <?php } ?>
 </div>
+
+<script type="text/javascript">
+    $(function() {
+        var interval = setInterval(function() {
+            if ($("#dashboard1").scrollTop() != $('#dashboard1')[0].scrollHeight) {
+                $("#dashboard1").scrollTop($("#dashboard1").scrollTop() + 10);
+            } else {
+                clearInterval(interval);
+            }
+        }, 5000);
+    });
+</script>
 
 
 

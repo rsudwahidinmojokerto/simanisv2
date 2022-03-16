@@ -3,7 +3,7 @@
 
 	window.onload = function() {
 		tampilKetersediaanBed();
-		getJumlahRuangKelas();
+		// getJumlahRuangKelas();
 
 		tampilPelanggan();
 		tampilPenyuplai();
@@ -257,8 +257,13 @@
 
 	/////////////////////// START REALTIME JUMLAH BED /////////////////////////////
 
-	// var countRuangKelas = [];
-	var map = {};
+	var map = [];
+
+	// var jumlahRuangKelas;
+	// $.get('<?php echo base_url('ketersediaanBed/jumlahRuangKelas'); ?>', function(data) {
+	// 	jumlahRuangKelas = data;
+	// 	return jumlahRuangKelas;
+	// });
 
 	var options = {
 		useEasing: true,
@@ -269,46 +274,28 @@
 		suffix: ''
 	};
 
-	function getJumlahRuangKelas() {
-		$.get('<?php echo base_url('ketersediaanBed/jumlahRuangKelas'); ?>', function(data) {
-			var countRuangKelas = [];
-			for (let i = 1; i <= data; i++) {
-				// countRuangKelas[i] = new CountUp('realtimeJumlahRuangKelas' + i, 0, 0, 2, 5, options);
-				// countRuangKelas[i].start();
-				map[i] = new CountUp('realtimeJumlahRuangKelas' + i, 0, 0, 2, 5, options);
-				map[i].start();
-			}
-			// console.log(map);
-			return countRuangKelas;
-		});
+	for (let i = 1; i <= 1000; i++) {
+		map[i] = new CountUp('realtimeJumlahRuangKelas' + i, 0, 0, 0, 5, options);
+		map[i].start();
 	}
 
-	// console.log(countRuangKelas[1]);
-
-	//notif cek tagihan daya
 	function realtimeJumlahBed() {
 		$.ajax({
 			method: 'POST',
-			url: "<?php echo base_url('KetersediaanBed/cekJumlahBed'); ?>",
+			url: "<?php echo base_url('ketersediaanBed/cekJumlahBed'); ?>",
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
 				for (let i = 1; i <= data.jumlahBed; i++) {
-					countRuangKelas[i].update(data.jumlahRuangKelas + 1);
+					map[i].update(data.jumlahRuangKelas[i]);
 				}
 			}
 		})
-		// .done(function(data) {
-		// 	// console.log(data);
-		// 	for (let i = 1; i <= data.jumlahBed; i++) {
-		// 		countRuangKelas.update(data.jumlahRuangKelas + i);
-		// 	}
-		// })
 	}
 
 	setInterval(function() {
 		realtimeJumlahBed();
-	}, 5000);
+	}, 15000);
 
 	//////////////////////// END REALTIME JUMLAH BED //////////////////////////////
 

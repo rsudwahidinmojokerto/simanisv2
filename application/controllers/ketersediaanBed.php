@@ -295,7 +295,7 @@ class ketersediaanBed extends AUTH_Controller
 	{
 		$data['jumlahBed'] = $this->m_aplicare->getRuangBpjsAll();
 		for ($i = 1; $i <= $data['jumlahBed']; $i++) {
-			$data['jumlahRuangKelas' . $i] = $this->m_aplicare->getRuangKelasByRow($i - 1);
+			$data['jumlahRuangKelas'][$i] = $this->m_aplicare->getRuangKelasByRow($i - 1);
 		}
 		// var_dump($data);
 		echo json_encode($data);
