@@ -8,7 +8,7 @@
   <?php if ($userdata->id_ruang == 'RU999') { ?>
     <div class="box-header">
       <div class="col-md-2" style="padding: 0;">
-        <button class="form-control btn btn-primary" data-toggle="modal" data-target="#tambah-ketersediaanBed"><i class="glyphicon glyphicon-plus-sign"></i> Tambah Data</button>
+        <button class="form-control btn btn-success" data-toggle="modal" data-target="#tambah-ketersediaanBed"><i class="glyphicon glyphicon-plus-sign"></i> Tambah Data</button>
       </div>
     </div>
   <?php } ?>

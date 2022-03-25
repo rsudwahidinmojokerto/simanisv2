@@ -27,8 +27,11 @@
 <!-- Date picker -->
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- Auto scroll -->
-<script src="<?php echo base_url(); ?>assets/plugins/autoScroll/autoscroll.js"></script>
+<!-- <script src="<?php echo base_url(); ?>assets/plugins/autoScroll/autoscroll.js"></script> -->
 <!-- Auto scroll Data -->
-<script src="<?php echo base_url(); ?>assets/plugins/autoScrollData/js/jquery.autoscroll.js"></script>
+<!-- <script src="<?php echo base_url(); ?>assets/plugins/autoScrollData/js/jquery.autoscroll.js"></script> -->
+<!-- Splide -->
+<!-- <script src="<?php echo base_url(); ?>assets/plugins/splide/dist/js/splide.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/splide-autoscroll/dist/js/splide-extension-auto-scroll.min.js"></script> -->
 <!-- My Ajax -->
 <?php include './assets/js/ajax.php'; ?>

@@ -1836,6 +1836,15 @@ a:focus {
   background: rgba(255, 238, 0, 0.500);
 }
 
+.small-box h1 {
+  /* font-size: 38px; */
+  font-size: 100px;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  white-space: nowrap;
+  padding: 0;
+}
+
 .small-box h2 {
   /* font-size: 38px; */
   font-size: 40px;

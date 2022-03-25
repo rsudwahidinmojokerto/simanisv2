@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2022 at 04:31 AM
+-- Generation Time: Mar 19, 2022 at 07:20 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -56,39 +56,6 @@ INSERT INTO `bayar_transfer` (`idTagihan`, `norek`, `namarek`, `jumlah_transfer`
 ('TGH000000000022', '00129390029190', 'Andrean Bagus Mahendra', 20000, 'Sample_bukti1.jpg'),
 ('TGH000000000024', '00129390029190', 'Andrean Bagus Mahendra', 23123, 'Sample_bukti2.jpg'),
 ('TGH000000000025', '00129390029190', 'Andrean Bagus Mahendra', 20000, 'Sample_bukti3.jpg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `bed_available_bpjs`
---
-
-CREATE TABLE `bed_available_bpjs` (
-  `id_aplicare` int(3) NOT NULL,
-  `koderuang` varchar(10) DEFAULT NULL,
-  `namaruang` varchar(150) DEFAULT NULL,
-  `id_kelas` varchar(6) NOT NULL,
-  `kodekelas` varchar(5) DEFAULT NULL,
-  `namakelas` varchar(50) DEFAULT NULL,
-  `kapasitas` int(4) DEFAULT NULL,
-  `tersedia` int(4) DEFAULT NULL,
-  `tersediapria` int(4) DEFAULT NULL,
-  `tersediawanita` int(4) DEFAULT NULL,
-  `tersediapriawanita` int(4) DEFAULT NULL,
-  `update_terakhir` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `bed_available_bpjs`
---
-
-INSERT INTO `bed_available_bpjs` (`id_aplicare`, `koderuang`, `namaruang`, `id_kelas`, `kodekelas`, `namakelas`, `kapasitas`, `tersedia`, `tersediapria`, `tersediawanita`, `tersediapriawanita`, `update_terakhir`) VALUES
-(1, 'RU001', 'TRIBHUWANA-VVIP', 'KL001', 'VVP', 'VVIP', 4, 1, 0, 0, 0, '0000-00-00 00:00:00'),
-(2, 'RU001', 'TRIBHUWANA-VIP', 'KL002', 'VIP', 'VIP', 10, 0, 0, 0, 0, '0000-00-00 00:00:00'),
-(3, 'RU002', 'RADEN WIJAYA-VIP', 'KL002', 'VIP', 'VIP', 7, 6, 0, 0, 0, '0000-00-00 00:00:00'),
-(4, 'RU002', 'RADEN WIJAYA-KL1', 'KL004', 'KL1', 'KELAS 1', 12, 12, 0, 0, 0, '0000-00-00 00:00:00'),
-(5, 'RU002', 'RADEN WIJAYA-ISO', 'KL015', 'ISO', 'ISOLASI', 4, 4, 0, 0, 0, '0000-00-00 00:00:00'),
-(6, 'RU003', 'KENCONO WUNGU-KL1', 'KL004', 'KL1', 'KELAS 1', 30, 29, 0, 0, 0, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -265,6 +232,40 @@ CREATE TABLE `m_akses_user` (
   `nama_akses` varchar(10) NOT NULL,
   `hak_akses` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `m_aplicare`
+--
+
+CREATE TABLE `m_aplicare` (
+  `id_aplicare` int(3) NOT NULL,
+  `koderuang` varchar(10) DEFAULT NULL,
+  `namaruang` varchar(150) DEFAULT NULL,
+  `id_kelas` varchar(6) NOT NULL,
+  `kapasitas` int(4) DEFAULT NULL,
+  `tersedia` int(4) DEFAULT NULL,
+  `tersediapria` int(4) DEFAULT NULL,
+  `tersediawanita` int(4) DEFAULT NULL,
+  `tersediapriawanita` int(4) DEFAULT NULL,
+  `update_terakhir` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `m_aplicare`
+--
+
+INSERT INTO `m_aplicare` (`id_aplicare`, `koderuang`, `namaruang`, `id_kelas`, `kapasitas`, `tersedia`, `tersediapria`, `tersediawanita`, `tersediapriawanita`, `update_terakhir`) VALUES
+(1, 'RU001', 'TRIBHUWANA-VVIP', 'KL001', 4, 2, 0, 0, 0, '2022-03-16 10:32:14'),
+(2, 'RU001', 'TRIBHUWANA-VIP', 'KL002', 10, 3, 0, 0, 0, '2022-03-17 08:26:32'),
+(3, 'RU002', 'RADEN WIJAYA-VIP', 'KL002', 7, 6, 0, 0, 0, '2022-03-16 11:02:40'),
+(4, 'RU002', 'RADEN WIJAYA-KL1', 'KL004', 12, 12, 0, 0, 0, '2022-03-16 11:02:43'),
+(5, 'RU002', 'RADEN WIJAYA-ISO', 'KL015', 4, 4, 0, 0, 0, '2022-03-16 11:02:47'),
+(6, 'RU003', 'KENCONO WUNGU-KL1', 'KL004', 30, 5, 0, 0, 0, '2022-03-19 12:49:49'),
+(7, 'RU008', 'GAYATRI-KL1', 'KL004', 2, 2, 0, 0, 0, '2022-03-01 08:11:03'),
+(8, 'RU008', 'GAYATRI-KL2', 'KL005', 2, 2, 0, 0, 0, '2022-03-14 10:37:57'),
+(9, 'RU008', 'GAYATRI-KL3', 'KL006', 15, 10, 0, 0, 0, '2022-03-18 14:20:55');
 
 -- --------------------------------------------------------
 
@@ -1137,12 +1138,6 @@ ALTER TABLE `bayar_transfer`
   ADD PRIMARY KEY (`idTagihan`);
 
 --
--- Indexes for table `bed_available_bpjs`
---
-ALTER TABLE `bed_available_bpjs`
-  ADD PRIMARY KEY (`id_aplicare`);
-
---
 -- Indexes for table `flowtemp`
 --
 ALTER TABLE `flowtemp`
@@ -1174,6 +1169,12 @@ ALTER TABLE `kotak_keluar`
 ALTER TABLE `kotak_masuk`
   ADD PRIMARY KEY (`idPesan`),
   ADD KEY `idPenerima` (`idPenerima`);
+
+--
+-- Indexes for table `m_aplicare`
+--
+ALTER TABLE `m_aplicare`
+  ADD PRIMARY KEY (`id_aplicare`);
 
 --
 -- Indexes for table `m_bed`
@@ -1238,16 +1239,16 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `bed_available_bpjs`
---
-ALTER TABLE `bed_available_bpjs`
-  MODIFY `id_aplicare` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
 -- AUTO_INCREMENT for table `harga`
 --
 ALTER TABLE `harga`
   MODIFY `idHarga` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `m_aplicare`
+--
+ALTER TABLE `m_aplicare`
+  MODIFY `id_aplicare` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables

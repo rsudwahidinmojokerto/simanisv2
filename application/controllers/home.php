@@ -48,7 +48,7 @@ class home extends AUTH_Controller
 			$data['jumlahRuang'] = $this->m_aplicare->getCountRuangAll();
 			$ruang = $this->m_aplicare->getCountRuangAll();
 			foreach ($ruang as $r) {
-				$data['jumlahKelasRuang'][$i] = $this->m_aplicare->getRuangBpjsByRuang($r->koderuang);
+				$data['jumlahKelasRuang'][$i] = $this->m_aplicare->getJumlahRuangBpjsByRuang($r->koderuang);
 				$i++;
 			}
 		} else {
@@ -57,7 +57,7 @@ class home extends AUTH_Controller
 				$data['jumlahRuang'] = $this->m_aplicare->getCountRuangAll();
 				$ruang = $this->m_aplicare->getCountRuangAll();
 				foreach ($ruang as $r) {
-					$data['jumlahKelasRuang'][$i] = $this->m_aplicare->getRuangBpjsByRuang($r->koderuang);
+					$data['jumlahKelasRuang'][$i] = $this->m_aplicare->getJumlahRuangBpjsByRuang($r->koderuang);
 					$i++;
 				}
 			} else {
@@ -65,7 +65,7 @@ class home extends AUTH_Controller
 				$data['jumlahRuang'] = $this->m_aplicare->getCountRuangByRuang($this->userdata->id_ruang);
 				$ruang = $this->m_aplicare->getCountRuangByRuang($this->userdata->id_ruang);
 				foreach ($ruang as $r) {
-					$data['jumlahKelasRuang'][$i] = $this->m_aplicare->getRuangBpjsByRuang($r->koderuang);
+					$data['jumlahKelasRuang'][$i] = $this->m_aplicare->getJumlahRuangBpjsByRuang($r->koderuang);
 					$i++;
 				}
 			}

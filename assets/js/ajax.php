@@ -257,45 +257,59 @@
 
 	/////////////////////// START REALTIME JUMLAH BED /////////////////////////////
 
-	var map = [];
+	// var map = [];
 
-	// var jumlahRuangKelas;
-	// $.get('<?php echo base_url('ketersediaanBed/jumlahRuangKelas'); ?>', function(data) {
-	// 	jumlahRuangKelas = data;
-	// 	return jumlahRuangKelas;
+	// // var jumlahRuangKelas;
+	// // $.get('<?php echo base_url('ketersediaanBed/jumlahRuangKelas'); ?>', function(data) {
+	// // 	jumlahRuangKelas = data;
+	// // 	return jumlahRuangKelas;
+	// // });
+
+	// var options = {
+	// 	useEasing: true,
+	// 	useGrouping: true,
+	// 	separator: '.',
+	// 	decimal: ',',
+	// 	prefix: '',
+	// 	suffix: ''
+	// };
+
+	// for (let i = 1; i <= 1000; i++) {
+	// 	map[i] = new CountUp('realtimeJumlahRuangKelas' + i, 0, 0, 0, 5, options);
+	// 	map[i].start();
+	// }
+
+	// function realtimeJumlahBed() {
+	// 	$.ajax({
+	// 		method: 'POST',
+	// 		url: "<?php echo base_url('ketersediaanBed/cekJumlahBed'); ?>",
+	// 		dataType: 'json',
+	// 		cache: false,
+	// 		success: function(data) {
+	// 			for (let i = 1; i <= data.jumlahBed; i++) {
+	// 				map[i].update(data.jumlahRuangKelas[i]);
+	// 			}
+	// 		}
+	// 	})
+	// }
+
+	// setInterval(function() {
+	// 	realtimeJumlahBed();
+	// }, 10000);
+
+	// scroll.on('move', function() {
+	// 	$.ajax({
+	// 		method: 'POST',
+	// 		url: "<?php echo base_url('ketersediaanBed/cekJumlahBed'); ?>",
+	// 		dataType: 'json',
+	// 		cache: false,
+	// 		success: function(data) {
+	// 			for (let i = 1; i <= data.jumlahBed; i++) {
+	// 				map[i].update(data.jumlahRuangKelas[i]);
+	// 			}
+	// 		}
+	// 	})
 	// });
-
-	var options = {
-		useEasing: true,
-		useGrouping: true,
-		separator: '.',
-		decimal: ',',
-		prefix: '',
-		suffix: ''
-	};
-
-	for (let i = 1; i <= 1000; i++) {
-		map[i] = new CountUp('realtimeJumlahRuangKelas' + i, 0, 0, 0, 5, options);
-		map[i].start();
-	}
-
-	function realtimeJumlahBed() {
-		$.ajax({
-			method: 'POST',
-			url: "<?php echo base_url('ketersediaanBed/cekJumlahBed'); ?>",
-			dataType: 'json',
-			cache: false,
-			success: function(data) {
-				for (let i = 1; i <= data.jumlahBed; i++) {
-					map[i].update(data.jumlahRuangKelas[i]);
-				}
-			}
-		})
-	}
-
-	setInterval(function() {
-		realtimeJumlahBed();
-	}, 15000);
 
 	//////////////////////// END REALTIME JUMLAH BED //////////////////////////////
 

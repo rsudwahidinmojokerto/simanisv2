@@ -5,28 +5,35 @@ class m_aplicare extends CI_Model
 {
 	public function getBedBpjsAll()
 	{
-		$sql = "SELECT * FROM m_aplicare AS bpjs LEFT JOIN m_ruang AS ruang ON bpjs.koderuang = ruang.id_ruang LEFT JOIN m_kelas AS kelas ON bpjs.id_kelas = kelas.id_kelas ORDER BY bpjs.koderuang, bpjs.id_kelas";
+		$sql = "SELECT * FROM m_aplicare AS bpjs LEFT JOIN m_ruang AS ruang ON bpjs.koderuang = ruang.id_ruang LEFT JOIN m_kelas AS kelas ON bpjs.id_kelas = kelas.id_kelas LEFT JOIN m_ket_kelas AS ket ON bpjs.id_ket_kelas = ket.id_ket_kelas ORDER BY bpjs.koderuang, bpjs.id_kelas, bpjs.id_ket_kelas";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
 
 	public function getBedBpjsByRuang($id_ruang)
 	{
-		$sql = "SELECT * FROM m_aplicare AS bpjs LEFT JOIN m_ruang AS ruang ON bpjs.koderuang = ruang.id_ruang LEFT JOIN m_kelas AS kelas ON bpjs.id_kelas = kelas.id_kelas WHERE koderuang = '$id_ruang' ORDER BY bpjs.koderuang, bpjs.id_kelas";
+		$sql = "SELECT * FROM m_aplicare AS bpjs LEFT JOIN m_ruang AS ruang ON bpjs.koderuang = ruang.id_ruang LEFT JOIN m_kelas AS kelas ON bpjs.id_kelas = kelas.id_kelas LEFT JOIN m_ket_kelas AS ket ON bpjs.id_ket_kelas = ket.id_ket_kelas WHERE koderuang = '$id_ruang' ORDER BY bpjs.koderuang, bpjs.id_kelas, bpjs.id_ket_kelas";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
 
-	public function getRuangBpjsAll()
+	public function getJumlahRuangBpjsAll()
 	{
 		$sql = "SELECT COUNT(koderuang) AS jumlah FROM m_aplicare";
 		$data = $this->db->query($sql);
 		return $data->row()->jumlah;
 	}
 
-	public function getRuangBpjsByRuang($id_ruang)
+	public function getJumlahRuangBpjsByRuang($id_ruang)
 	{
 		$sql = "SELECT COUNT(koderuang) AS jumlah FROM m_aplicare WHERE koderuang = '$id_ruang'";
+		$data = $this->db->query($sql);
+		return $data->row()->jumlah;
+	}
+
+	public function getJumlahRuangBpjsByRuangKelas($id_ruang, $id_kelas)
+	{
+		$sql = "SELECT COUNT(koderuang) AS jumlah FROM m_aplicare WHERE koderuang = '$id_ruang' AND id_kelas = '$id_kelas'";
 		$data = $this->db->query($sql);
 		return $data->row()->jumlah;
 	}
@@ -40,7 +47,7 @@ class m_aplicare extends CI_Model
 
 	public function getRuangAplicareToDeleteByKodeKelas($id_ruang, $id_kelas)
 	{
-		$sql = "SELECT kelas.id_kelas_aplicare AS kodekelas, bpjs.koderuang AS koderuang FROM m_aplicare AS bpjs LEFT JOIN m_ruang AS ruang ON bpjs.koderuang = ruang.id_ruang LEFT JOIN m_kelas AS kelas ON bpjs.id_kelas = kelas.id_kelas WHERE bpjs.koderuang = '" . $id_ruang . "' AND bpjs.id_kelas = '" . $id_kelas . "'";
+		$sql = "SELECT kelas.id_kelas_aplicare AS kodekelas, bpjs.koderuang AS koderuang FROM m_aplicare AS bpjs LEFT JOIN m_ruang AS ruang ON bpjs.koderuang = ruang.id_ruang LEFT JOIN m_kelas AS kelas ON bpjs.id_kelas = kelas.id_kelas WHERE bpjs.koderuang = '" . $id_ruang . "' AND bpjs.id_kelas ='" . $id_kelas . "'";
 		$data = $this->db->query($sql);
 		return $data->result_array();
 	}
@@ -106,18 +113,35 @@ class m_aplicare extends CI_Model
 		return $data->result();
 	}
 
+	public function getDataKeteranganKelas($idKetKelas)
+	{
+		$sql = "SELECT * FROM m_ket_kelas WHERE id_ket_kelas = '$idKetKelas'";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
 	public function insertRuang($data)
 	{
 		$getDataRuang = $this->getDataRuang($data['idRuang']);
 		$getDataKelas = $this->getDataKelas($data['idKelas']);
-		$sql = "INSERT INTO m_aplicare VALUES ('', '" . $data['idRuang'] . "', '" . $getDataRuang[0]->nama_ruang . "-" . $getDataKelas[0]->id_kelas_aplicare . "', '" . $data['idKelas'] . "', " . $data['kapasitas'] . ", " . $data['tersedia'] . ", 0, 0, 0, '" . date("Y-m-d H:i:s") . "')";
+		$getDataKetKelas = $this->getDataKeteranganKelas($data['idKetKelas']);
+
+		if ($getDataKetKelas != null || $getDataKetKelas == '') {
+			$id_ket = $getDataKetKelas[0]->id_ket_kelas;
+			$kode_keterangan = "-" . $getDataKetKelas[0]->kode_keterangan;
+		} else {
+			$id_ket = null;
+			$kode_keterangan = null;
+		}
+
+		$sql = "INSERT INTO m_aplicare VALUES ('', '" . $data['idRuang'] . "', '" . $getDataRuang[0]->nama_ruang . "-" . $getDataKelas[0]->id_kelas_aplicare . "" . $kode_keterangan . "', '" . $data['idKelas'] . "', " . $data['kapasitas'] . ", " . $data['tersedia'] . ", 0, 0, 0, '" . $id_ket . "', '" . date("Y-m-d H:i:s") . "')";
 		$this->db->query($sql);
 		return $this->db->affected_rows();
 	}
 
 	public function updateKetersediaanBed($id, $kapasitas, $tersedia)
 	{
-		$sql = "UPDATE m_aplicare SET kapasitas=" . $kapasitas . ", tersedia=" . $tersedia . ", update_terakhir='" . date("Y-m-d H:i:s") . "' WHERE koderuang='" . $id[0] . "' AND id_kelas='" . $id[1] . "'";
+		$sql = "UPDATE m_aplicare SET kapasitas=" . $kapasitas . ", tersedia=" . $tersedia . ", update_terakhir='" . date("Y-m-d H:i:s") . "' WHERE koderuang='" . $id[0] . "' AND id_kelas='" . $id[1] . "' AND id_ket_kelas='" . $id[2] . "'";
 		$this->db->query($sql);
 		return $this->db->affected_rows();
 	}

@@ -100,7 +100,7 @@ function show_my_confirm($id = '', $class = '', $title = 'Konfirmasi', $yes = 'Y
 							<div class="col-md-offset-1 col-md-10 col-md-offset-1 well">
 						      <h3 style="display:block; text-align:center;">' . $title . '</h3>
 						      <div class="col-md-6">
-						        <button class="form-control btn btn-primary ' . $class . '"> <i class="glyphicon glyphicon-ok-sign"></i> ' . $yes . '</button>
+						        <button class="form-control btn btn-success ' . $class . '"> <i class="glyphicon glyphicon-ok-sign"></i> ' . $yes . '</button>
 						      </div>
 						      <div class="col-md-6">
 						        <button class="form-control btn btn-danger" data-dismiss="modal"> <i class="glyphicon glyphicon-remove-sign"></i> ' . $no . '</button>

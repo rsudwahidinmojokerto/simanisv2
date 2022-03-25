@@ -13,6 +13,7 @@ class ketersediaanBed extends AUTH_Controller
 		$this->load->model('m_bed');
 		$this->load->model('m_ruang');
 		$this->load->model('m_kelas');
+		$this->load->model('m_ket_kelas');
 		$this->load->model('m_aplicare');
 	}
 
@@ -36,6 +37,7 @@ class ketersediaanBed extends AUTH_Controller
 
 			$data['dataRuang'] = $this->m_ruang->getDataRuangAll();
 			$data['dataKelas'] = $this->m_kelas->getDataKelasAll();
+			$data['dataKeteranganKelas'] = $this->m_ket_kelas->getDataKeteranganKelasAll();
 
 			$data['modal_tambah_ketersediaanBed'] = show_my_modal('modals/modal_tambah_ketersediaanBed', 'tambah-ketersediaanBed', $data);
 
@@ -70,11 +72,16 @@ class ketersediaanBed extends AUTH_Controller
 
 		$data = $this->input->post();
 		if ($this->form_validation->run() == TRUE) {
-			if ($this->input->post('kapasitas') > 0 && $this->input->post('tersedia') >= 0) {
-				if ($this->input->post('kapasitas') >= $this->input->post('tersedia')) {
+			if ($data['kapasitas'] > 0 && $data['tersedia'] >= 0) {
+				if ($data['kapasitas'] >= $data['tersedia']) {
 					$result = $this->m_aplicare->insertRuang($data);
 					if ($result > 0) {
-						$this->insertAplicare($this->input->post('idRuang'), $this->input->post('idKelas'));
+						$cekRuangKelas = $this->m_aplicare->getJumlahRuangBpjsByRuangKelas($data['idRuang'], $data['idKelas']);
+						if ($cekRuangKelas > 1) {
+							$this->updateAplicare($data['idRuang'], $data['idKelas']);
+						} else {
+							$this->insertAplicare($data['idRuang'], $data['idKelas']);
+						}
 						$out['status'] = '';
 						$out['msg'] = show_succ_msg('Data Ruang Berhasil ditambahkan', '20px');
 					} else {
@@ -99,6 +106,10 @@ class ketersediaanBed extends AUTH_Controller
 	public function updateKetersediaanBed()
 	{
 		$id = explode("_", $_POST['idRuangKelas']);
+		if (empty($id[2])) {
+			$id[2] = '';
+		}
+
 		$kapasitas = $_POST['kapasitas'];
 		$tersedia = $_POST['tersedia'];
 
@@ -106,7 +117,7 @@ class ketersediaanBed extends AUTH_Controller
 			if ($kapasitas >= $tersedia) {
 				$result = $this->m_aplicare->updateKetersediaanBed($id, $kapasitas, $tersedia);
 				if ($result > 0) {
-					$this->updateAplicare($id[0], $id[1]);
+					$this->updateAplicare($id[0], $id[1], $id[2]);
 					$out['status'] = '';
 					$out['msg'] = show_succ_msg('Data Ketersediaan Berhasil diupdate', '20px');
 				} else {
@@ -127,6 +138,9 @@ class ketersediaanBed extends AUTH_Controller
 	public function delete()
 	{
 		$id = explode("_", $_POST['idRuangKelas']);
+		// if (empty($id[2])) {
+		// 	$id[2] = '';
+		// }
 
 		$this->deleteAplicare($id[0], $id[1]);
 		$result = $this->m_aplicare->deleteRuang($id);
@@ -144,45 +158,66 @@ class ketersediaanBed extends AUTH_Controller
 		$kodePpk = "1320R001";
 
 		$getRuang = $this->m_aplicare->getRuangAplicareByKodeKelas($id_ruang, $id_kelas);
+		$kapasitas = 0;
+		$tersedia = 0;
 
-		foreach ($getRuang as $ruang) {
-			$dataRuang = json_encode($ruang);
+		foreach ($getRuang as $r) {
+			// $dataRuang = json_encode($ruang);
+			$kapasitas += $r['kapasitas'];
+			$tersedia += $r['tersedia'];
+		}
 
-			date_default_timezone_set('UTC');
-			$tStamp = strval(time() - strtotime('1970-01-01 00:00:00'));
-			$signature = hash_hmac('sha256', $consId . "&" . $tStamp, $secretKey, true);
-			$encodedSignature = base64_encode($signature);
+		$nama = explode("-", $getRuang[0]['namaruang']);
 
-			$ch = curl_init();
-			$headers = array(
-				'X-cons-id: ' . $consId . '',
-				'X-timestamp: ' . $tStamp . '',
-				'X-signature: ' . $encodedSignature . '',
-				'Content-Type: Application/JSON',
-				'Accept: Application/JSON'
-			);
+		$ruang = array(
+			'kodekelas' => $getRuang[0]['kodekelas'],
+			'koderuang' => $getRuang[0]['koderuang'],
+			'namaruang' => $nama[0] . '-' . $nama[1],
+			'kapasitas' => $kapasitas,
+			'tersedia' => $tersedia,
+			'tersediapria' => $getRuang[0]['tersediapria'],
+			'tersediawanita' => $getRuang[0]['tersediawanita'],
+			'tersediapriawanita' => $getRuang[0]['tersediapriawanita'],
+		);
+
+		$dataRuang = json_encode($ruang);
+		// var_dump($dataRuang);
+
+		date_default_timezone_set('UTC');
+		$tStamp = strval(time() - strtotime('1970-01-01 00:00:00'));
+		$signature = hash_hmac('sha256', $consId . "&" . $tStamp, $secretKey, true);
+		$encodedSignature = base64_encode($signature);
+
+		$ch = curl_init();
+		$headers = array(
+			'X-cons-id: ' . $consId . '',
+			'X-timestamp: ' . $tStamp . '',
+			'X-signature: ' . $encodedSignature . '',
+			'Content-Type: Application/JSON',
+			'Accept: Application/JSON'
+		);
 
 
-			/*
+		/*
 			  Sending record to API Aplicares (for INSERT)
 			 */
-			// curl_setopt($ch, CURLOPT_URL, "http://dvlp.bpjs-kesehatan.go.id:8888/aplicaresws/rest/bed/create/" . $kodePpk);
-			curl_setopt($ch, CURLOPT_URL, "https://new-api.bpjs-kesehatan.go.id/aplicaresws/rest/bed/create/" . $kodePpk);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 60);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $dataRuang);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-			$content = curl_exec($ch);
-			$err     = curl_error($ch);
+		// curl_setopt($ch, CURLOPT_URL, "http://dvlp.bpjs-kesehatan.go.id:8888/aplicaresws/rest/bed/create/" . $kodePpk);
+		curl_setopt($ch, CURLOPT_URL, "https://new-api.bpjs-kesehatan.go.id/aplicaresws/rest/bed/create/" . $kodePpk);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $dataRuang);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$content = curl_exec($ch);
+		$err     = curl_error($ch);
 
-			// print_r($err);
-			// print_r($content);
+		// print_r($err);
+		// print_r($content);
 
-			// close cURL resource, and free up system resources
-			curl_close($ch);
-		}
+		// close cURL resource, and free up system resources
+		curl_close($ch);
+		// }
 		// End of loop process
 	}
 
@@ -192,48 +227,73 @@ class ketersediaanBed extends AUTH_Controller
 		$secretKey = "rsud6778ws122mjkrt";
 		$kodePpk = "1320R001";
 
+		// $getRuang = $this->m_aplicare->getRuangAplicareByKodeKelas($id_ruang, $id_kelas, $id_ket_kelas);
+
 		$getRuang = $this->m_aplicare->getRuangAplicareByKodeKelas($id_ruang, $id_kelas);
+		$kapasitas = 0;
+		$tersedia = 0;
 
-		foreach ($getRuang as $ruang) {
-			$dataRuang = json_encode($ruang);
+		foreach ($getRuang as $r) {
+			// $dataRuang = json_encode($ruang);
+			$kapasitas += $r['kapasitas'];
+			$tersedia += $r['tersedia'];
+		}
 
-			date_default_timezone_set('UTC');
-			$tStamp = strval(time() - strtotime('1970-01-01 00:00:00'));
-			$signature = hash_hmac('sha256', $consId . "&" . $tStamp, $secretKey, true);
-			$encodedSignature = base64_encode($signature);
+		$nama = explode("-", $getRuang[0]['namaruang']);
 
-			$ch = curl_init();
-			$headers = array(
-				'X-cons-id: ' . $consId . '',
-				'X-timestamp: ' . $tStamp . '',
-				'X-signature: ' . $encodedSignature . '',
-				'Content-Type: Application/JSON',
-				'Accept: Application/JSON'
-			);
+		$ruang = array(
+			'kodekelas' => $getRuang[0]['kodekelas'],
+			'koderuang' => $getRuang[0]['koderuang'],
+			'namaruang' => $nama[0] . '-' . $nama[1],
+			'kapasitas' => $kapasitas,
+			'tersedia' => $tersedia,
+			'tersediapria' => $getRuang[0]['tersediapria'],
+			'tersediawanita' => $getRuang[0]['tersediawanita'],
+			'tersediapriawanita' => $getRuang[0]['tersediapriawanita'],
+		);
 
-			/*
+		// foreach ($getRuang as $ruang) {
+		$dataRuang = json_encode($ruang);
+		// }
+		// var_dump($dataRuang);
+
+		date_default_timezone_set('UTC');
+		$tStamp = strval(time() - strtotime('1970-01-01 00:00:00'));
+		$signature = hash_hmac('sha256', $consId . "&" . $tStamp, $secretKey, true);
+		$encodedSignature = base64_encode($signature);
+
+		$ch = curl_init();
+		$headers = array(
+			'X-cons-id: ' . $consId . '',
+			'X-timestamp: ' . $tStamp . '',
+			'X-signature: ' . $encodedSignature . '',
+			'Content-Type: Application/JSON',
+			'Accept: Application/JSON'
+		);
+
+		/*
           	Sending record to API Aplicares (for UPDATE)
 			 */
-			// curl_setopt($ch, CURLOPT_URL, "https://dvlp.bpjs-kesehatan.go.id:8888/aplicaresws/rest/bed/update/" . $kodePpk);
-			curl_setopt($ch, CURLOPT_URL, "https://new-api.bpjs-kesehatan.go.id/aplicaresws/rest/bed/update/" . $kodePpk);
-			curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 60);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-			curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-			curl_setopt($ch, CURLOPT_POSTFIELDS, $dataRuang);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		// curl_setopt($ch, CURLOPT_URL, "https://dvlp.bpjs-kesehatan.go.id:8888/aplicaresws/rest/bed/update/" . $kodePpk);
+		curl_setopt($ch, CURLOPT_URL, "https://new-api.bpjs-kesehatan.go.id/aplicaresws/rest/bed/update/" . $kodePpk);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $dataRuang);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-			/* print output message */
-			$content = curl_exec($ch);
-			$err = curl_error($ch);
+		/* print output message */
+		$content = curl_exec($ch);
+		$err = curl_error($ch);
 
-			// print_r($err);
-			// print_r($content);
+		// print_r($err);
+		// print_r($content);
 
-			// close cURL resource, and free up system resources
-			curl_close($ch);
-			// return $content;
-		}
+		// close cURL resource, and free up system resources
+		curl_close($ch);
+		// return $content;
+		// }
 		// End of loop process
 	}
 
@@ -287,13 +347,13 @@ class ketersediaanBed extends AUTH_Controller
 
 	public function jumlahRuangKelas()
 	{
-		$data = $this->m_aplicare->getRuangBpjsAll();
+		$data = $this->m_aplicare->getJumlahRuangBpjsAll();
 		echo json_encode($data);
 	}
 
 	public function cekJumlahBed()
 	{
-		$data['jumlahBed'] = $this->m_aplicare->getRuangBpjsAll();
+		$data['jumlahBed'] = $this->m_aplicare->getJumlahRuangBpjsAll();
 		for ($i = 1; $i <= $data['jumlahBed']; $i++) {
 			$data['jumlahRuangKelas'][$i] = $this->m_aplicare->getRuangKelasByRow($i - 1);
 		}

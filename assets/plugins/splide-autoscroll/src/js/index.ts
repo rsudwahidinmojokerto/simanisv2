@@ -1,0 +1,1 @@
+export { AutoScroll, AutoScrollComponent } from './extensions';

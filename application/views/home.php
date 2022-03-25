@@ -1,56 +1,116 @@
 <div id="tempat-modal"></div>
-<div class="AutoScroll scroller" id="dashboard1" name="scroll-container" style="height:600px; width:100%; overflow:hidden">
-    <?php
-    $j = 1;
-    for ($i = 0; $i < count($jumlahRuang); $i++) {
-    ?>
-        <div class="box">
-            <div class="box-header">
-                <h1>
-                    <b>
-                        <center><?= $jumlahRuang[$i]->namaruang; ?></center>
-                    </b>
-                </h1>
-            </div>
-            <div class="box-body">
-                <div class="row">
-                    <?php
-                    foreach ($ketersediaanBed as $kb) {
-                        if ($jumlahRuang[$i]->koderuang == $kb->koderuang) { ?>
-                            <div class="col-sm-<?= 12 / $jumlahKelasRuang[$i]; ?>">
-                                <div class="col-lg-12 col-xs-12">
-                                    <div class="small-box bg-<?= $kb->warna; ?>">
-                                        <div class="inner">
-                                            <center>
-                                                <h2><?= $kb->nama_kelas; ?></h2>
-                                                <h3>Tersedia <b id="realtimeJumlahRuangKelas<?= $j; ?>">0</b></h3>
-                                            </center>
+<!-- <div class="AutoScroll scroller" id="dashboard1" name="scroll-container" style="height:850px; width:100%; overflow:hidden"> -->
+<div class="splide">
+    <div class="splide__track">
+        <div class="splide__list">
+            <?php
+            $j = 1;
+            for ($i = 0; $i < count($jumlahRuang); $i++) {
+            ?>
+                <li class="splide__slide">
+                    <div class="box">
+                        <div class="box-header">
+                            <h1 style="font-size: 45px;">
+                                <b>
+                                    <center><?= $jumlahRuang[$i]->namaruang; ?></center>
+                                </b>
+                            </h1>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <?php
+                                foreach ($ketersediaanBed as $kb) {
+                                    if ($jumlahRuang[$i]->koderuang == $kb->koderuang) { ?>
+                                        <div class="col-sm-<?= 12 / $jumlahKelasRuang[$i]; ?>">
+                                            <div class="col-lg-12 col-xs-12">
+                                                <div class="small-box bg-<?= $kb->warna; ?>">
+                                                    <div class="inner">
+                                                        <center>
+                                                            <h2><?= $kb->nama_kelas; ?><?php if ($kb->keterangan != null || $kb->keterangan != '') {
+                                                                                            echo ' (' . $kb->keterangan . ')';
+                                                                                        } ?></h2>
+                                                            <h3 style="font-size: 25px;">Tersedia</h3>
+                                                            <h1><b id="realtimeJumlahRuangKelas<?= $j; ?>">0</b></h1>
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
+                                <?php $j++;
+                                    }
+                                } ?>
                             </div>
-                    <?php $j++;
-                        }
-                    } ?>
-                </div>
-            </div>
+                        </div>
+                    </div>
+                </li>
+            <?php } ?>
         </div>
-    <?php } ?>
+    </div>
 </div>
 
 <script type="text/javascript">
-    $(function() {
-        var interval = setInterval(function() {
-            if ($("#dashboard1").scrollTop() != $('#dashboard1')[0].scrollHeight) {
-                $("#dashboard1").scrollTop($("#dashboard1").scrollTop() + 10);
-            } else {
-                clearInterval(interval);
+    var map = [];
+
+    var options = {
+        useEasing: true,
+        useGrouping: true,
+        separator: '.',
+        decimal: ',',
+        prefix: '',
+        suffix: ''
+    };
+
+    for (let i = 1; i <= 1000; i++) {
+        map[i] = new CountUp('realtimeJumlahRuangKelas' + i, 0, 0, 0, 5, options);
+        map[i].start();
+    }
+
+    function realtimeJumlahBed() {
+        $.ajax({
+            method: 'POST',
+            url: "<?php echo base_url('ketersediaanBed/cekJumlahBed'); ?>",
+            dataType: 'json',
+            cache: false,
+            success: function(data) {
+                for (let i = 1; i <= data.jumlahBed; i++) {
+                    map[i].update(data.jumlahRuangKelas[i]);
+                }
             }
-        }, 5000);
+        })
+    }
+
+    setInterval(function() {
+        realtimeJumlahBed();
+    }, 10000);
+
+    const scroll = new Splide('.splide', {
+        autoplay: true,
+        direction: 'ttb',
+        height: '850px',
+        type: 'loop',
+        drag: 'free',
+        focus: 'top',
+        arrows: false,
+        pagination: false,
+        autoHeight: true,
+        perPage: 3,
+        autoScroll: {
+            speed: 2
+        }
     });
+
+    scroll.mount();
+
+    // $(function() {
+    //     var interval = setInterval(function() {
+    //         if ($("#dashboard1").scrollTop() != $('#dashboard1')[0].scrollHeight) {
+    //             $("#dashboard1").scrollTop($("#dashboard1").scrollTop() + 10);
+    //         } else {
+    //             clearInterval(interval);
+    //         }
+    //     }, 5000);
+    // });
 </script>
-
-
 
 
 

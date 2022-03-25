@@ -53,7 +53,7 @@
             } ?>>
           <a href="<?php echo base_url('ketersediaanBed'); ?>">
             <i class="fa fa-bed"></i>
-            <span>Master Bed</span>
+            <span>Manajemen Bed</span>
           </a>
         </li>
       </ul>
