@@ -54,7 +54,7 @@ class m_aplicare extends CI_Model
 
 	public function getRuangKelasByRow($urutan)
 	{
-		$sql = "SELECT tersedia FROM `m_aplicare` ORDER BY koderuang, id_kelas LIMIT $urutan, 1";
+		$sql = "SELECT tersedia FROM m_aplicare ORDER BY koderuang, id_kelas LIMIT $urutan, 1";
 		$data = $this->db->query($sql);
 		return $data->row()->tersedia;
 	}

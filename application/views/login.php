@@ -15,7 +15,7 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/eksternal/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<?php echo base_url(); ?>assets/dist/css/AdminLTE.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/iCheck/square/blue.css">
 
@@ -30,7 +30,9 @@
 <body class="hold-transition login-page">
   <div class="login-box">
     <div class="login-logo">
-      <img src="<?php echo base_url(); ?>assets/icons/lg_clr.png" class="logo-default" width="260px" height="120px" alt="Logo">
+      <center>
+        <img src="<?php echo base_url(); ?>assets/icons/simanis_warna.svg" class="logo-default" width="270px" height="140px" alt="Logo">
+      </center>
     </div>
 
     <!-- /.login-logo -->
@@ -57,7 +59,7 @@
               </div>
             </div> -->
           <div class="col-xs-offset-8 col-xs-4">
-            <button type="submit" class="btn btn-primary btn-block btn-flat"><i class="fa fa-sign-in"></i> Login</button>
+            <button type="submit" class="btn btn-success btn-block btn-flat"><i class="fa fa-sign-in"></i> Login</button>
           </div>
         </div>
       </form>
@@ -101,12 +103,12 @@
     </script> -->
 </body>
 
-<footer style="margin-top: -80px;">
+<footer style="margin-top: -20px;">
   <div class="row">
     <div class="col-sm-12">
       <p class="login-box-msg">
-        Copyright © <b>RSUD dr. Wahidin Sudiro Husodo Kota Mojokerto</b>.<br>
-        Created by <b>Ksatria Wahidin</b>.
+        Copyright © <?php echo date("Y"); ?>. <b>RSUD dr. Wahidin Sudiro Husodo Kota Mojokerto</b>.<br>
+        Developed by <b>Ksatria Wahidin</b>.
       </p>
     </div>
   </div>
