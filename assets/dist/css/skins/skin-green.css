@@ -94,12 +94,12 @@
 .skin-green .sidebar-menu>li.active>a {
   color: #ffffff;
   background: #c07c29;
-  border-left-color: #00a65a;
+  border-left-color: #c07c29;
 }
 
 .skin-green .sidebar-menu>li>.treeview-menu {
   margin: 0 1px;
-  background: #04223E;
+  background: #002414;
 }
 
 .skin-green .sidebar a {

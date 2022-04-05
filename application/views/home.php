@@ -48,6 +48,14 @@
     </div>
 </div>
 
+<div>
+    <a class="float" data-toggle="modal" data-target="#tampil-resumeRuang">
+        <i class="fa fa-search btn-float"></i>
+    </a>
+</div>
+
+<?php echo $modal_tampil_resume_ruang; ?>
+
 <script type="text/javascript">
     var map = [];
 

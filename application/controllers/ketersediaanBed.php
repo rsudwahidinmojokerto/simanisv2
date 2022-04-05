@@ -20,16 +20,17 @@ class ketersediaanBed extends AUTH_Controller
 	public function index()
 	{
 		$data['userdata'] 	= $this->userdata;
+		$idAkses 			= $this->userdata->id_akses;
 		$idRuang 			= $this->userdata->id_ruang;
 		// if($idRuang != 'RU999'){
-		if (isset($idRuang)) {
+		if (isset($idAkses)) {
 			// $data['statusBayar']   = $this->m_bayar->selectStatus($this->userdata->idUser);
 
 			$data['page'] 		= "ketersediaan_bed";
 			$data['judul'] 		= "Data Bed Ruangan";
 			$data['deskripsi'] 	= "Manajemen Data Bed Ruangan";
 
-			if ($idRuang == 'RU999' || $idRuang == 'RU998') {
+			if ($idAkses == 'LV001' || $idAkses == 'LV002') {
 				$data['dataKetersedianBed'] = $this->m_aplicare->getBedBpjsAll();
 			} else {
 				$data['dataKetersedianBed'] = $this->m_aplicare->getBedBpjsByRuang($idRuang);
@@ -52,9 +53,10 @@ class ketersediaanBed extends AUTH_Controller
 	public function tampil()
 	{
 		$data['userdata'] 	= $this->userdata;
+		$idAkses 			= $this->userdata->id_akses;
 		$idRuang 			= $this->userdata->id_ruang;
 
-		if ($idRuang == 'RU999' || $idRuang == 'RU998') {
+		if ($idAkses == 'LV001' || $idAkses == 'LV002') {
 			$data['dataKetersedianBed'] = $this->m_aplicare->getBedBpjsAll();
 		} else {
 			$data['dataKetersedianBed'] = $this->m_aplicare->getBedBpjsByRuang($idRuang);
@@ -83,7 +85,7 @@ class ketersediaanBed extends AUTH_Controller
 							$this->insertAplicare($data['idRuang'], $data['idKelas']);
 						}
 						$out['status'] = '';
-						$out['msg'] = show_succ_msg('Data Ruang Berhasil ditambahkan', '20px');
+						$out['msg'] = show_succ_msg('Data Ruang berhasil ditambahkan', '20px');
 					} else {
 						$out['status'] = '';
 						$out['msg'] = show_err_msg('Data Ruang gagal ditambahkan', '20px');

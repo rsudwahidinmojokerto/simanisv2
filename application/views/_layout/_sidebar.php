@@ -3,7 +3,7 @@
   <section class="sidebar">
 
     <!-- Sidebar user panel (optional) -->
-    <?php if ($userdata->id_ruang != '' && $userdata->id_ruang != null) { ?>
+    <?php if ($userdata->id_akses != '' && $userdata->id_akses != null) { ?>
       <div class="user-panel">
         <div class="pull-left image">
           <img src="<?php echo base_url(); ?>assets/img/<?php echo $userdata->foto; ?>" class="img-circle" alt="User Image">
@@ -33,7 +33,7 @@
       </div>
     <?php } ?>
 
-    <?php if ($userdata->id_ruang != '' && $userdata->id_ruang != null) { ?>
+    <?php if ($userdata->id_akses != '' && $userdata->id_akses != null) { ?>
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu">
         <li class="header">DAFTAR MENU</li>
@@ -47,6 +47,33 @@
             <span>Dashboard</span>
           </a>
         </li>
+
+        <?php if ($userdata->id_akses == "LV001") { ?>
+          <!-- Data Pengguna -->
+          <li <?php if ($page == 'master_user' || $page == 'master_ruang' || $page == 'master_kelas' || $page == 'master_ket_kelas') {
+                echo 'class="treeview active"';
+              } ?>>
+            <a href="#">
+              <i class="fa fa-database"></i> <span>Master</span><i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              <li <?php if ($page == 'master_user') {
+                    echo 'class="active"';
+                  } ?>><a href="<?php echo base_url('masterUser') ?>"><i class="fa fa-angle-double-right"></i> Master User</a></li>
+              <li <?php if ($page == 'master_ruang') {
+                    echo 'class="active"';
+                  } ?>><a href="<?php echo base_url('masterRuang') ?>"><i class="fa fa-angle-double-right"></i> Master Ruang</a></li>
+              <li <?php if ($page == 'master_kelas') {
+                    echo 'class="active"';
+                  } ?>><a href="<?php echo base_url('masterKelas') ?>"><i class="fa fa-angle-double-right"></i> Master Kelas</a></li>
+              <li <?php if ($page == 'master_ket_kelas') {
+                    echo 'class="active"';
+                  } ?>><a href="<?php echo base_url('masterKeteranganKelas') ?>"><i class="fa fa-angle-double-right"></i> Master Keterangan Kelas</a></li>
+            </ul>
+          </li>
+        <?php
+        }
+        ?>
 
         <li <?php if ($page == 'ketersediaan_bed') {
               echo 'class="active"';

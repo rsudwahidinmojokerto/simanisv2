@@ -18,6 +18,13 @@ class m_kelas extends CI_Model
 		return $data->row();
 	}
 
+	public function getJumlahDataKelasAll()
+	{
+		$sql = "SELECT COUNT(*) AS jumlah FROM m_kelas";
+		$data = $this->db->query($sql);
+		return $data->row()->jumlah;
+	}
+
 
 
 

@@ -13,6 +13,7 @@ class home extends AUTH_Controller
 		$this->load->model('m_user');
 		$this->load->model('m_kamar');
 		$this->load->model('m_bed');
+		$this->load->model('m_kelas');
 		$this->load->model('m_ruang');
 		$this->load->model('m_aplicare');
 	}
@@ -24,24 +25,10 @@ class home extends AUTH_Controller
 			$data['userdata'] = $this->userdata;
 		} else {
 			// $data['userdata'] = '';
-			$data['userdata'] = (object) array('id_ruang' => '');
+			$data['userdata'] = (object) array('id_akses' => '', 'id_ruang' => '');
 		}
 
-		// $i = 0;
-		// $iruang = 0;
-
-		// $getBed		 = $this->m_bed->getAllDataBed();
-		// foreach ($getBed as $bed) {
-		// 	$data['bed' . $bed['id_bed']] = $this->m_bed->getAllDataBedById($bed['id_bed']);
-		// 	// if ($getBed[$iruang]['id_ruang'] == !empty($getBed[$iruang - 1]['id_ruang'])) {
-		// 	$data['ruang' . $bed['id_ruang']] = $this->m_ruang->getAllDataRuangById($bed['id_ruang']);
-		// 	$data['ruang' . $bed['id_ruang'] . 'terisi'] = $this->m_bed->countBed($bed['id_ruang'], 'terisi');
-		// 	$data['ruang' . $bed['id_ruang'] . 'kosong'] = $this->m_bed->countBed($bed['id_ruang'], 'kosong');
-		// 	// }
-		// 	$iruang++;
-		// 	// var_dump($data['ruang' . $bed['id_ruang']]);
-		// }
-
+		// Load Ruang untuk display
 		$i = 0; // inisialisasi variabel untuk increment array ruang
 		if (!isset($this->userdata->id_ruang)) {
 			$data['ketersediaanBed'] = $this->m_aplicare->getBedBpjsAll();
@@ -70,6 +57,23 @@ class home extends AUTH_Controller
 				}
 			}
 		}
+
+		// Load ruang pop up
+		$dataKelas = $this->m_kelas->getDataKelasAll();
+		$urutKelas = 0;
+		$data['jumlahKelas'] = $this->m_kelas->getJumlahDataKelasAll();
+		foreach ($dataKelas as $dk) {
+			$dataTersedia = 0;
+			$data['namaKelas'][$urutKelas] = $dk->nama_kelas;
+			$getKelas = $this->m_aplicare->getRuangAplicareByKelas($dk->id_kelas);
+			foreach ($getKelas as $k) {
+				$dataTersedia += $k['tersedia'];
+			}
+			$data['tersedia'][$urutKelas] = $dataTersedia;
+			$urutKelas++;
+		}
+
+		$data['modal_tampil_resume_ruang'] = show_my_modal('modals/modal_tampil_resume_ruang', 'tampil-resumeRuang', $data);
 
 
 

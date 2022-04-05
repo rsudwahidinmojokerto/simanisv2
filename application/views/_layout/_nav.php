@@ -15,7 +15,7 @@
         <ul class="dropdown-menu menu-notif animated-dropdown-menu"></ul>
       </li> -->
       <!-- User Account Menu -->
-      <?php if ($userdata->id_ruang != '' && $userdata->id_ruang != null) { ?>
+      <?php if ($userdata->id_akses != '' && $userdata->id_akses != null) { ?>
         <li class="dropdown user user-menu">
           <!-- Menu Toggle Button -->
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -60,7 +60,7 @@
   </div>
 </nav>
 <?php if ($page == 'home' || $page == 'home2') {
-  if ($userdata->id_ruang == "") { ?>
+  if ($userdata->id_akses == "") { ?>
     <nav class="navbar navbar-static-top marquee">
       <div class="text-marquee" style="font-size: 21pt; height: 44px;">Selamat datang di portal <b>Sistem Informasi Managemen Akomodasi Pasien Versi 2 (SIMANIS V2) RSUD dr. Wahidin Sudiro Husodo Kota Mojokerto</b>. Berikut merupakan informasi mengenai ketersediaan tempat tidur yang berada di rumah sakit kami. <b>DISCLAIMER: INFORMASI INI TIDAK MENJAMIN KETERSEDIAAN SECARA AKURAT, DIKARENAKAN LAMA PROSES PENANGANAN MASUK RUMAH SAKIT (MRS) DAN KELUAR RUMAH SAKIT (KRS).&nbsp;&nbsp;&nbsp;&nbsp;<b>TETAP PATUHI PROTOKOL KESEHATAN DIMANAPUN ANDA BERADA. KEPUASAN PASIEN TUJUAN KAMI</b>.</div>
     </nav>

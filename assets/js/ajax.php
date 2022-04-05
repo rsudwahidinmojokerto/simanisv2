@@ -2,6 +2,7 @@
 	var MyTable = $('#list-data').dataTable();
 
 	window.onload = function() {
+		tampilMasterUser();
 		tampilKetersediaanBed();
 		// getJumlahRuangKelas();
 
@@ -67,6 +68,18 @@
 		$('.msg').show(1000);
 		// setTimeout(function() { $('.msg').fadeOut(1000); }, 3000);
 	}
+
+	/////////////////////////// LIHAT USER ////////////////////////////
+
+	function tampilMasterUser() {
+		$.get('<?php echo base_url('masterUser/tampil'); ?>', function(data) {
+			MyTable.fnDestroy();
+			$('#data-masterUser').html(data);
+			refresh();
+		});
+	}
+
+	//////////////////////////// END USER ////////////////////////////
 
 	//////////////////////// GANTI STATUS BED /////////////////////////
 
