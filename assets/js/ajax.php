@@ -69,7 +69,7 @@
 		// setTimeout(function() { $('.msg').fadeOut(1000); }, 3000);
 	}
 
-	/////////////////////////// LIHAT USER ////////////////////////////
+	/////////////////////////// CRUD USER ////////////////////////////
 
 	function tampilMasterUser() {
 		$.get('<?php echo base_url('masterUser/tampil'); ?>', function(data) {
