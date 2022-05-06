@@ -11,6 +11,13 @@ class m_user extends CI_Model
 		return $data->result();
 	}
 
+	public function insertUser($data)
+	{
+		$sql = "INSERT INTO m_user VALUES('" . $data['urutUser'] . "', '" . $data['idRuang'] . "', '" . $data['idAkses'] . "', '" . $data['username'] . "', '" . md5($data['password']) . "', 'reception.png', '')";
+		$this->db->query($sql);
+		return $this->db->affected_rows();
+	}
+
 
 
 
@@ -60,7 +67,7 @@ class m_user extends CI_Model
 
 	public function insert($data)
 	{
-		$sql = "INSERT INTO users VALUES('" . $data['idUser'] . "', '" . $data['nik'] . "', '" . $data['nama'] . "', '" . $data['password'] . "', '" . $data['idGrup'] . "', '" . $data['alamat'] . "', '" . $data['jk'] . "', '" . $data['email'] . "', '" . $data['telepon'] . "', '" . $data['foto'] . "')";
+		$sql = "INSERT INTO m_user VALUES('" . $data['idUser'] . "', '" . $data['nik'] . "', '" . $data['nama'] . "', '" . $data['password'] . "', '" . $data['idGrup'] . "', '" . $data['alamat'] . "', '" . $data['jk'] . "', '" . $data['email'] . "', '" . $data['telepon'] . "', '" . $data['foto'] . "')";
 		$this->db->query($sql);
 		return $this->db->affected_rows();
 	}

@@ -20,9 +20,9 @@
           <th>No</th>
           <th>Tanggal Buat</th>
           <th>ID User</th>
+          <th>ID Akses</th>
           <th>ID Ruang</th>
           <th>Nama Ruang</th>
-          <th>ID Akses</th>
           <th>Username</th>
           <th style="width: 100px">Aksi</th>
         </tr>

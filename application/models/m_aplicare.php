@@ -81,14 +81,14 @@ class m_aplicare extends CI_Model
 
 	public function getCountRuangAll()
 	{
-		$sql = "SELECT DISTINCT(m_aplicare.koderuang) AS koderuang, m_ruang.nama_ruang AS namaruang FROM m_aplicare JOIN m_ruang ON m_aplicare.koderuang = m_ruang.id_ruang";
+		$sql = "SELECT DISTINCT(m_aplicare.koderuang) AS koderuang, m_ruang.nama_ruang AS namaruang FROM m_aplicare JOIN m_ruang ON m_aplicare.koderuang = m_ruang.id_ruang ORDER BY koderuang";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
 
 	public function getCountRuangByRuang($id_ruang)
 	{
-		$sql = "SELECT DISTINCT(m_aplicare.koderuang) AS koderuang, m_ruang.nama_ruang AS namaruang FROM m_aplicare JOIN m_ruang ON m_aplicare.koderuang = m_ruang.id_ruang WHERE koderuang = '$id_ruang'";
+		$sql = "SELECT DISTINCT(m_aplicare.koderuang) AS koderuang, m_ruang.nama_ruang AS namaruang FROM m_aplicare JOIN m_ruang ON m_aplicare.koderuang = m_ruang.id_ruang WHERE koderuang = '$id_ruang' ORDER BY koderuang";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}

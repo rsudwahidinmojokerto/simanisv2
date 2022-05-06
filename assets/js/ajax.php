@@ -6,16 +6,16 @@
 		tampilKetersediaanBed();
 		// getJumlahRuangKelas();
 
-		tampilPelanggan();
-		tampilPenyuplai();
-		tampilKaurKeuangan();
-		tampilAdmin();
-		tampilVerifikasi();
-		tampilHarga();
-		tampilRiwayatBayar();
-		tampilRiwayatGuna();
-		tampilInbox();
-		tampilSent();
+		// tampilPelanggan();
+		// tampilPenyuplai();
+		// tampilKaurKeuangan();
+		// tampilAdmin();
+		// tampilVerifikasi();
+		// tampilHarga();
+		// tampilRiwayatBayar();
+		// tampilRiwayatGuna();
+		// tampilInbox();
+		// tampilSent();
 		// tampilDropdown();
 		<?php
 		if ($this->session->flashdata('msg') != '') {
@@ -78,6 +78,31 @@
 			refresh();
 		});
 	}
+
+	$('#form-tambah-masterUser').submit(function(e) {
+		var data = $(this).serialize();
+
+		$.ajax({
+				method: 'POST',
+				url: '<?php echo base_url('masterUser/prosesTambah'); ?>',
+				data: data
+			})
+			.done(function(data) {
+				var out = jQuery.parseJSON(data);
+
+				tampilPelanggan();
+				if (out.status == 'form') {
+					$('.form-msg').html(out.msg);
+					effect_msg_form();
+				} else {
+					document.getElementById("form-tambah-masterUser").reset();
+					$('#tambah-masterUser').modal('hide');
+					$('.msg').html(out.msg);
+					effect_msg();
+				}
+			})
+		e.preventDefault();
+	});
 
 	//////////////////////////// END USER ////////////////////////////
 
