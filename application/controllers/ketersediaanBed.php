@@ -137,6 +137,14 @@ class ketersediaanBed extends AUTH_Controller
 		echo json_encode($out);
 	}
 
+	public function konfigurasiAkses()
+	{
+		$id = trim($_POST['idAplicare']);
+		$data["idUser"] = explode(",", $this->m_aplicare->getUserPrivilege($id));
+		$data["user"] = $this->m_user->getDataUserAll();
+		echo show_my_modal('modals/modal_update_aksesRuang', 'update-aksesRuang', $data);
+	}
+
 	public function delete()
 	{
 		$id = explode("_", $_POST['idRuangKelas']);

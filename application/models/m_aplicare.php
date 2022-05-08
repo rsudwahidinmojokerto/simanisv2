@@ -161,6 +161,13 @@ class m_aplicare extends CI_Model
 		return $this->db->affected_rows();
 	}
 
+	public function getUserPrivilege($id)
+	{
+		$sql = "SELECT privilege FROM m_aplicare WHERE id_aplicare=$id";
+		$data = $this->db->query($sql);
+		return $data->row()->privilege;
+	}
+
 
 	// public function countKelasBed($id_bed)
 	// {

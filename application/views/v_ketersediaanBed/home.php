@@ -2,8 +2,6 @@
   <?php echo @$this->session->flashdata('msg'); ?>
 </div>
 
-<?php show_my_confirm('konfirmasiHapus', 'hapus-dataKetersediaanBed', 'Hapus data ruang yang dipilih?', 'Ya, Hapus Data Ini'); ?>
-
 <div class="box">
   <?php if ($userdata->id_ruang == 'RU999') { ?>
     <div class="box-header">
@@ -35,6 +33,8 @@
   </div>
 </div>
 
-<?php echo $modal_tambah_ketersediaanBed; ?>
-
 <div id="tempat-modal"></div>
+
+<?php show_my_confirm('konfirmasiHapus', 'hapus-dataKetersediaanBed', 'Hapus data ruang yang dipilih?', 'Ya, Hapus Data Ini'); ?>
+
+<?php echo $modal_tambah_ketersediaanBed; ?>

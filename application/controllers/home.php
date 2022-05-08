@@ -30,33 +30,41 @@ class home extends AUTH_Controller
 
 		// Load Ruang untuk display
 		$i = 0; // inisialisasi variabel untuk increment array ruang
-		if (!isset($this->userdata->id_ruang)) {
-			$data['ketersediaanBed'] = $this->m_aplicare->getBedBpjsAll();
-			$data['jumlahRuang'] = $this->m_aplicare->getCountRuangAll();
-			$ruang = $this->m_aplicare->getCountRuangAll();
-			foreach ($ruang as $r) {
-				$data['jumlahKelasRuang'][$i] = $this->m_aplicare->getJumlahRuangBpjsByRuang($r->koderuang);
-				$i++;
-			}
-		} else {
-			if ($this->userdata->id_ruang == 'RU999' || $this->userdata->id_ruang == 'RU998') {
-				$data['ketersediaanBed'] = $this->m_aplicare->getBedBpjsAll();
-				$data['jumlahRuang'] = $this->m_aplicare->getCountRuangAll();
-				$ruang = $this->m_aplicare->getCountRuangAll();
-				foreach ($ruang as $r) {
-					$data['jumlahKelasRuang'][$i] = $this->m_aplicare->getJumlahRuangBpjsByRuang($r->koderuang);
-					$i++;
-				}
-			} else {
-				$data['ketersediaanBed'] = $this->m_aplicare->getBedBpjsByRuang($this->userdata->id_ruang);
-				$data['jumlahRuang'] = $this->m_aplicare->getCountRuangByRuang($this->userdata->id_ruang);
-				$ruang = $this->m_aplicare->getCountRuangByRuang($this->userdata->id_ruang);
-				foreach ($ruang as $r) {
-					$data['jumlahKelasRuang'][$i] = $this->m_aplicare->getJumlahRuangBpjsByRuang($r->koderuang);
-					$i++;
-				}
-			}
+		$data['ketersediaanBed'] = $this->m_aplicare->getBedBpjsAll();
+		$data['jumlahRuang'] = $this->m_aplicare->getCountRuangAll();
+		$ruang = $this->m_aplicare->getCountRuangAll();
+		foreach ($ruang as $r) {
+			$data['jumlahKelasRuang'][$i] = $this->m_aplicare->getJumlahRuangBpjsByRuang($r->koderuang);
+			$i++;
 		}
+
+		// if (!isset($this->userdata->id_ruang)) {
+		// 	$data['ketersediaanBed'] = $this->m_aplicare->getBedBpjsAll();
+		// 	$data['jumlahRuang'] = $this->m_aplicare->getCountRuangAll();
+		// 	$ruang = $this->m_aplicare->getCountRuangAll();
+		// 	foreach ($ruang as $r) {
+		// 		$data['jumlahKelasRuang'][$i] = $this->m_aplicare->getJumlahRuangBpjsByRuang($r->koderuang);
+		// 		$i++;
+		// 	}
+		// } else {
+		// 	if ($this->userdata->id_ruang == 'RU999' || $this->userdata->id_ruang == 'RU998') {
+		// 		$data['ketersediaanBed'] = $this->m_aplicare->getBedBpjsAll();
+		// 		$data['jumlahRuang'] = $this->m_aplicare->getCountRuangAll();
+		// 		$ruang = $this->m_aplicare->getCountRuangAll();
+		// 		foreach ($ruang as $r) {
+		// 			$data['jumlahKelasRuang'][$i] = $this->m_aplicare->getJumlahRuangBpjsByRuang($r->koderuang);
+		// 			$i++;
+		// 		}
+		// 	} else {
+		// 		$data['ketersediaanBed'] = $this->m_aplicare->getBedBpjsByRuang($this->userdata->id_ruang);
+		// 		$data['jumlahRuang'] = $this->m_aplicare->getCountRuangByRuang($this->userdata->id_ruang);
+		// 		$ruang = $this->m_aplicare->getCountRuangByRuang($this->userdata->id_ruang);
+		// 		foreach ($ruang as $r) {
+		// 			$data['jumlahKelasRuang'][$i] = $this->m_aplicare->getJumlahRuangBpjsByRuang($r->koderuang);
+		// 			$i++;
+		// 		}
+		// 	}
+		// }
 
 		// Load ruang pop up
 		$dataKelas = $this->m_kelas->getDataKelasAll();
