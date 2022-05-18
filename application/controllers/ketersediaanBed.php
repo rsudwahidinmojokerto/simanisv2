@@ -4,7 +4,6 @@ date_default_timezone_set('Asia/Jakarta');
 
 class ketersediaanBed extends AUTH_Controller
 {
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -22,10 +21,8 @@ class ketersediaanBed extends AUTH_Controller
 		$data['userdata'] 	= $this->userdata;
 		$idAkses 			= $this->userdata->id_akses;
 		$idRuang 			= $this->userdata->id_ruang;
-		// if($idRuang != 'RU999'){
-		if (isset($idAkses)) {
-			// $data['statusBayar']   = $this->m_bayar->selectStatus($this->userdata->idUser);
 
+		if (isset($idAkses)) {
 			$data['page'] 		= "ketersediaan_bed";
 			$data['judul'] 		= "Data Bed Ruangan";
 			$data['deskripsi'] 	= "Manajemen Data Bed Ruangan";
@@ -44,9 +41,10 @@ class ketersediaanBed extends AUTH_Controller
 
 			$this->template->views('v_ketersediaanBed/home', $data);
 		} else {
-			$data['page'] 		= "error403";
-			$this->output->set_status_header('403');
-			$this->template->views('error403', $data);
+			redirect('auth');
+			// $data['page'] 		= "error403";
+			// $this->output->set_status_header('403');
+			// $this->template->views('error403', $data);
 		}
 	}
 
@@ -118,13 +116,14 @@ class ketersediaanBed extends AUTH_Controller
 		if ($kapasitas > 0 && $tersedia >= 0) {
 			if ($kapasitas >= $tersedia) {
 				$result = $this->m_aplicare->updateKetersediaanBed($id, $kapasitas, $tersedia);
-				if ($result > 0) {
-					$this->updateAplicare($id[0], $id[1], $id[2]);
+				// if ($result > 0) {
+				if ($result == true) {
+					$this->updateAplicare($id[0], $id[1]);
 					$out['status'] = '';
-					$out['msg'] = show_succ_msg('Data Ketersediaan Berhasil diupdate', '20px');
+					$out['msg'] = show_succ_msg('Data Ketersediaan Bed Berhasil diupdate', '20px');
 				} else {
 					$out['status'] = '';
-					$out['msg'] = show_err_msg('Data Ketersediaan gagal diupdate', '20px');
+					$out['msg'] = show_err_msg('Data Ketersediaan Bed Gagal diupdate', '20px');
 				}
 			} else {
 				$out['status'] = '';
@@ -136,6 +135,26 @@ class ketersediaanBed extends AUTH_Controller
 		}
 		echo json_encode($out);
 	}
+
+	public function updateKetersediaanBedAll()
+	{
+		$getAllBed = $this->m_aplicare->getBedBpjsAll();
+
+		try {
+			foreach ($getAllBed as $bed) {
+				// date_default_timezone_set('Asia/Jakarta');
+				$this->m_aplicare->updateKetersediaanBedForAll($bed, $bed->kapasitas, $bed->tersedia);
+				$this->updateAplicare($bed->koderuang, $bed->id_kelas);
+			}
+			$out['status'] = '';
+			$out['msg'] = show_succ_msg('Data Ketersediaan Semua Bed Berhasil diupdate', '20px');
+		} catch (Throwable $th) {
+			$out['status'] = '';
+			$out['msg'] = show_err_msg('Data Ketersediaan Semua Bed Gagal diupdate', '20px');
+		}
+		echo json_encode($out);
+	}
+
 
 	public function konfigurasiAkses()
 	{
@@ -193,7 +212,7 @@ class ketersediaanBed extends AUTH_Controller
 		$dataRuang = json_encode($ruang);
 		// var_dump($dataRuang);
 
-		date_default_timezone_set('UTC');
+		date_default_timezone_set('Asia/Jakarta');
 		$tStamp = strval(time() - strtotime('1970-01-01 00:00:00'));
 		$signature = hash_hmac('sha256', $consId . "&" . $tStamp, $secretKey, true);
 		$encodedSignature = base64_encode($signature);
@@ -267,7 +286,7 @@ class ketersediaanBed extends AUTH_Controller
 		// }
 		// var_dump($dataRuang);
 
-		date_default_timezone_set('UTC');
+		date_default_timezone_set('Asia/Jakarta');
 		$tStamp = strval(time() - strtotime('1970-01-01 00:00:00'));
 		$signature = hash_hmac('sha256', $consId . "&" . $tStamp, $secretKey, true);
 		$encodedSignature = base64_encode($signature);
@@ -318,7 +337,7 @@ class ketersediaanBed extends AUTH_Controller
 		foreach ($getRuang as $ruang) {
 			$dataRuang = json_encode($ruang);
 
-			date_default_timezone_set('UTC');
+			date_default_timezone_set('Asia/Jakarta');
 			$tStamp = strval(time() - strtotime('1970-01-01 00:00:00'));
 			$signature = hash_hmac('sha256', $consId . "&" . $tStamp, $secretKey, true);
 			$encodedSignature = base64_encode($signature);

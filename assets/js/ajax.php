@@ -4,6 +4,7 @@
 	window.onload = function() {
 		tampilMasterUser();
 		tampilKetersediaanBed();
+		tampilTracer();
 		// getJumlahRuangKelas();
 
 		// tampilPelanggan();
@@ -33,18 +34,13 @@
 			"info": true,
 			"autoWidth": true,
 			"scrollX": true,
-			"columnDefs": [{
-				"orderable": false,
-				"targets": [5, 6]
-			}]
+			"pageLength": 100,
+			"lengthMenu": [25, 50, 100, 200, 500],
+			// "columnDefs": [{
+			// 	"orderable": false,
+			// 	"targets": [5, 6]
+			// }]
 		});
-
-		// var MyTable2 = $('.ketersediaanBed').dataTable({
-		// 	"columnDefs": [{
-		// 		"orderable": false,
-		// 		"targets": [5, 6]
-		// 	}]
-		// })
 	}
 
 	function effect_msg_form() {
@@ -260,7 +256,20 @@
 				var out = jQuery.parseJSON(data);
 				tampilKetersediaanBed();
 				$('.msg').html(out.msg);
-				effect_msg();
+				// effect_msg();
+			})
+		e.preventDefault();
+	})
+
+	$(document).on("click", '.update-dataKetersediaanBedAll', function(e) {
+		$.ajax({
+				method: "POST",
+				url: "<?php echo base_url('ketersediaanBed/updateKetersediaanBedAll'); ?>"
+			})
+			.done(function(data) {
+				var out = jQuery.parseJSON(data);
+				tampilKetersediaanBed();
+				$('.msg').html(out.msg);
 			})
 		e.preventDefault();
 	})
@@ -335,6 +344,18 @@
 	})
 
 	//////////////////////////// END HAPUS RUANG //////////////////////////////////
+
+	////////////////////////// START TAMPIL TRACER ////////////////////////////////
+
+	function tampilTracer() {
+		$.get('<?php echo base_url('tracer/tampil'); ?>', function(data) {
+			MyTable.fnDestroy();
+			$('#data-tracer').html(data);
+			refresh();
+		});
+	}
+
+	/////////////////////////// END TAMPIL TRACER /////////////////////////////////
 
 	/////////////////////// START REALTIME JUMLAH BED /////////////////////////////
 

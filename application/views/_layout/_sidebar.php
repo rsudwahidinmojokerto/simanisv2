@@ -83,6 +83,17 @@
             <span>Manajemen Bed</span>
           </a>
         </li>
+
+        <?php if ($userdata->id_akses == "LV001") { ?>
+          <li <?php if ($page == 'tracer') {
+                echo 'class="active"';
+              } ?>>
+            <a href="<?php echo base_url('tracer'); ?>">
+              <i class="fa fa-search"></i>
+              <span>Tracer Aktivitas</span>
+            </a>
+          </li>
+        <?php } ?>
       </ul>
       <!-- /.sidebar-menu -->
     <?php } ?>

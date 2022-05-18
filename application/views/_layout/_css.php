@@ -15,3 +15,5 @@
 <!-- Splide -->
 <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/splide/dist/css/splide.min.css"> -->
 <!-- <link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/splide/dist/css/splide-core.min.css"> -->
+<!-- Toastr Notify -->
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/plugins/toastr/build/toastr.min.css">

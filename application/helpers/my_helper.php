@@ -1,4 +1,6 @@
 <?php
+
+
 // MSG
 function show_msg($content = '', $type = 'success', $icon = 'fa-info-circle', $size = '14px')
 {
@@ -18,35 +20,95 @@ function show_msg($content = '', $type = 'success', $icon = 'fa-info-circle', $s
 
 function show_succ_msg($content = '', $size = '14px')
 {
+	$options_toastr = "
+	toastr.options = {
+		'closeButton': true,
+		'debug': false,
+		'newestOnTop': true,
+		'progressBar': true,
+		'positionClass': 'toast-bottom-right',
+		'preventDuplicates': false,
+		'onclick': null,
+		'showDuration': '300',
+		'hideDuration': '1000',
+		'timeOut': '5000',
+		'extendedTimeOut': '1000',
+		'showEasing': 'swing',
+		'hideEasing': 'linear',
+		'showMethod': 'fadeIn',
+		'hideMethod': 'fadeOut'
+	}
+	";
+
 	if ($content != '') {
-		return   '<p class="box-msg">
-				      <div class="info-box alert-success">
-					      <div class="info-box-icon">
-					      	<i class="fa fa-check-circle"></i>
-					      </div>
-					      <div class="info-box-content" style="font-size:' . $size . '">
-				        	' . $content
-			. '</div>
-					  </div>
-				    </p>';
+		return "<script type='text/javascript'>
+			" . $options_toastr . "
+			toastr.success('" . $content . "');
+			</script>";
 	}
 }
 
 function show_err_msg($content = '', $size = '14px')
 {
+	$options_toastr = "
+	toastr.options = {
+		'closeButton': true,
+		'debug': false,
+		'newestOnTop': true,
+		'progressBar': true,
+		'positionClass': 'toast-bottom-right',
+		'preventDuplicates': false,
+		'onclick': null,
+		'showDuration': '300',
+		'hideDuration': '1000',
+		'timeOut': '5000',
+		'extendedTimeOut': '1000',
+		'showEasing': 'swing',
+		'hideEasing': 'linear',
+		'showMethod': 'fadeIn',
+		'hideMethod': 'fadeOut'
+	}
+	";
+
 	if ($content != '') {
-		return   '<p class="box-msg">
-				      <div class="info-box alert-error">
-					      <div class="info-box-icon">
-					      	<i class="fa fa-warning"></i>
-					      </div>
-					      <div class="info-box-content" style="font-size:' . $size . '">
-				        	' . $content
-			. '</div>
-					  </div>
-				    </p>';
+		return "<script type='text/javascript'>
+			" . $options_toastr . "
+			toastr.error('" . $content . "');
+			</script>";
 	}
 }
+
+// function show_succ_msg($content = '', $size = '14px')
+// {
+// 	if ($content != '') {
+// 		return   '<p class="box-msg">
+// 				      <div class="info-box alert-success">
+// 					      <div class="info-box-icon">
+// 					      	<i class="fa fa-check-circle"></i>
+// 					      </div>
+// 					      <div class="info-box-content" style="font-size:' . $size . '">
+// 				        	' . $content
+// 			. '</div>
+// 					  </div>
+// 				    </p>';
+// 	}
+// }
+
+// function show_err_msg($content = '', $size = '14px')
+// {
+// 	if ($content != '') {
+// 		return   '<p class="box-msg">
+// 				      <div class="info-box alert-error">
+// 					      <div class="info-box-icon">
+// 					      	<i class="fa fa-warning"></i>
+// 					      </div>
+// 					      <div class="info-box-content" style="font-size:' . $size . '">
+// 				        	' . $content
+// 			. '</div>
+// 					  </div>
+// 				    </p>';
+// 	}
+// }
 
 function show_succ_msg_custom($content = '', $size = '14px', $id, $password)
 {

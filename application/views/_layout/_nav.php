@@ -16,26 +16,11 @@
       </li> -->
       <!-- User Account Menu -->
       <?php if ($userdata->id_akses != '' && $userdata->id_akses != null) { ?>
-        <li class="dropdown user user-menu">
-          <!-- Menu Toggle Button -->
+        <!-- <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <!-- The user image in the navbar-->
-            <!-- <img src="<?php echo base_url(); ?>assets/img/<?php echo $userdata->foto; ?>" class="user-image" alt="User Image"> -->
-            <!-- hidden-xs hides the username on small devices so only the image appears. -->
             <span>Menu Akun&nbsp;&nbsp;<i class="fa fa-sort-desc"></i></span>
-            <!-- <span class="hidden-xs"><?php echo $userdata->nama; ?></span> -->
           </a>
           <ul class="dropdown-menu animated-dropdown-menu">
-            <!-- The user image in the menu -->
-            <!-- <li class="user-header">
-            <img src="<?php echo base_url(); ?>assets/img/<?php echo $userdata->foto; ?>" class="img-circle" alt="User Image">
-
-            <p>
-              <?php echo $userdata->nama; ?> - Web Developer
-              <small>FILKOM UB x BIOGASKU, <?php echo date("Y"); ?></small>
-            </p>
-          </li> -->
-            <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
                 <a href="<?php echo base_url('c_profil'); ?>" class="btn btn-default btn-flat"><i class="fa fa-gear"></i> Pengaturan</a>
@@ -45,14 +30,12 @@
               </div>
             </li>
           </ul>
+        </li> -->
+        <li>
+          <a href="<?php echo base_url('auth/logout'); ?>"><i class="fa fa-sign-out"></i> Logout</a>
         </li>
       <?php } else { ?>
         <li>
-          <!-- <a href="#" class="dropdown-toggle toggle-message" data-toggle="dropdown">
-            <i class="fa fa-envelope-o"></i>
-            <span class="label label-warning count-notif"></span>
-          </a>
-          <ul class="dropdown-menu menu-notif animated-dropdown-menu"></ul> -->
           <a href="<?php echo base_url('auth/login'); ?>"><i class="fa fa-sign-in"></i> Login</a>
         </li>
       <?php } ?>

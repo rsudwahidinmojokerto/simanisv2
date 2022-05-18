@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+date_default_timezone_set('Asia/Jakarta');
 
 class m_aplicare extends CI_Model
 {
@@ -142,16 +143,23 @@ class m_aplicare extends CI_Model
 			$kode_keterangan = null;
 		}
 
-		$sql = "INSERT INTO m_aplicare VALUES ('', '" . $data['idRuang'] . "', '" . $getDataRuang[0]->nama_ruang . "-" . $getDataKelas[0]->id_kelas_aplicare . "" . $kode_keterangan . "', '" . $data['idKelas'] . "', " . $data['kapasitas'] . ", " . $data['tersedia'] . ", 0, 0, 0, '" . $id_ket . "', '" . date("Y-m-d H:i:s") . "')";
+		$sql = "INSERT INTO m_aplicare VALUES ('', '" . $data['idRuang'] . "', '" . $getDataRuang[0]->nama_ruang . "-" . $getDataKelas[0]->id_kelas_aplicare . "" . $kode_keterangan . "', '" . $data['idKelas'] . "', " . $data['kapasitas'] . ", " . $data['tersedia'] . ", 0, 0, 0, '" . $id_ket . "', 'US001', '" . date("Y-m-d H:i:s") . "')";
 		$this->db->query($sql);
 		return $this->db->affected_rows();
 	}
 
 	public function updateKetersediaanBed($id, $kapasitas, $tersedia)
 	{
-		$sql = "UPDATE m_aplicare SET kapasitas=" . $kapasitas . ", tersedia=" . $tersedia . " WHERE koderuang='" . $id[0] . "' AND id_kelas='" . $id[1] . "' AND id_ket_kelas='" . $id[2] . "'";
-		$this->db->query($sql);
-		return $this->db->affected_rows();
+		$sql = "UPDATE m_aplicare SET kapasitas=" . $kapasitas . ", tersedia=" . $tersedia . ", update_terakhir='" . date("Y-m-d H:i:s") . "' WHERE koderuang='" . $id[0] . "' AND id_kelas='" . $id[1] . "' AND id_ket_kelas='" . $id[2] . "'";
+		return $this->db->query($sql);
+		// $this->db->query($sql)
+		// return $tes->affected_rows();
+	}
+
+	public function updateKetersediaanBedForAll($id, $kapasitas, $tersedia)
+	{
+		$sql = "UPDATE m_aplicare SET kapasitas=" . $kapasitas . ", tersedia=" . $tersedia . ", update_terakhir='" . date("Y-m-d H:i:s") . "' WHERE koderuang='" . $id->koderuang . "' AND id_kelas='" . $id->id_kelas . "' AND id_ket_kelas='" . $id->id_ket_kelas . "'";
+		return $this->db->query($sql);
 	}
 
 	public function deleteRuang($id)

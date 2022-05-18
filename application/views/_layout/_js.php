@@ -26,6 +26,9 @@
 <script src="<?php echo base_url(); ?>assets/plugins/countUp.js/countUp.js"></script>
 <!-- Date picker -->
 <script src="<?php echo base_url(); ?>assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- Toastr Notify -->
+<script src="<?php echo base_url(); ?>assets/plugins/toastr/build/toastr.min.js"></script>
+
 <!-- Auto scroll -->
 <!-- <script src="<?php echo base_url(); ?>assets/plugins/autoScroll/autoscroll.js"></script> -->
 <!-- Auto scroll Data -->

@@ -3,10 +3,14 @@
 </div>
 
 <div class="box">
-  <?php if ($userdata->id_ruang == 'RU999') { ?>
+  <?php if ($userdata->id_akses == 'LV001') { ?>
     <div class="box-header">
       <div class="col-md-2" style="padding: 0;">
         <button class="form-control btn btn-success" data-toggle="modal" data-target="#tambah-ketersediaanBed"><i class="glyphicon glyphicon-plus-sign"></i> Tambah Data</button>
+      </div>
+      <div class="col-md-8" style="padding: 0;"></div>
+      <div class="col-md-2" style="padding: 0;">
+        <button class="form-control btn btn-danger update-dataKetersediaanBedAll" name="update-dataKetersediaanBedAll"><i class="glyphicon glyphicon-upload"></i> Update Semua Bed</button>
       </div>
     </div>
   <?php } ?>

@@ -18,22 +18,27 @@ class masterUser extends AUTH_Controller
 	{
 		$data['userdata'] 	= $this->userdata;
 		$cekAkses 			= $this->userdata->id_akses;
-		if ($cekAkses == 'LV001') {
-			$data['page'] 		= "master_user";
-			$data['judul'] 		= "Data User";
-			$data['deskripsi'] 	= "Manajemen Data User";
 
-			$data['dataNomorUser'] = $this->userOrder();
-			$data['dataAksesUser'] = $this->m_akses_user->getDataAksesUserAll();
-			$data['dataRuang'] = $this->m_ruang->getDataRuangAll();
+		if (isset($data['userdata'])) {
+			if ($cekAkses == 'LV001') {
+				$data['page'] 		= "master_user";
+				$data['judul'] 		= "Data User";
+				$data['deskripsi'] 	= "Manajemen Data User";
 
-			$data['modal_tambah_masterUser'] = show_my_modal('modals/modal_tambah_masterUser', 'tambah-masterUser', $data);
+				$data['dataNomorUser'] = $this->userOrder();
+				$data['dataAksesUser'] = $this->m_akses_user->getDataAksesUserAll();
+				$data['dataRuang'] = $this->m_ruang->getDataRuangAll();
 
-			$this->template->views('v_masterUser/home', $data);
+				$data['modal_tambah_masterUser'] = show_my_modal('modals/modal_tambah_masterUser', 'tambah-masterUser', $data);
+
+				$this->template->views('v_masterUser/home', $data);
+			} else {
+				$data['page'] 		= "error403";
+				$this->output->set_status_header('403');
+				$this->template->views('error403', $data);
+			}
 		} else {
-			$data['page'] 		= "error403";
-			$this->output->set_status_header('403');
-			$this->template->views('error403', $data);
+			redirect('auth');
 		}
 	}
 

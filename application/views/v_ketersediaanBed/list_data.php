@@ -4,7 +4,16 @@ foreach ($dataKetersedianBed as $ketersediaanBed) {
 ?>
   <tr>
     <td><?php echo $no; ?></td>
-    <td><?php echo $ketersediaanBed->update_terakhir; ?></td>
+    <td><?php
+        $tgl_update = new DateTime($ketersediaanBed->update_terakhir);
+        $tgl_sekarang = new DateTime(date("Y-m-d H:i:s"));
+        $selisih = $tgl_sekarang->diff($tgl_update);
+        if ($selisih->days > 1) {
+          echo $ketersediaanBed->update_terakhir . '<b style="color: red;"> (Data bed belum update >24 jam)</b>';
+        } else {
+          echo $ketersediaanBed->update_terakhir;
+        }
+        ?></td>
     <td><?php echo $ketersediaanBed->id_ruang; ?></td>
     <td><?php echo $ketersediaanBed->nama_ruang;
         if ($ketersediaanBed->keterangan != null || $ketersediaanBed->keterangan != '') {

@@ -3,6 +3,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class m_tracer extends CI_Model
 {
+	public function getDataTracerAll()
+	{
+		$sql = "SELECT * FROM tracer ORDER BY id_temp DESC";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
 	public function getLastOrderNomorUser()
 	{
 		$sql = "SELECT MAX(param) AS hasil FROM tracer WHERE param LIKE 'US%'";
@@ -17,11 +24,4 @@ class m_tracer extends CI_Model
 		$this->db->query($sql);
 		return $this->db->affected_rows();
 	}
-
-	// public function getDataRuangByIdRuang($idRuang)
-	// {
-	// 	$sql = "SELECT * FROM m_ruang WHERE id_ruang = '$idRuang'";
-	// 	$data = $this->db->query($sql);
-	// 	return $data->row();
-	// }
 }
