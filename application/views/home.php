@@ -26,9 +26,12 @@
                                                 <div class="small-box bg-<?= $kb->warna; ?>">
                                                     <div class="inner">
                                                         <center>
-                                                            <h2><?= $kb->nama_kelas; ?><?php if ($kb->keterangan != null || $kb->keterangan != '') {
-                                                                                            echo ' (' . $kb->keterangan . ')';
-                                                                                        } ?></h2>
+                                                            <h2><?= $kb->nama_kelas; ?></h2>
+                                                            <?php if ($kb->keterangan != null || $kb->keterangan != '') { ?>
+                                                                <h3 style="font-size: 25px;"><b><?= ' (' . $kb->keterangan . ')'; ?></b></h3>
+                                                            <?php } else { ?>
+                                                                <br><br>
+                                                            <?php } ?>
                                                             <h3 style="font-size: 25px;">Tersedia</h3>
                                                             <h1><b id="realtimeJumlahRuangKelas<?= $j; ?>">0</b></h1>
                                                         </center>
