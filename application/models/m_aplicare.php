@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-date_default_timezone_set('Asia/Jakarta');
 
 class m_aplicare extends CI_Model
 {
@@ -14,6 +13,13 @@ class m_aplicare extends CI_Model
 	public function getBedBpjsByRuang($id_ruang)
 	{
 		$sql = "SELECT * FROM m_aplicare AS bpjs LEFT JOIN m_ruang AS ruang ON bpjs.koderuang = ruang.id_ruang LEFT JOIN m_kelas AS kelas ON bpjs.id_kelas = kelas.id_kelas LEFT JOIN m_ket_kelas AS ket ON bpjs.id_ket_kelas = ket.id_ket_kelas WHERE koderuang = '$id_ruang' ORDER BY bpjs.koderuang, bpjs.id_kelas, bpjs.id_ket_kelas";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
+	public function getBedBpjsByUser($idUser)
+	{
+		$sql = "SELECT * FROM m_aplicare AS bpjs LEFT JOIN m_ruang AS ruang ON bpjs.koderuang = ruang.id_ruang LEFT JOIN m_kelas AS kelas ON bpjs.id_kelas = kelas.id_kelas LEFT JOIN m_ket_kelas AS ket ON bpjs.id_ket_kelas = ket.id_ket_kelas WHERE privilege LIKE '%$idUser%' ORDER BY bpjs.koderuang, bpjs.id_kelas, bpjs.id_ket_kelas";
 		$data = $this->db->query($sql);
 		return $data->result();
 	}
@@ -174,6 +180,13 @@ class m_aplicare extends CI_Model
 		$sql = "SELECT privilege FROM m_aplicare WHERE id_aplicare=$id";
 		$data = $this->db->query($sql);
 		return $data->row()->privilege;
+	}
+
+	public function updatePrivilegeRuang($idAplicare, $privilege)
+	{
+		$sql = "UPDATE m_aplicare SET privilege='" . $privilege . "' WHERE id_aplicare='" . $idAplicare . "'";
+		$this->db->query($sql);
+		return $this->db->affected_rows();
 	}
 
 

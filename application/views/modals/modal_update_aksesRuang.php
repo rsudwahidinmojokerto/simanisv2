@@ -6,19 +6,23 @@
   </div>
 
   <form id="form-update-aksesRuang" method="POST">
+    <input type="hidden" class="form-control idAplicare" aria-describedby="sizing-addon2" value="<?php echo $idKamar; ?>" disabled>
     <div class="modal-body">
       <?php
       foreach ($user as $u) {
       ?>
         <div class="input-group form-group">
           <span class="input-group-addon">
-            <input type="checkbox" <?php foreach ($idUser as $id) {
-                                      $i = 0;
-                                      if ($id == $u->id_user) {
-                                        echo "checked";
-                                      }
-                                      $i++;
-                                    } ?>>
+            <input type="checkbox" class="checkboxAksesRuang" value="<?= $u->id_user; ?>" <?php foreach ($idUser as $id) {
+                                                                                            $i = 0;
+                                                                                            if ($id == $u->id_user) {
+                                                                                              echo " checked";
+                                                                                              if ($id == "US001") {
+                                                                                                echo " disabled";
+                                                                                              }
+                                                                                            }
+                                                                                            $i++;
+                                                                                          } ?>>
           </span>
           <input type="text" class="form-control" aria-describedby="sizing-addon2" value="<?php echo '(' . $u->id_user . ' - ' . $u->nama_ruang . ') Username: ' . $u->username; ?>" disabled>
         </div>
@@ -36,10 +40,6 @@
 </div>
 
 <script type="text/javascript">
-  // $(function() {
-  //   $(".select2").select2();
-  // });
-
   $(document).ready(function() {
     $('input').iCheck({
       checkboxClass: 'icheckbox_square-green',

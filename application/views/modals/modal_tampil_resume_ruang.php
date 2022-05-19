@@ -7,7 +7,8 @@
   </div>
 
   <div class="box-body">
-    <table id="list-data" class="table table-bordered table-striped resumeRuang">
+    <!-- <table id="list-data" class="table table-bordered table-striped resumeRuang"> -->
+    <table id="list-data" class="table table-bordered table-striped resumeRuang" style="width:100%">
       <thead>
         <tr>
           <th>Nama Kelas</th>

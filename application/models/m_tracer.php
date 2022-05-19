@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+date_default_timezone_set('Asia/Jakarta');
 
 class m_tracer extends CI_Model
 {
@@ -20,7 +21,7 @@ class m_tracer extends CI_Model
 	public function insertTracer($aksi, $param)
 	{
 		$user = $this->userdata->id_user;
-		$sql = "INSERT INTO tracer VALUES('', '" . $user . "', '" . $aksi . "', '" . $param . "', '')";
+		$sql = "INSERT INTO tracer VALUES('', '" . $user . "', '" . $aksi . "', '" . $param . "', '" . date("Y-m-d H:i:s") . "')";
 		$this->db->query($sql);
 		return $this->db->affected_rows();
 	}

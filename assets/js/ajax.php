@@ -276,49 +276,6 @@
 
 	////////////////////////// END UPDATE KAPASITAS ///////////////////////////////
 
-	//////////////////////////// START AKSES USER /////////////////////////////////
-
-	$(document).on("click", ".konfigurasi-akses", function() {
-		var id = $(this).attr("data-id");
-
-		$.ajax({
-				method: "POST",
-				url: "<?php echo base_url('ketersediaanBed/konfigurasiAkses'); ?>",
-				data: "idAplicare=" + id
-			})
-			.done(function(data) {
-				$('#tempat-modal').html(data);
-				$('#update-aksesRuang').modal('show');
-			})
-	})
-
-	$(document).on('submit', '#form-update-aksesRuang', function(e) {
-		var data = $(this).serialize();
-
-		$.ajax({
-				method: 'POST',
-				url: '<?php echo base_url('ketersediaanBed/prosesUpdateAkses'); ?>',
-				data: data
-			})
-			.done(function(data) {
-				var out = jQuery.parseJSON(data);
-
-				// tampilPelanggan();
-				if (out.status == 'form') {
-					$('.form-msg').html(out.msg);
-					effect_msg_form();
-				} else {
-					document.getElementById("form-update-aksesRuang").reset();
-					$('#update-aksesRuang').modal('hide');
-					$('.msg').html(out.msg);
-					effect_msg();
-				}
-			})
-		e.preventDefault();
-	});
-
-	///////////////////////////// END AKSES USER //////////////////////////////////
-
 	/////////////////////////// START HAPUS RUANG /////////////////////////////////
 
 	var idRuangKelasHapus;
@@ -344,6 +301,50 @@
 	})
 
 	//////////////////////////// END HAPUS RUANG //////////////////////////////////
+
+	//////////////////////////// START AKSES USER /////////////////////////////////
+
+	$(document).on("click", ".konfigurasi-akses", function() {
+		var id = $(this).attr("data-id");
+
+		$.ajax({
+				method: "POST",
+				url: "<?php echo base_url('ketersediaanBed/konfigurasiAkses'); ?>",
+				data: "idAplicare=" + id
+			})
+			.done(function(data) {
+				$('#tempat-modal').html(data);
+				$('#update-aksesRuang').modal('show');
+			})
+	})
+
+	$(document).on('submit', '#form-update-aksesRuang', function(e) {
+		var aplicare = $(this).find('.idAplicare').val();
+		var user = '';
+		$(this).find('.checkboxAksesRuang').each(function() {
+			if ($(this).prop("checked") == true) {
+				user += $(this).val() + ',';
+			}
+		});
+
+		$.ajax({
+				method: 'POST',
+				url: '<?php echo base_url('ketersediaanBed/updateAksesRuang'); ?>',
+				data: {
+					idAplicare: aplicare,
+					idUser: user
+				}
+			})
+			.done(function(data) {
+				var out = jQuery.parseJSON(data);
+				$('#update-aksesRuang').modal('hide');
+				document.getElementById("form-update-aksesRuang").reset();
+				$('.msg').html(out.msg);
+			})
+		e.preventDefault();
+	});
+
+	///////////////////////////// END AKSES USER //////////////////////////////////
 
 	////////////////////////// START TAMPIL TRACER ////////////////////////////////
 
