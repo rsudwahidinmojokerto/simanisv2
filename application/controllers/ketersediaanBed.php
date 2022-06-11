@@ -52,7 +52,7 @@ class ketersediaanBed extends AUTH_Controller
 	public function tampil()
 	{
 		$data['userdata'] 	= $this->userdata;
-		$idAkses 			= $this->userdata->id_akses;
+		// $idAkses 			= $this->userdata->id_akses;
 		$idUser				= $this->userdata->id_user;
 		// $idRuang 			= $this->userdata->id_ruang;
 
@@ -117,24 +117,29 @@ class ketersediaanBed extends AUTH_Controller
 		$kapasitas = $_POST['kapasitas'];
 		$tersedia = $_POST['tersedia'];
 
-		if ($kapasitas > 0 && $tersedia >= 0) {
-			if ($kapasitas >= $tersedia) {
-				$result = $this->m_aplicare->updateKetersediaanBed($id, $kapasitas, $tersedia);
-				// if ($result > 0) {
-				if ($result == true) {
-					$this->m_tracer->insertTracer('Update bed Ruang ' . $id[0] . ' Kelas ' . $id[1], $id[0] . '_' . $id[1]);
-					$this->updateAplicare($id[0], $id[1]);
-					$out['status'] = '';
-					$out['msg'] = show_succ_msg('Data Ketersediaan Bed Berhasil diupdate', '20px');
+		try {
+			if ($kapasitas > 0 && $tersedia >= 0) {
+				if ($kapasitas >= $tersedia) {
+					$result = $this->m_aplicare->updateKetersediaanBed($id, $kapasitas, $tersedia);
+					// if ($result > 0) {
+					if ($result == true) {
+						$this->m_tracer->insertTracer('Update bed Ruang ' . $id[0] . ' Kelas ' . $id[1], $id[0] . '_' . $id[1]);
+						$this->updateAplicare($id[0], $id[1]);
+						$out['status'] = '';
+						$out['msg'] = show_succ_msg('Data Ketersediaan Bed Berhasil diupdate', '20px');
+					} else {
+						$out['status'] = '';
+						$out['msg'] = show_err_msg('Data Ketersediaan Bed Gagal diupdate', '20px');
+					}
 				} else {
 					$out['status'] = '';
-					$out['msg'] = show_err_msg('Data Ketersediaan Bed Gagal diupdate', '20px');
+					$out['msg'] = show_err_msg('Jumlah bed tersedia melebihi kapasitas!', '20px');
 				}
 			} else {
 				$out['status'] = '';
-				$out['msg'] = show_err_msg('Jumlah bed tersedia melebihi kapasitas!', '20px');
+				$out['msg'] = show_err_msg('Jumlah tidak valid!', '20px');
 			}
-		} else {
+		} catch (Throwable $e) {
 			$out['status'] = '';
 			$out['msg'] = show_err_msg('Jumlah tidak valid!', '20px');
 		}
@@ -147,7 +152,7 @@ class ketersediaanBed extends AUTH_Controller
 
 		try {
 			foreach ($getAllBed as $bed) {
-				// date_default_timezone_set('Asia/Jakarta');
+				date_default_timezone_set('Asia/Jakarta');
 				$this->m_aplicare->updateKetersediaanBedForAll($bed, $bed->kapasitas, $bed->tersedia);
 				$this->updateAplicare($bed->koderuang, $bed->id_kelas);
 			}

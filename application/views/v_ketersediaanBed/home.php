@@ -27,7 +27,9 @@
           <th>Nama Kelas</th>
           <th>Kapasitas</th>
           <th>Tersedia</th>
-          <th style="width: 100px">Aksi</th>
+          <?php if ($userdata->id_akses == 'LV001' || $userdata->id_akses == 'LV002' || $userdata->id_akses == 'LV003') { ?>
+            <th style="width: 100px">Aksi</th>
+          <?php } ?>
         </tr>
       </thead>
       <tbody id="data-ketersediaanBed">

@@ -28,12 +28,12 @@
                                                         <center>
                                                             <h2><?= $kb->nama_kelas; ?></h2>
                                                             <?php if ($kb->keterangan != null || $kb->keterangan != '') { ?>
-                                                                <h3 style="font-size: 25px;"><b><?= ' (' . $kb->keterangan . ')'; ?></b></h3>
+                                                                <h3 style="font-size: 21px;"><b><?= ' (' . $kb->keterangan . ')'; ?></b></h3>
                                                             <?php } else { ?>
                                                                 <br><br>
                                                             <?php } ?>
-                                                            <h3 style="font-size: 25px;">Tersedia</h3>
-                                                            <h1><b id="realtimeJumlahRuangKelas<?= $j; ?>">0</b></h1>
+                                                            <h3 style="font-size: 23px;">Tersedia</h3>
+                                                            <h1><b id="realtimeJumlahRuangKelas<?= $j; ?>"></b></h1>
                                                         </center>
                                                     </div>
                                                 </div>
@@ -105,6 +105,8 @@
         pagination: false,
         autoHeight: true,
         perPage: 3,
+        pauseOnHover: false,
+        slideFocus: false,
         autoScroll: {
             speed: 2
         }

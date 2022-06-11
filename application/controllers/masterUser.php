@@ -84,8 +84,8 @@ class masterUser extends AUTH_Controller
 
 		if ($this->form_validation->run() == TRUE) {
 			// var_dump($this->input->post('password'));
-			var_dump($this->input->post('KonfPassword'));
-			if ($this->input->post('password') == $this->input->post('KonfPassword')) {
+			// var_dump($this->input->post('konfPassword'));
+			if ($this->input->post('password') == $this->input->post('konfPassword')) {
 				$result = $this->m_user->insertUser($data);
 				if ($result > 0) {
 					$result2 = $this->m_tracer->insertTracer('Tambah user ' . $data['idUser'], $data['idUser']);
@@ -218,11 +218,11 @@ class masterUser extends AUTH_Controller
 
 		$data = $this->input->post();
 		$jbt = "04";
-		$dsn = $this->userDusun($data['dusun']);
-		$rt = $this->userRT($data['rt']);
-		$rw = $this->userRW($data['rw']);
+		// $dsn = $this->userDusun($data['dusun']);
+		// $rt = $this->userRT($data['rt']);
+		// $rw = $this->userRW($data['rw']);
 		$urutan = substr($data['id'], -4);
-		$data['idUser'] = $jbt . $dsn . $rt . $rw . $urutan;
+		// $data['idUser'] = $jbt . $dsn . $rt . $rw . $urutan;  
 		$data['alamat'] = "Jalan " . $data['jalan'] . " RT " . $data['rt'] . " RW " . $data['rw'] . ", Dusun " . $data['dusun'];
 		if ($this->form_validation->run() == TRUE) {
 			$result = $this->m_user->update($data);
@@ -275,37 +275,37 @@ class masterUser extends AUTH_Controller
 
 
 
-	public function userDusun($dusun)
-	{
-		if ($dusun == "Claket") {
-			$hasil = "01";
-		} else if ($dusun == "Mligi") {
-			$hasil = "02";
-		} else if ($dusun == "Sembung") {
-			$hasil = "03";
-		}
-		return $hasil;
-	}
+	// public function userDusun($dusun)
+	// {
+	// 	if ($dusun == "Claket") {
+	// 		$hasil = "01";
+	// 	} else if ($dusun == "Mligi") {
+	// 		$hasil = "02";
+	// 	} else if ($dusun == "Sembung") {
+	// 		$hasil = "03";
+	// 	}
+	// 	return $hasil;
+	// }
 
-	public function userRT($rt)
-	{
-		if ($rt < 10) {
-			$hasil = "0" . (string)$rt;
-		} else {
-			$hasil = (string)$rt;
-		}
-		return $hasil;
-	}
+	// public function userRT($rt)
+	// {
+	// 	if ($rt < 10) {
+	// 		$hasil = "0" . (string)$rt;
+	// 	} else {
+	// 		$hasil = (string)$rt;
+	// 	}
+	// 	return $hasil;
+	// }
 
-	public function userRW($rw)
-	{
-		if ($rw < 10) {
-			$hasil = "0" . (string)$rw;
-		} else {
-			$hasil = (string)$rw;
-		}
-		return $hasil;
-	}
+	// public function userRW($rw)
+	// {
+	// 	if ($rw < 10) {
+	// 		$hasil = "0" . (string)$rw;
+	// 	} else {
+	// 		$hasil = (string)$rw;
+	// 	}
+	// 	return $hasil;
+	// }
 
 	// public function userOrder()
 	// {

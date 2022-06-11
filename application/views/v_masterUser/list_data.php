@@ -13,9 +13,9 @@ foreach ($dataUser as $u) {
     <td>
       <center>
         <?php if ($userdata->id_akses == 'LV001') { ?>
-          <button class="btn btn-primary konf-dataMasterUser" style="width: 40px; text-align: center;" data-id="<?php echo $u->id_user; ?>"><i class="fa fa-gears"></i></button>
+          <!-- <button class="btn btn-primary konf-dataMasterUser" style="width: 40px; text-align: center;" data-id="<?php echo $u->id_user; ?>"><i class="fa fa-gears"></i></button>
           <button class="btn btn-success lihat-dataMasterUser" style="width: 40px; text-align: center;" data-id="<?php echo $u->id_user; ?>"><i class="fa fa-search"></i></button>
-          <button class="btn btn-warning update-dataMasterUser" style="width: 40px; text-align: center;" data-id="<?php echo $u->id_user; ?>"><i class="fa fa-edit"></i></button>
+          <button class="btn btn-warning update-dataMasterUser" style="width: 40px; text-align: center;" data-id="<?php echo $u->id_user; ?>"><i class="fa fa-edit"></i></button> -->
           <button class="btn btn-danger konfirmasiHapus-dataMasterUser" style="width: 40px; text-align: center;" data-id="<?php echo $u->id_user; ?>" data-toggle="modal" data-target="#konfirmasiHapus"><i class="fa fa-trash-o"></i></button>
         <?php } ?>
       </center>

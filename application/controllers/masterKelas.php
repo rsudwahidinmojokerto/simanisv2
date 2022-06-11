@@ -1,38 +1,51 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 date_default_timezone_set('Asia/Jakarta');
 
-class masterKelas extends AUTH_Controller {
-	public function __construct() {
+class masterKelas extends AUTH_Controller
+{
+	public function __construct()
+	{
 		parent::__construct();
 		$this->load->model('m_user');
+		$this->load->model('m_akses_user');
+		$this->load->model('m_ruang');
 		$this->load->model('m_kelas');
+		$this->load->model('m_tracer');
 	}
 
-	public function index() {
+	public function index()
+	{
 		$data['userdata'] 	= $this->userdata;
-		$cekAkses 			= $this->userdata->idGrup;
-		if($cekAkses != 'JBT04'){
-			$data['statusBayar']   = $this->m_bayar->selectStatus($this->userdata->idUser);
+		$cekAkses 			= $this->userdata->id_akses;
+		if (isset($data['userdata'])) {
+			if ($cekAkses == 'LV001') {
+				$data['page'] 		= "data_kelas";
+				$data['judul'] 		= "Data Kelas";
+				$data['deskripsi'] 	= "Manajemen Data Kelas Ruangan";
 
-			$data['page'] 		= "data_kelas";
-			$data['judul'] 		= "Data Kelas";
-			$data['deskripsi'] 	= "Manajemen Data Kelas Ruangan";
+				// $data['dataNomorUser'] = $this->userOrder();
+				// $data['dataAksesUser'] = $this->m_akses_user->getDataAksesUserAll();
+				// $data['dataRuang'] = $this->m_ruang->getDataRuangAll();
 
-			$data['modal_tambah_kelas'] = show_my_modal('modals/modal_tambah_kelas', 'tambah-kelas', $data);
+				$data['modal_tambah_masterUser'] = show_my_modal('modals/modal_tambah_masterUser', 'tambah-masterUser', $data);
 
-			$this->template->views('v_masterKelas/home', $data);
+				$this->template->views('v_masterUser/home', $data);
+			} else {
+				$data['page'] 		= "error403";
+				$this->output->set_status_header('403');
+				$this->template->views('error403', $data);
+			}
 		} else {
-			$data['page'] 		= "error403";
-			$this->output->set_status_header('403');
-			$this->template->views('error403', $data);
+			redirect('auth');
 		}
 	}
 
-	public function tampil() {
+	public function tampil()
+	{
 		$data['userdata'] 	= $this->userdata;
 		$cekAkses 			= $this->userdata->idGrup;
-		if($cekAkses == 'JBT03'){
+		if ($cekAkses == 'JBT03') {
 			$data['dataPelanggan'] = $this->m_user->selectPelangganByPenyuplai($this->userdata->idUser);
 		} else {
 			$data['dataPelanggan'] = $this->m_user->select_all("JBT04");
@@ -51,14 +64,15 @@ class masterKelas extends AUTH_Controller {
 	// 	$this->load->view('v_dataPelanggan/list_data', $data);
 	// }
 
-	public function prosesTambah() {
+	public function prosesTambah()
+	{
 		$this->form_validation->set_rules('nik', 'NIK', 'trim|required');
 		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'trim|required');
 		$this->form_validation->set_rules('jalan', 'Alamat', 'trim|required');
 		$this->form_validation->set_rules('rt', 'Alamat', 'trim|required');
 		$this->form_validation->set_rules('rw', 'Alamat', 'trim|required');
 		$this->form_validation->set_rules('dusun', 'Alamat', 'trim|required');
-        $this->form_validation->set_rules('jk', 'Jenis Kelamin', 'trim|required');
+		$this->form_validation->set_rules('jk', 'Jenis Kelamin', 'trim|required');
 		$this->form_validation->set_rules('email', 'E-mail', 'trim|required');
 		$this->form_validation->set_rules('telepon', 'Telepon', 'trim|required');
 
@@ -68,10 +82,10 @@ class masterKelas extends AUTH_Controller {
 		$rt = $this->userRT($data['rt']);
 		$rw = $this->userRW($data['rw']);
 		$urutan = $this->userOrder();
-		$data['idUser'] = $jbt.$dsn.$rt.$rw.$urutan;
+		$data['idUser'] = $jbt . $dsn . $rt . $rw . $urutan;
 		$password = $this->randomChar(10);
 		$data['password'] = md5($password);
-		$data['alamat'] = "Jalan ".$data['jalan']." RT ".$data['rt']." RW ".$data['rw'].", Dusun ".$data['dusun'];
+		$data['alamat'] = "Jalan " . $data['jalan'] . " RT " . $data['rt'] . " RW " . $data['rw'] . ", Dusun " . $data['dusun'];
 		$data['idGrup'] = "JBT04";
 		$data['foto'] = $this->pickPhoto($data['jk']);
 
@@ -92,7 +106,8 @@ class masterKelas extends AUTH_Controller {
 		echo json_encode($out);
 	}
 
-	public function update() {
+	public function update()
+	{
 		$id = trim($_POST['idUser']);
 		$data['dataPelanggan'] = $this->m_user->select_by_id($id);
 		$alamat = $this->m_user->select_alamat($id);
@@ -100,7 +115,8 @@ class masterKelas extends AUTH_Controller {
 		echo show_my_modal('modals/modal_update_pelanggan', 'update-pelanggan', $data);
 	}
 
-	public function prosesUpdate() {
+	public function prosesUpdate()
+	{
 		$this->form_validation->set_rules('id', 'ID', 'trim|required');
 		$this->form_validation->set_rules('nik', 'NIK', 'trim|required');
 		$this->form_validation->set_rules('nama', 'Nama Lengkap', 'trim|required');
@@ -108,7 +124,7 @@ class masterKelas extends AUTH_Controller {
 		$this->form_validation->set_rules('rt', 'Alamat', 'trim|required');
 		$this->form_validation->set_rules('rw', 'Alamat', 'trim|required');
 		$this->form_validation->set_rules('dusun', 'Alamat', 'trim|required');
-        $this->form_validation->set_rules('jk', 'Jenis Kelamin', 'trim|required');
+		$this->form_validation->set_rules('jk', 'Jenis Kelamin', 'trim|required');
 		$this->form_validation->set_rules('email', 'E-mail', 'trim|required');
 		$this->form_validation->set_rules('telepon', 'Telepon', 'trim|required');
 
@@ -118,8 +134,8 @@ class masterKelas extends AUTH_Controller {
 		$rt = $this->userRT($data['rt']);
 		$rw = $this->userRW($data['rw']);
 		$urutan = substr($data['id'], -4);
-		$data['idUser'] = $jbt.$dsn.$rt.$rw.$urutan;
-		$data['alamat'] = "Jalan ".$data['jalan']." RT ".$data['rt']." RW ".$data['rw'].", Dusun ".$data['dusun'];
+		$data['idUser'] = $jbt . $dsn . $rt . $rw . $urutan;
+		$data['alamat'] = "Jalan " . $data['jalan'] . " RT " . $data['rt'] . " RW " . $data['rw'] . ", Dusun " . $data['dusun'];
 		if ($this->form_validation->run() == TRUE) {
 			$result = $this->m_user->update($data);
 
@@ -138,7 +154,8 @@ class masterKelas extends AUTH_Controller {
 	}
 
 	//menghapus data pelanggan
-	public function delete() {
+	public function delete()
+	{
 		$id = $_POST['idUser'];
 		$result = $this->m_user->delete($id);
 
@@ -150,47 +167,51 @@ class masterKelas extends AUTH_Controller {
 		}
 	}
 
-	public function userDusun($dusun){
-		if($dusun == "Claket"){
+	public function userDusun($dusun)
+	{
+		if ($dusun == "Claket") {
 			$hasil = "01";
-		} else if ($dusun == "Mligi"){
+		} else if ($dusun == "Mligi") {
 			$hasil = "02";
-		} else if ($dusun == "Sembung"){
+		} else if ($dusun == "Sembung") {
 			$hasil = "03";
 		}
 		return $hasil;
 	}
 
-	public function userRT($rt){
-		if ($rt < 10){
-			$hasil = "0".(string)$rt;
+	public function userRT($rt)
+	{
+		if ($rt < 10) {
+			$hasil = "0" . (string)$rt;
 		} else {
 			$hasil = (string)$rt;
 		}
 		return $hasil;
 	}
 
-	public function userRW($rw){
-		if ($rw < 10){
-			$hasil = "0".(string)$rw;
+	public function userRW($rw)
+	{
+		if ($rw < 10) {
+			$hasil = "0" . (string)$rw;
 		} else {
 			$hasil = (string)$rw;
 		}
 		return $hasil;
 	}
 
-	public function userOrder(){
+	public function userOrder()
+	{
 		$lastDt = $this->m_user->id_last_data('JBT04');
 		$idUrut = substr($lastDt, -4);
 		$intUrut = (int)$idUrut;
-		$urut = $intUrut+1;
-		if($urut < 10){
-			$hasilUrut = "000".(string)$urut;
-		} else if ($urut < 100){
-			$hasilUrut = "00".(string)$urut;
-		} else if ($urut < 1000){
-			$hasilUrut = "0".(string)$urut;
-		} else if ($urut < 10000){
+		$urut = $intUrut + 1;
+		if ($urut < 10) {
+			$hasilUrut = "000" . (string)$urut;
+		} else if ($urut < 100) {
+			$hasilUrut = "00" . (string)$urut;
+		} else if ($urut < 1000) {
+			$hasilUrut = "0" . (string)$urut;
+		} else if ($urut < 10000) {
 			$hasilUrut = (string)$urut;
 		} else {
 			$hasilUrut = "error";
@@ -198,23 +219,26 @@ class masterKelas extends AUTH_Controller {
 		return $hasilUrut;
 	}
 
-	public function randomChar($panjang){
+	public function randomChar($panjang)
+	{
 		$karakter = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 		$hasil = '';
-		for ($i=0; $i < $panjang; $i++) { 
-			$ambil = rand(0, strlen($karakter)-1);
-			$hasil .= $karakter{$ambil};
+		for ($i = 0; $i < $panjang; $i++) {
+			$ambil = rand(0, strlen($karakter) - 1);
+			$hasil .= $karakter{
+				$ambil};
 		}
 		return $hasil;
 	}
 
-	public function pickPhoto($jk){
-		if($jk == "Laki-Laki"){
+	public function pickPhoto($jk)
+	{
+		if ($jk == "Laki-Laki") {
 			$pilihan = rand(1, 6);
 		} else {
 			$pilihan = rand(7, 9);
 		}
-		$hasil = "profil".$pilihan.".png";
+		$hasil = "profil" . $pilihan . ".png";
 		return $hasil;
 	}
 }

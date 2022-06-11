@@ -84,7 +84,7 @@
           </a>
         </li>
 
-        <?php if ($userdata->id_akses == "LV001") { ?>
+        <?php if ($userdata->id_akses == "LV001" || $userdata->id_akses == "LV004") { ?>
           <li <?php if ($page == 'tracer') {
                 echo 'class="active"';
               } ?>>

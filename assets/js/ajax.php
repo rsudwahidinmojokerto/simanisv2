@@ -35,7 +35,7 @@
 			"autoWidth": true,
 			"scrollX": true,
 			"pageLength": 100,
-			"lengthMenu": [25, 50, 100, 200, 500],
+			"lengthMenu": [25, 50, 100, 200, 500]
 			// "columnDefs": [{
 			// 	"orderable": false,
 			// 	"targets": [5, 6]
