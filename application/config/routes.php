@@ -59,5 +59,11 @@ $route['translate_uri_dashes'] = FALSE;
 | Sample REST API Routes
 | -------------------------------------------------------------------------
 */
-$route['api/example/users/(:num)'] = 'api/example/users/id/$1'; // Example 4
-$route['api/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/example/users/id/$1/format/$3$4'; // Example 8
+// $route['api/example/users/(:num)'] = 'api/example/users/id/$1'; // Example 4
+// $route['api/example/users/(:num)(\.)([a-zA-Z0-9_-]+)(.*)'] = 'api/example/users/id/$1/format/$3$4'; // Example 8
+
+$route['api/aplicare'] = 'api/api_aplicare/index';
+$route['api/getBed'] = 'api/api_aplicare/getBed';
+$route['api/getRuang'] = 'api/api_aplicare/getRuang';
+$route['api/getKelas'] = 'api/api_aplicare/getKelas';
+$route['api/getKetKelas'] = 'api/api_aplicare/getKetKelas';

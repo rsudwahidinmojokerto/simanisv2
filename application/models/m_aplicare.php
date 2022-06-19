@@ -3,6 +3,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class m_aplicare extends CI_Model
 {
+
+	public function getDataBedAll()
+	{
+		$sql = "SELECT * FROM m_aplicare";
+		$data = $this->db->query($sql);
+		return $data->result();
+	}
+
 	public function getBedBpjsAll()
 	{
 		$sql = "SELECT * FROM m_aplicare AS bpjs LEFT JOIN m_ruang AS ruang ON bpjs.koderuang = ruang.id_ruang LEFT JOIN m_kelas AS kelas ON bpjs.id_kelas = kelas.id_kelas LEFT JOIN m_ket_kelas AS ket ON bpjs.id_ket_kelas = ket.id_ket_kelas ORDER BY bpjs.koderuang, bpjs.id_kelas, bpjs.id_ket_kelas";
