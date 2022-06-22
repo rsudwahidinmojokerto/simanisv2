@@ -22,12 +22,12 @@ foreach ($dataKetersedianBed as $ketersediaanBed) {
     <td><?php echo $ketersediaanBed->id_kelas; ?></td>
     <td><?php echo $ketersediaanBed->nama_kelas; ?></td>
     <?php if ($userdata->id_akses == 'LV001' || $userdata->id_akses == 'LV002') { ?>
-      <td><input type="text" class="number" id="kapasitas" name="kapasitas-<?= $no; ?>" value="<?php echo $ketersediaanBed->kapasitas; ?>" kapasitas="<?php echo $ketersediaanBed->kapasitas; ?>"></td>
+      <td><input type="number" class="number" id="kapasitas" name="kapasitas-<?= $no; ?>" value="<?php echo $ketersediaanBed->kapasitas; ?>" kapasitas="<?php echo $ketersediaanBed->kapasitas; ?>"></td>
     <?php } else { ?>
       <td><input type="hidden" id="kapasitas" name="kapasitas-<?= $no; ?>" value="<?php echo $ketersediaanBed->kapasitas; ?>" kapasitas="<?php echo $ketersediaanBed->kapasitas; ?>"><?php echo $ketersediaanBed->kapasitas; ?></td>
     <?php } ?>
     <?php if ($userdata->id_akses == 'LV001' || $userdata->id_akses == 'LV003') { ?>
-      <td><input type="text" class="number" id="tersedia" name="tersedia-<?= $no; ?>" value="<?php echo $ketersediaanBed->tersedia; ?>"></td>
+      <td><input type="number" class="number" id="tersedia" name="tersedia-<?= $no; ?>" value="<?php echo $ketersediaanBed->tersedia; ?>"></td>
     <?php } else { ?>
       <td><input type="hidden" class="number" id="tersedia" name="tersedia-<?= $no; ?>" value="<?php echo $ketersediaanBed->tersedia; ?>"><?php echo $ketersediaanBed->tersedia; ?></td>
     <?php } ?>

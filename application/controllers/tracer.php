@@ -20,7 +20,7 @@ class tracer extends AUTH_Controller
 		$cekAkses 			= $this->userdata->id_akses;
 
 		if (isset($data['userdata'])) {
-			if ($cekAkses == 'LV001') {
+			if ($cekAkses == 'LV001' || $cekAkses == 'LV004') {
 				$data['page'] 		= "tracer";
 				$data['judul'] 		= "Tracer Aktivitas";
 				$data['deskripsi'] 	= "Monitoring aktivitas User";
